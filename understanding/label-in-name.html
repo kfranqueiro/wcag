@@ -18,12 +18,12 @@
 <div class="minimal-header-container default-grid">
   <div class="minimal-header" id="site-header">
     <div class="minimal-header-name">
-      <a href="https://w3c.github.io/wcag/understanding/">WCAG 2.2 Understanding Docs</a>
+      <a href="https://kfranqueiro.github.io/wcag/understanding/">WCAG 2.1 Understanding Docs</a>
     </div>
     
       <div class="minimal-header-subtitle">Informative explanations, not required to meet WCAG</div>
     
-    <a class="minimal-header-link" href="https://w3c.github.io/wcag/understanding/about">About WCAG Understanding Docs</a>
+    <a class="minimal-header-link" href="https://kfranqueiro.github.io/wcag/understanding/about">About WCAG Understanding Docs</a>
     <div class="minimal-header-logo">
       <a href="http://w3.org/" aria-label="W3C">
         <svg xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 91.968 44" style="margin: 0.75em 0 0.75em 0.5em">
@@ -120,7 +120,7 @@
 <h1>
   <span class="standalone-resource__type-of-guidance">
     Understanding
-    <a href="https://w3.org/TR/WCAG22#label-in-name">SC 2.5.3</a>:
+    <a href="https://w3.org/TR/WCAG21#label-in-name">SC 2.5.3</a>:
   </span>Label in Name (Level A)
 </h1>
 
@@ -140,18 +140,12 @@
 
 <section id="success-criterion" class="box">
 	<h2 class="box-h box-h-icon">Success Criterion (SC)</h2>
-	<div class="box-i">
-   
-   
-	
-  <p>For <a href="#dfn-user-interface-component">user interface components</a> with <a href="#dfn-label">labels</a> that include <a href="#dfn-text">text</a> or <a href="#dfn-image-of-text">images of text</a>, the <a href="#dfn-name">name</a> contains the text that is presented visually.</p>
+	<div class="box-i"><p>For <a href="#dfn-user-interface-component">user interface components</a> with <a href="#dfn-label">labels</a> that include <a href="#dfn-text">text</a> or <a href="#dfn-image-of-text">images of text</a>, the <a href="#dfn-name">name</a> contains the text that is presented visually.</p>
 
   <div class="note">
 				<p class="note-title marker">Note</p>
 				<p>A best practice is to have  the text of the label at the start of the name.</p>
-			</div>
-	
-</div>
+			</div></div>
 </section>
 	
 <section id="intent">
@@ -171,7 +165,7 @@
 				<li>immediately to the right of checkboxes and radio buttons</li>
 				<li>inside buttons and tabs or immediately below icons serving as buttons</li>
 			</ul>
-			<p>The rationale for some of these conventions is explained in <a href="https://w3c.github.io/wcag/techniques/general/G162">G162: Positioning labels to maximize predictability of relationships</a>.</p>
+			<p>The rationale for some of these conventions is explained in <a href="https://kfranqueiro.github.io/wcag/techniques/general/G162">G162: Positioning labels to maximize predictability of relationships</a>.</p>
 			<p>It is important to bias towards treating only the adjacent text as a label because liberal interpretations of what constitutes a text label can jeopardize the value of this Success Criterion (SC) by lessening predictability. Isolating the label to the single string in close proximity to the component makes it easier for developers, testers, and end users to identify the label targeted for evaluation in this SC. Predictable interpretation of labeling allows users of speech recognition technologies to interact with the element via its conventionally positioned label, and allows users of screen reading technologies to enjoy consistency between the nearby visible label and the announced name of the component.</p>
 			<p>Note that placeholder text within an input field is not considered an appropriate means of providing a label. The <a href="https://www.w3.org/TR/html52/sec-forms.html#the-placeholder-attribute">HTML5 specification</a> states <q>The placeholder attribute should not be used as an alternative to a <code>&lt;label&gt;</code>.</q> However, it is worth noting that "label" in that HTML5 statement is in code brackets and links to the <code>label</code> element. For the purposes of this Label in Name Success Criterion, "label" is not used in such a programmatic sense but is simply referring to a text string in close visual proximity to a component. As such, in the absence of any other nearby text string (as described in the preceding list), if an input contains placeholder text, such text may be a candidate for Label in Name. This is supported both through the accessible name calculation (discussed later) and from the practical sense that where a visible label is not otherwise provided, it is likely that a speech-input user may attempt to use the placeholder text value as a means of interacting with the input.</p>
 			<section id="text-labels-&quot;express-something-in-human-language&quot;">
@@ -276,8 +270,8 @@
 			<section id="sufficient">
 				<h3>Sufficient Techniques</h3>
 				<ul>
-					<li><a href="https://w3c.github.io/wcag/techniques/general/G208">G208: Including the text of the visible label as part of the accessible name</a></li>
-					<li><a href="https://w3c.github.io/wcag/techniques/general/G211">G211: Matching the accessible name to the visible label</a></li>
+					<li><a href="https://kfranqueiro.github.io/wcag/techniques/general/G208">G208: Including the text of the visible label as part of the accessible name</a></li>
+					<li><a href="https://kfranqueiro.github.io/wcag/techniques/general/G211">G211: Matching the accessible name to the visible label</a></li>
 				</ul>
 			</section>
 			<section id="advisory">
@@ -289,7 +283,7 @@
 
 				<p>Although not required for conformance, the following additional techniques should be considered in order to make content more accessible. Not all techniques can be used or would be effective in all situations.</p>
 				<ul>
-					<li><a href="https://w3c.github.io/wcag/techniques/general/G162">G162: Positioning labels to maximize predictability of relationships</a></li>
+					<li><a href="https://kfranqueiro.github.io/wcag/techniques/general/G162">G162: Positioning labels to maximize predictability of relationships</a></li>
 					<li>If an icon has no accompanying text, consider using its hover text as its accessible name (Potential future technique)</li>
 				</ul>
 			</section>
@@ -301,8 +295,8 @@
 
 
 				<ul>
-					<li><a href="https://w3c.github.io/wcag/techniques/failures/F96">F96: Failure due to the accessible name not containing the visible label text</a></li>
-					<li><a href="https://w3c.github.io/wcag/techniques/failures/F111">F111: Failure of Success Criteria 1.3.1, 2.5.3, and 4.1.2 due to a control with visible label text but no accessible name</a></li>
+					<li><a href="https://kfranqueiro.github.io/wcag/techniques/failures/F96">F96: Failure due to the accessible name not containing the visible label text</a></li>
+					<li><a href="https://kfranqueiro.github.io/wcag/techniques/failures/F111">F111: Failure of Success Criteria 1.3.1, 2.5.3, and 4.1.2 due to a control with visible label text but no accessible name</a></li>
 					<li>Accessible name contains the visible label text, but the words of the visible label are not in the same order as they are in the visible label text (Potential future technique)</li>
 					<li>Accessible name contains the visible label text, but one or more other words are interspersed in the label (Potential future technique)</li>
 				</ul>
@@ -313,15 +307,9 @@
 <section id="key-terms">
   <details>
     <summary><h2>Key Terms</h2></summary>
-    <dl><dt id="dfn-ascii-art">ASCII art</dt><dd><definition>
-   
-   <p>picture created by a spatial arrangement of characters or glyphs (typically from the
+    <dl><dt id="dfn-ascii-art">ASCII art</dt><dd><definition><p>picture created by a spatial arrangement of characters or glyphs (typically from the
       95 printable characters defined by ASCII)
-   </p>
-   
-</definition></dd><dt id="dfn-assistive-technology">assistive technology</dt><dd><definition>
-   
-   <p>hardware and/or software that acts as a <a href="#dfn-user-agent">user agent</a>, or along with a mainstream user agent, to provide functionality to meet the requirements
+   </p></definition></dd><dt id="dfn-assistive-technology">assistive technology</dt><dd><definition><p>hardware and/or software that acts as a <a href="#dfn-user-agent">user agent</a>, or along with a mainstream user agent, to provide functionality to meet the requirements
       of users with disabilities that go beyond those offered by mainstream user agents
    </p>
    
@@ -387,15 +375,8 @@
       </li>
       
    </ul>
-   </aside>
-</definition></dd><dt id="dfn-content">content</dt><dd><definition>
-   
-   <p>information and sensory experience to be communicated to the user by means of a <a href="#dfn-user-agent">user agent</a>, including code or markup that defines the content's <a href="#dfn-structure">structure</a>, <a href="#dfn-presentation">presentation</a>, and interactions
-   </p>
-   
-</definition></dd><dt id="dfn-human-language">human language</dt><dd><definition>
-   
-   <p>language that is spoken, written or signed (through visual or tactile means) to communicate
+   </aside></definition></dd><dt id="dfn-content">content</dt><dd><definition><p>information and sensory experience to be communicated to the user by means of a <a href="#dfn-user-agent">user agent</a>, including code or markup that defines the content's <a href="#dfn-structure">structure</a>, <a href="#dfn-presentation">presentation</a>, and interactions
+   </p></definition></dd><dt id="dfn-human-language">human language</dt><dd><definition><p>language that is spoken, written or signed (through visual or tactile means) to communicate
       with humans
    </p>
    
@@ -403,11 +384,7 @@
 				<p class="note-title marker">Note</p>
 				<p>See also <a href="#dfn-sign-language">sign language</a>.
    </p>
-			</div>
-   
-</definition></dd><dt id="dfn-image-of-text">image of text</dt><dd><definition>
-   
-   <p>text that has been rendered in a non-text form (e.g., an image) in order to achieve
+			</div></definition></dd><dt id="dfn-image-of-text">image of text</dt><dd><definition><p>text that has been rendered in a non-text form (e.g., an image) in order to achieve
       a particular visual effect
    </p>
    
@@ -417,11 +394,7 @@
    </p>
 			</div>
    
-   <aside class="example"><p>A person's name on a nametag in a photograph.</p></aside>
-   
-</definition></dd><dt id="dfn-label">label</dt><dd><definition>
-   
-   <p><a href="#dfn-text">text</a> or other component with a <a href="#dfn-text-alternative">text alternative</a> that is presented to a user to identify a component within Web <a href="#dfn-content">content</a></p>
+   <aside class="example"><p>A person's name on a nametag in a photograph.</p></aside></definition></dd><dt id="dfn-label">label</dt><dd><definition><p><a href="#dfn-text">text</a> or other component with a <a href="#dfn-text-alternative">text alternative</a> that is presented to a user to identify a component within Web <a href="#dfn-content">content</a></p>
    
    <div class="note">
 				<p class="note-title marker">Note</p>
@@ -433,11 +406,7 @@
    <div class="note">
 				<p class="note-title marker">Note</p>
 				<p>The term label is not limited to the label element in HTML.</p>
-			</div>
-   
-</definition></dd><dt id="dfn-name">name</dt><dd><definition>
-   
-   <p>text by which software can identify a component within Web content to the user</p>
+			</div></definition></dd><dt id="dfn-name">name</dt><dd><definition><p>text by which software can identify a component within Web content to the user</p>
    
    <div class="note">
 				<p class="note-title marker">Note</p>
@@ -449,27 +418,15 @@
    <div class="note">
 				<p class="note-title marker">Note</p>
 				<p>This is unrelated to the name attribute in HTML.</p>
-			</div>
-   
-</definition></dd><dt id="dfn-non-text-content">non-text content</dt><dd><definition>
-   
-   <p>any content that is not a sequence of characters that can be <a href="#dfn-programmatically-determined">programmatically determined</a> or where the sequence is not expressing something in <a href="#dfn-human-language">human language</a></p>
+			</div></definition></dd><dt id="dfn-non-text-content">non-text content</dt><dd><definition><p>any content that is not a sequence of characters that can be <a href="#dfn-programmatically-determined">programmatically determined</a> or where the sequence is not expressing something in <a href="#dfn-human-language">human language</a></p>
    
    <div class="note">
 				<p class="note-title marker">Note</p>
 				<p>This includes <a href="#dfn-ascii-art">ASCII Art</a> (which is a pattern of characters), emoticons, leetspeak (which uses character substitution),
       and images representing text
    </p>
-			</div>
-   
-</definition></dd><dt id="dfn-presentation">presentation</dt><dd><definition>
-   
-   <p>rendering of the <a href="#dfn-content">content</a> in a form to be perceived by users
-   </p>
-   
-</definition></dd><dt id="dfn-programmatically-determined">programmatically determined</dt><dd><definition>
-   
-   <p>determined by software from author-supplied data provided in a way that different
+			</div></definition></dd><dt id="dfn-presentation">presentation</dt><dd><definition><p>rendering of the <a href="#dfn-content">content</a> in a form to be perceived by users
+   </p></definition></dd><dt id="dfn-programmatically-determined">programmatically determined</dt><dd><definition><p>determined by software from author-supplied data provided in a way that different
       <a href="#dfn-user-agent">user agents</a>, including <a href="#dfn-assistive-technology">assistive technologies</a>, can extract and present this information to users in different modalities
    </p>
    
@@ -480,17 +437,9 @@
       <aside class="example"><p>Determined from technology-specific data structures in a non-markup language and exposed
       to assistive technology via an accessibility API that is supported by commonly available
       assistive technology.
-      </p></aside>
-   
-</definition></dd><dt id="dfn-sign-language">sign language</dt><dd><definition>
-   
-   <p>a language using combinations of movements of the hands and arms, facial expressions,
+      </p></aside></definition></dd><dt id="dfn-sign-language">sign language</dt><dd><definition><p>a language using combinations of movements of the hands and arms, facial expressions,
       or body positions to convey meaning
-   </p>
-   
-</definition></dd><dt id="dfn-structure">structure</dt><dd><definition>
-   
-   <ol>
+   </p></definition></dd><dt id="dfn-structure">structure</dt><dd><definition><ol>
       
       <li>The way the parts of a <a href="#dfn-web-page">Web page</a> are organized in relation to each other; and
       </li>
@@ -498,15 +447,7 @@
       <li>The way a collection of <a href="#dfn-web-page">Web pages</a> is organized
       </li>
       
-   </ol>
-   
-</definition></dd><dt id="dfn-text">text</dt><dd><definition>
-   
-   <p>sequence of characters that can be <a href="#dfn-programmatically-determined">programmatically determined</a>, where the sequence is expressing something in <a href="#dfn-human-language">human language</a></p>
-   
-</definition></dd><dt id="dfn-text-alternative">text alternative</dt><dd><definition>
-   
-   <p><a href="#dfn-text">Text</a> that is programmatically associated with <a href="#dfn-non-text-content">non-text content</a> or referred to from text that is programmatically associated with non-text content.
+   </ol></definition></dd><dt id="dfn-text">text</dt><dd><definition><p>sequence of characters that can be <a href="#dfn-programmatically-determined">programmatically determined</a>, where the sequence is expressing something in <a href="#dfn-human-language">human language</a></p></definition></dd><dt id="dfn-text-alternative">text alternative</dt><dd><definition><p><a href="#dfn-text">Text</a> that is programmatically associated with <a href="#dfn-non-text-content">non-text content</a> or referred to from text that is programmatically associated with non-text content.
       Programmatically associated text is text whose location can be programmatically determined
       from the non-text content.
    </p>
@@ -519,18 +460,10 @@
 				<p class="note-title marker">Note</p>
 				<p>Refer to <a href="https://www.w3.org/WAI/WCAG21/Understanding/conformance#text-alternatives">Understanding Text Alternatives</a> for more information.
    </p>
-			</div>
-   
-</definition></dd><dt id="dfn-user-agent">user agent</dt><dd><definition>
-   
-   <p>any software that retrieves and presents Web content for users</p>
+			</div></definition></dd><dt id="dfn-user-agent">user agent</dt><dd><definition><p>any software that retrieves and presents Web content for users</p>
    
    <aside class="example"><p>Web browsers, media players, plug-ins, and other programs — including <a href="#dfn-assistive-technology">assistive technologies</a> — that help in retrieving, rendering, and interacting with Web content.
-   </p></aside>
-   
-</definition></dd><dt id="dfn-user-interface-component">user interface component</dt><dd><definition>
-   
-   <p>a part of the content that is perceived by users as a single control for a distinct
+   </p></aside></definition></dd><dt id="dfn-user-interface-component">user interface component</dt><dd><definition><p>a part of the content that is perceived by users as a single control for a distinct
       function
    </p>
    
@@ -559,11 +492,7 @@
    <aside class="example"><p>An applet has a "control" that can be used to move through content by line or page
       or random access. Since each of these would need to have a name and be settable independently,
       they would each be a "user interface component."
-   </p></aside>
-   
-</definition></dd><dt id="dfn-web-page">Web page</dt><dd><definition>
-   
-   <p>a non-embedded resource obtained from a single URI using HTTP plus any other resources
+   </p></aside></definition></dd><dt id="dfn-web-page">Web page</dt><dd><definition><p>a non-embedded resource obtained from a single URI using HTTP plus any other resources
       that are used in the rendering or intended to be rendered together with it by a <a href="#dfn-user-agent">user agent</a></p>
    
    <div class="note">
@@ -598,9 +527,7 @@
       you. Clicking on a product causes it to be demonstrated with a specification sheet
       floating alongside. This might be a single-page Web site or just one page within a
       Web site.
-   </p></aside>
-   
-</definition></dd></dl>
+   </p></aside></definition></dd></dl>
   </details>
 </section>
 
