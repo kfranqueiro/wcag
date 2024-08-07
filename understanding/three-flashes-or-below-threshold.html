@@ -26,7 +26,7 @@
     <a class="minimal-header-link" href="https://kfranqueiro.github.io/wcag/understanding/about">About WCAG Understanding Docs</a>
     <div class="minimal-header-logo">
       <a href="http://w3.org/" aria-label="W3C">
-        <svg xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 91.968 44" style="margin: 0.75em 0 0.75em 0.5em">
+        <svg xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 91.968 44">
           <g fill-rule="evenodd" fill="none">
             <path fill="#015a9c" d="M-.231-.21h92.917v44.659H-.23z"></path>
             <g fill-rule="nonzero" fill="#fff">
@@ -36,7 +36,7 @@
         </svg>
       </a>
       <a href="http://w3.org/WAI/" aria-label="Web Accessibility Initiative">
-        <svg xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 162.5 45.9" style="margin: 0.75em 0 0.75em 0.5em">
+        <svg xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 162.5 45.9">
           <g fill="none" fill-rule="evenodd">
             <path d="M0 0h162.5v45.9H0z" fill="#015a9c"></path>
             <path d="M1.2 24.5h160" stroke="#eed009" stroke-linecap="square" stroke-width="2"></path>
@@ -178,7 +178,7 @@
          represents the central vision portion of the eye, where people are most susceptible
          to photo stimuli.)
       </p>
-      <p>With the proliferation of devices of varying screen sizes (from small hand-helds to large living room displays), as well as the adoption of <a href="https://www.w3.org/TR/WCAG21/#dfn-css-pixels">CSS pixels</a> as a density-independent unit of measurement, the prior assessment criteria may seem outdated. However, an image of a consistent size uses up relatively the same percentage of a user's visual field on any device. On a large screen, the image takes up less size, but the large screen takes up a larger part of the visual field. On a mobile screen, the image may take up most or all of the screen; however, the mobile screen itself takes up a smaller portion of the user's visual field. So the same dimension of the flashing content, represented in CSS pixels can still provide a consistent means of assessment. Substituting CSS pixels for the original pixel block means that the combined area of flashing becomes 341 x 256 CSS pixels, or a flashing area of 87,296 CSS pixels.</p>
+      <p>With the proliferation of devices of varying screen sizes (from small hand-helds to large living room displays), as well as the adoption of <a href="#dfn-css-pixel">CSS pixels</a> as a density-independent unit of measurement, the prior assessment criteria may seem outdated. However, an image of a consistent size uses up relatively the same percentage of a user's visual field on any device. On a large screen, the image takes up less size, but the large screen takes up a larger part of the visual field. On a mobile screen, the image may take up most or all of the screen; however, the mobile screen itself takes up a smaller portion of the user's visual field. So the same dimension of the flashing content, represented in CSS pixels can still provide a consistent means of assessment. Substituting CSS pixels for the original pixel block means that the combined area of flashing becomes 341 x 256 CSS pixels, or a flashing area of 87,296 CSS pixels.</p>
 
       <p>Content should be analyzed at the largest scale at which a user may view the content, and at the standard zoom level of the user agent. For example, with a video that may play in an area of a web page and also at full screen, the video should be analyzed for risks at full screen.</p>
 
@@ -440,7 +440,14 @@
 				<p>See also <a href="#dfn-flash">flash</a>. It is possible for something to be large enough and blink brightly enough at the
       right frequency to be also classified as a flash.
    </p>
-			</div></definition></dd><dt id="dfn-flash">flash</dt><dd><definition><p>a pair of opposing changes in <a href="#dfn-relative-luminance">relative luminance</a> that can cause seizures in some people if it is large enough and in the right frequency
+			</div></definition></dd><dt id="dfn-css-pixel">CSS pixel</dt><dd><definition><p>visual angle of about 0.0213 degrees</p>
+   					
+   <p>A CSS pixel is the canonical unit of measure for all lengths and measurements in CSS.
+      This unit is density-independent, and distinct from actual hardware pixels present
+      in a display. User agents and operating systems should ensure that a CSS pixel is
+      set as closely as possible to the <a href="https://www.w3.org/TR/css3-values/#reference-pixel">CSS Values and Units Module Level 3 reference pixel</a> [[css3-values]], which takes into account the physical dimensions of the display
+      and the assumed viewing distance (factors that cannot be determined by content authors).
+   </p></definition></dd><dt id="dfn-flash">flash</dt><dd><definition><p>a pair of opposing changes in <a href="#dfn-relative-luminance">relative luminance</a> that can cause seizures in some people if it is large enough and in the right frequency
       range
    </p>
    
@@ -663,7 +670,7 @@
 </div>
 <footer id="wai-site-footer" class="page-footer default-grid" aria-label="Page">
   <div class="inner" style="grid-column: 2 / 8">
-    <p><strong>Date:</strong> Updated 22 July 2024.</p>
+    <p><strong>Date:</strong> Updated 19 July 2024.</p>
     <p><strong>Developed by</strong>
       <a href="https://www.w3.org/groups/wg/ag/participants">Accessibility Guidelines Working Group (AG WG) Participants</a>
       (Co-Chairs: Alastair Campbell, Charles Adams, Rachael Bradley Montgomery. W3C Staff Contact: Kevin White).
