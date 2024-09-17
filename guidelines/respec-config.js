@@ -8,75 +8,71 @@ var respecConfig = {
 	permalinkHide:     false,
 	tocIntroductory: true,
 	// specification status (e.g., WD, LC, NOTE, etc.). If in doubt use ED.
-	specStatus:           "ED",
+	specStatus:           "REC",
 	//crEnd:                "2012-04-30",
 	//perEnd:               "2013-07-23",
-	publishDate:          "2023-10-05",
+	//publishDate:          "2013-08-22",
 	diffTool:             "http://www.aptest.com/standards/htmldiff/htmldiff.pl",
 	
 	// the specifications short name, as in https://www.w3.org/TR/short-name/
-	shortName:            "WCAG22",
+	shortName:            "WCAG21",
 	
 	
 	// if you wish the publication date to be other than today, set this
-	//publishDate:  "2014-12-11",
+	publishDate:  "2023-09-21",
 	copyrightStart:  "2020",
 	license: "document",
 	
 	// if there is a previously published draft, uncomment this and set its YYYY-MM-DD date
 	// and its maturity status
-	//previousPublishDate:  "2014-06-12",
-	//previousMaturity:  "WD",
-	prevRecURI: "https://www.w3.org/TR/WCAG21/",
+	previousPublishDate:  "2018-06-05",
+	previousMaturity:  "REC",
+	prevRecURI: "https://www.w3.org/TR/WCAG20/",
 	//previousDiffURI: "https://www.w3.org/TR/2014/REC-wai-aria-20140320/",
 	
 	// if there a publicly available Editors Draft, this is the link
 	edDraftURI: "https://w3c.github.io/wcag/guidelines/22/",
+  
+  // Implementation report
+  implementationReportURI: "https://www.w3.org/WAI/WCAG21/implementation-report/",
 	
 	// if this is a LCWD, uncomment and set the end of its review period
 	// lcEnd: "2012-02-21",
+  
+  // Name of the WG
+  group: "ag",
+  github: "w3c/wcag",
 	
 	// editors, add as many as you like
 	// only "name" is required
 	editors: [
 		{
+			name: "Andrew Kirkpatrick",
+			mailto: "akirkpat@adobe.com",
+			company: "Adobe",
+			companyURI: "http://www.adobe.com/",
+			w3cid: 39770
+		},
+		{
+			name: "Joshue O Connor",
+			mailto: "josh@interaccess.ie",
+			company: "Invited Expert, InterAccess",
+			companyURI: "https://interaccess.org/",
+			w3cid: 41218
+		},
+		{
 			name: "Alastair Campbell",
-			//url: "https://www.nomensa.com/",
 			mailto: "acampbell@nomensa.com",
 			company: "Nomensa",
 			companyURI: "https://www.nomensa.com/",
 			w3cid: 44689
 		},
 		{
-			name: "Chuck Adams",
-			//url: "https://www.oracle.com/",
-			mailto: "charles.adams@oracle.com",
-			company: "Oracle",
-			companyURI: "https://www.oracle.com/",
-			w3cid: 104852
-		},
-		{
-			name: "Rachael Bradley Montgomery",
-			mailto: "rachael@accessiblecommunity.org",
-			company: "Library of Congress",
-			companyURI: "https://loc.gov/",
-			w3cid: 90310
-		},
-		{
 			name: "Michael Cooper",
-			url: 'https://www.w3.org/People/cooper',
-			//mailto: "cooper@w3.org",
+			mailto: "cooper@w3.org",
 			company: "W3C",
 			companyURI: "https://www.w3.org",
 			w3cid: 34017
-		},
-		{
-			name: "Andrew Kirkpatrick",
-			//url: "http://www.adobe.com/",
-			mailto: "akirkpat@adobe.com",
-			company: "Adobe",
-			companyURI: "http://www.adobe.com/",
-			w3cid: 39770
 		}
 	],
 	/* 
@@ -136,13 +132,23 @@ var respecConfig = {
 	],
 	*/
 	
-	errata: 'https://www.w3.org/WAI/WCAG22/errata/',
-  implementationReportURI: 'https://www.w3.org/WAI/WCAG22/implementation-report/',
+	errata: 'https://www.w3.org/WAI/WCAG21/errata/',
 	
 	// name of the WG
-	group:  "ag",
-	github: "w3c/wcag",
-
+	wg:           "Accessibility Guidelines Working Group",
+	
+	// URI of the public WG page
+	wgURI:        "https://www.w3.org/WAI/GL/",
+	
+	// name (with the @w3c.org) of the public mailing to which comments are due
+	wgPublicList: "public-agwg-comments",
+	
+	// URI of the patent status for this WG, for Rec-track documents
+	// !!!! IMPORTANT !!!!
+	// This is important for Rec-track documents, do not copy a patent URI from a random
+	// document unless you know what you're doing. If in doubt ask your friendly neighbourhood
+	// Team Contact.
+	wgPatentURI:  "https://www.w3.org/2004/01/pp-impl/35422/status",
 	maxTocLevel: 4,
 	
 	postProcess: [postRespec]
