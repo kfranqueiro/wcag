@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"><head>
    <meta charset="UTF-8">
-   <title>Understanding Success Criterion 4.1.1: Parsing | WAI | W3C</title>
+   <title>Understanding Success Criterion 4.1.1: Parsing (Obsolete and removed) | WAI | W3C</title>
    
 
 
@@ -18,7 +18,7 @@
 <div class="minimal-header-container default-grid">
   <header class="minimal-header" id="site-header">
     <div class="minimal-header-name">
-      <a href="https://kfranqueiro.github.io/wcag/understanding/">WCAG 2.1 Understanding Docs</a>
+      <a href="https://kfranqueiro.github.io/wcag/understanding/">WCAG 2.2 Understanding Docs</a>
     </div>
     
       <div class="minimal-header-subtitle">Informative explanations, not required to meet WCAG</div>
@@ -96,7 +96,6 @@
 <li><a href="#success-criterion">Success Criterion</a></li>
 <li><a href="#intent">Intent</a></li>
 <li><a href="#benefits">Benefits</a></li>
-<li><a href="#techniques">Techniques</a></li>
 <li><a href="#test-rules">Test Rules</a></li>
 </ul>
       </nav>
@@ -108,8 +107,8 @@
 <h1>
   <span class="standalone-resource__type-of-guidance">
     Understanding
-    <a href="https://w3.org/TR/WCAG21#parsing">SC 4.1.1</a>:
-  </span>Parsing (Level A)
+    <a href="https://w3.org/TR/WCAG22#parsing">SC 4.1.1</a>:
+  </span>Parsing (Obsolete and removed)
 </h1>
 
 
@@ -128,33 +127,45 @@
 
 <section id="success-criterion" class="box">
 	<h2 class="box-h box-h-icon">Success Criterion (SC)</h2>
-	<div class="box-i"><p>In content implemented using markup languages, elements have complete start and end
-      tags, elements are nested according to their specifications, elements do not contain
-      duplicate attributes, and any IDs are unique, except where the specifications allow
-      these features.
-   </p>
+	<div class="box-i">
    
-   <div class="note">
-				<p class="note-title marker">Note</p>
-				<p>This Success Criterion should be considered as always satisfied for any content using HTML or XML.</p>
-			</div>
+   
 
    <div class="note">
 				<p class="note-title marker">Note</p>
-				<div>
-      <p>Since this criterion was written, the HTML Living Standard has adopted specific requirements governing how user agents must handle incomplete tags, incorrect element nesting, duplicate attributes, and non-unique IDs.</p>
-      
-      <p>Although the HTML Standard treats some of these cases as non-conforming for authors, it is considered to "allow these features" for the purposes of this Success Criterion because the specification requires that user agents support handling these cases consistently. In practice, this criterion no longer provides any benefit to people with disabilities in itself.</p>
-      
-      <p>Issues such as missing roles due to inappropriately nested elements or incorrect states or names due to a duplicate ID are covered by different Success Criteria and should be reported under those criteria rather than as issues with 4.1.1.</p>
-   </div>
-			</div></div>
+				<p>This criterion was originally adopted to address problems that assistive technology had directly parsing HTML. Assistive technology no longer has any need to directly parse HTML. Consequently, these problems either no longer exist or are addressed by other criteria. This criterion no longer has utility and is removed.</p>
+			</div>
+   
+</div>
 </section>
 	
 <section id="intent">
       <h2>Intent</h2>
       
-      
+      <div class="wcag22"><span class="new-version">New in WCAG 2.2: </span>
+         <p>This criterion has been removed from WCAG 2.2.</p>
+
+         <p>The intent of this Success Criterion was to ensure that user-agents, including assistive technologies, can accurately interpret and parse content. Since WCAG 2.0 was published, the specifications (such as HTML) and browsers have improved their handling of parsing errors. It is also the case that assistive technology used to do their own parsing of markup, but now rely on the browser. For that reason this success criterion has been removed. Many issues that would have failed this criterion will fail <a href="info-and-relationships">Info and Relationships</a> or <a href="name-role-value">Name, Role, Value</a>. Other issues are excepted by the "except where the specification allow these features" part of the criterion.</p>
+
+         <p>The following content is left for historical purposes to show the original intent.</p>  
+            
+         <hr>
+
+         <blockquote class="scquote">
+            <p>Success Criterion <a href="https://www.w3.org/TR/WCAG21/#parsing" style="font-weight: bold;">4.1.1 Parsing</a> (Level A): In content implemented using markup languages, elements have complete start and end
+               tags, elements are nested according to their specifications, elements do not contain
+               duplicate attributes, and any IDs are unique, except where the specifications allow
+               these features.
+               </p>
+            <div class="note">
+				<p class="note-title marker">Note</p>
+				<p>Start and end tags that are missing a critical character in their formation, such
+               as a closing angle bracket or a mismatched attribute value quotation mark are not
+               complete.
+               </p>
+			</div>
+         </blockquote>
+      </div>
 
       <p>
          The intent of this Success Criterion is to ensure that user agents, including assistive technologies, can accurately interpret and parse content.  If the content cannot be parsed into a data structure, then different user agents may present it differently or be completely unable to parse it. Some user agents use "repair techniques" to render poorly coded content.
@@ -224,108 +235,7 @@
 
 
 
-<section id="techniques">
-      <h2>Techniques</h2>
-<p>
-  Each numbered item in this section represents a technique or combination of techniques
-  that the WCAG Working Group deems sufficient for meeting this Success Criterion.
-  However, it is not necessary to use these particular techniques.
-  For information on using other techniques, see
-  <a href="understanding-techniques">Understanding Techniques for WCAG Success Criteria</a>,
-  particularly the "Other Techniques" section.
-</p>
 
-
-      
-      
-      <section id="sufficient">
-         <h3>Sufficient Techniques</h3>
-         
-         
-         <ul>
-            
-            <li>
-               									         
-               <a href="https://kfranqueiro.github.io/wcag/techniques/general/G134">G134: Validating Web pages</a>
-               								       
-            </li>
-            
-            <li>
-               									         
-               <a href="https://kfranqueiro.github.io/wcag/techniques/general/G192">G192: Fully conforming to specifications</a>
-               								       
-            </li>
-            
-            <li>
-               									         
-               <a href="https://kfranqueiro.github.io/wcag/techniques/html/H88">H88: Using HTML according to spec</a>
-               								       
-            </li>
-            
-            <li>
-               
-               <p>Ensuring that Web pages can be parsed  by using one of the following techniques:</p>
-               
-               <ul>
-                  
-                  <li>
-                     											             
-                     <a href="https://kfranqueiro.github.io/wcag/techniques/html/H74">H74: Ensuring that opening and closing tags are used according to specification</a>
-                     											             
-                     <strong>AND</strong>
-                     											             
-                     <a href="https://kfranqueiro.github.io/wcag/techniques/html/H93">H93: Ensuring that id attributes are unique on a Web page</a>
-                     											             
-                     <strong>AND</strong>
-                     											             
-                     <a href="https://kfranqueiro.github.io/wcag/techniques/html/H94">H94: Ensuring that elements do not contain duplicate attributes</a>
-                     										           
-                  </li>
-                  
-                  <li>
-                     											             
-                     <a href="https://kfranqueiro.github.io/wcag/techniques/html/H75">H75: Ensuring that Web pages are well-formed</a>
-                     										           
-                  </li>
-                  
-               </ul>
-               
-            </li>
-            
-         </ul>
-         
-      </section>
-      
-      
-      
-      <section id="failure">
-         <h3>Failures</h3>
-<p>
-  The following are common mistakes that are considered failures of this Success Criterion by the WCAG Working Group.
-</p>
-
-
-         
-         
-         <ul>
-            
-            <li>
-               									         
-               <a href="https://kfranqueiro.github.io/wcag/techniques/failures/F70">F70: Failure of Success Criterion 4.1.1 due to incorrect use of start and end tags or attribute markup</a>
-               								       
-            </li>
-            
-            <li>
-               									         
-               <a href="https://kfranqueiro.github.io/wcag/techniques/failures/F77">F77: Failure of Success Criterion 4.1.1 due to duplicate values of type ID</a>
-               								       
-            </li>
-            
-         </ul>
-         
-      </section>
-      
-   </section>
 
 
 
@@ -377,11 +287,10 @@
 </div>
 <footer id="wai-site-footer" class="page-footer default-grid" aria-label="Page">
   <div class="inner" style="grid-column: 2 / 8">
-    <p><strong>Date:</strong> Updated 19 July 2024.</p>
+    <p><strong>Date:</strong> Updated 20 September 2024.</p>
     <p><strong>Developed by</strong>
       <a href="https://www.w3.org/groups/wg/ag/participants">Accessibility Guidelines Working Group (AG WG) Participants</a>
-      (Co-Chairs: Alastair Campbell, Charles Adams, Rachael Bradley Montgomery. W3C Staff Contact:
-      Michael Cooper).
+      (Co-Chairs: Alastair Campbell, Charles Adams, Rachael Bradley Montgomery. W3C Staff Contact: Kevin White).
     </p>
     <p>The content was developed as part of the
       <a href="https://www.w3.org/WAI/about/projects/#us">WAI-Core projects</a> funded by U.S. Federal funds.

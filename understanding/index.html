@@ -2,7 +2,7 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 			
-		<title>Understanding WCAG 2.1 | WAI | W3C</title>
+		<title>Understanding WCAG 2.2 | WAI | W3C</title>
 		<link rel="stylesheet" href="https://w3.org/WAI/assets/css/style.css">
 		<link rel="stylesheet" type="text/css" href="base.css">
 	</head>
@@ -12,7 +12,7 @@
 <div class="minimal-header-container default-grid">
   <header class="minimal-header" id="site-header">
     <div class="minimal-header-name">
-      <a href="https://kfranqueiro.github.io/wcag/understanding/">WCAG 2.1 Understanding Docs</a>
+      <a href="https://kfranqueiro.github.io/wcag/understanding/">WCAG 2.2 Understanding Docs</a>
     </div>
     
       <div class="minimal-header-subtitle">Informative explanations, not required to meet WCAG</div>
@@ -80,7 +80,7 @@
 
 		<main id="main" class="main-content standalone-resource__main">
 				
-		<h1 id="title" class="title p-name">All WCAG 2.1 Understanding Docs</h1>
+		<h1 id="title" class="title p-name">All WCAG 2.2 Understanding Docs</h1>
 				<aside class="box">
 					<header class="box-h ">Summary</header>
 					<div class="box-i">
@@ -254,6 +254,12 @@
         
           <li><a href="section-headings"><span class="secno">2.4.10 </span>Section Headings</a></li>
         
+          <li><a href="focus-not-obscured-minimum"><span class="secno">2.4.11 </span>Focus Not Obscured (Minimum)</a></li>
+        
+          <li><a href="focus-not-obscured-enhanced"><span class="secno">2.4.12 </span>Focus Not Obscured (Enhanced)</a></li>
+        
+          <li><a href="focus-appearance"><span class="secno">2.4.13 </span>Focus Appearance</a></li>
+        
         </ul>
       </section>
     
@@ -269,9 +275,13 @@
         
           <li><a href="motion-actuation"><span class="secno">2.5.4 </span>Motion Actuation</a></li>
         
-          <li><a href="target-size"><span class="secno">2.5.5 </span>Target Size</a></li>
+          <li><a href="target-size-enhanced"><span class="secno">2.5.5 </span>Target Size (Enhanced)</a></li>
         
           <li><a href="concurrent-input-mechanisms"><span class="secno">2.5.6 </span>Concurrent Input Mechanisms</a></li>
+        
+          <li><a href="dragging-movements"><span class="secno">2.5.7 </span>Dragging Movements</a></li>
+        
+          <li><a href="target-size-minimum"><span class="secno">2.5.8 </span>Target Size (Minimum)</a></li>
         
         </ul>
       </section>
@@ -314,6 +324,8 @@
         
           <li><a href="change-on-request"><span class="secno">3.2.5 </span>Change on Request</a></li>
         
+          <li><a href="consistent-help"><span class="secno">3.2.6 </span>Consistent Help</a></li>
+        
         </ul>
       </section>
     
@@ -333,6 +345,12 @@
         
           <li><a href="error-prevention-all"><span class="secno">3.3.6 </span>Error Prevention (All)</a></li>
         
+          <li><a href="redundant-entry"><span class="secno">3.3.7 </span>Redundant Entry</a></li>
+        
+          <li><a href="accessible-authentication-minimum"><span class="secno">3.3.8 </span>Accessible Authentication (Minimum)</a></li>
+        
+          <li><a href="accessible-authentication-enhanced"><span class="secno">3.3.9 </span>Accessible Authentication (Enhanced)</a></li>
+        
         </ul>
       </section>
     
@@ -345,7 +363,7 @@
         <h3><a href="compatible"><span class="secno">4.1 </span>Compatible</a></h3>
         <ul>
         
-          <li><a href="parsing"><span class="secno">4.1.1 </span>Parsing</a></li>
+          <li><a href="parsing"><span class="secno">4.1.1 </span>Parsing (Obsolete and removed)</a></li>
         
           <li><a href="name-role-value"><span class="secno">4.1.2 </span>Name, Role, Value</a></li>
         
@@ -360,15 +378,15 @@
     <h2>Other Understanding documents</h2>
     <ul class="toc-wcag-docs">
     
-      <li><a href="intro">Introduction to Understanding WCAG 2.1</a></li>
+      <li><a href="intro">Introduction to Understanding WCAG 2.2</a></li>
     
-      <li><a href="understanding-techniques">Understanding Techniques for WCAG 2.1 Success Criteria</a></li>
+      <li><a href="understanding-techniques">Understanding Techniques for WCAG Success Criteria</a></li>
     
-      <li><a href="understanding-act-rules">Understanding Test Rules for WCAG 2.1 Success Criteria</a></li>
+      <li><a href="understanding-act-rules">Understanding Test Rules for WCAG Success Criteria</a></li>
     
       <li><a href="conformance">Understanding Conformance</a></li>
     
-      <li><a href="refer-to-wcag">How to Refer to WCAG 2.1 from Other Documents</a></li>
+      <li><a href="refer-to-wcag">How to Refer to WCAG 2.2 from Other Documents</a></li>
     
       <li><a href="documenting-accessibility-support">Documenting Accessibility Support for Uses of a Web Technology</a></li>
     
@@ -393,11 +411,10 @@
 
 <footer id="wai-site-footer" class="page-footer default-grid" aria-label="Page">
   <div class="inner" style="grid-column: 2 / 8">
-    <p><strong>Date:</strong> Updated 19 July 2024.</p>
+    <p><strong>Date:</strong> Updated 20 September 2024.</p>
     <p><strong>Developed by</strong>
       <a href="https://www.w3.org/groups/wg/ag/participants">Accessibility Guidelines Working Group (AG WG) Participants</a>
-      (Co-Chairs: Alastair Campbell, Charles Adams, Rachael Bradley Montgomery. W3C Staff Contact:
-      Michael Cooper).
+      (Co-Chairs: Alastair Campbell, Charles Adams, Rachael Bradley Montgomery. W3C Staff Contact: Kevin White).
     </p>
     <p>The content was developed as part of the
       <a href="https://www.w3.org/WAI/about/projects/#us">WAI-Core projects</a> funded by U.S. Federal funds.
