@@ -1,6 +1,6 @@
 /** @fileoverview Common functions used by multiple parts of the build process */
 
-import type { Guideline, Principle, SuccessCriterion } from "./guidelines";
+import type { WcagItem } from "./guidelines";
 
 /** Generates an ID for heading permalinks. Equivalent to wcag:generate-id in base.xslt. */
 export function generateId(title: string) {
@@ -16,8 +16,8 @@ export const resolveDecimalVersion = (version: `${number}`) => version.split("")
 
 /** Sort function for ordering WCAG principle/guideline/SC numbers ascending */
 export function wcagSort(
-  a: Principle | Guideline | SuccessCriterion,
-  b: Principle | Guideline | SuccessCriterion
+  a: WcagItem,
+  b: WcagItem
 ) {
   const aParts = a.num.split(".").map((n) => +n);
   const bParts = b.num.split(".").map((n) => +n);
