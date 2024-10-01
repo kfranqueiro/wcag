@@ -1,11 +1,12 @@
 import compact from "lodash-es/compact";
 
-import { copyFile } from "fs/promises";
+import { copyFile, writeFile } from "fs/promises";
 
 import { CustomLiquid } from "11ty/CustomLiquid";
 import { resolveDecimalVersion } from "11ty/common";
 import {
   assertIsWcagVersion,
+  generateWcagJson,
   getActRules,
   getActRulesForVersion,
   getFlatGuidelines,
@@ -13,9 +14,7 @@ import {
   getPrinciplesForVersion,
   scSlugOverrides,
   type FlatGuidelinesMap,
-  type Guideline,
-  type Principle,
-  type SuccessCriterion,
+  type WcagItem,
 } from "11ty/guidelines";
 import {
   getFlatTechniques,
@@ -44,7 +43,7 @@ const isTechniqueObsolete = (technique: Technique | undefined) =>
  * Returns boolean indicating whether an SC is obsolete for the given version.
  * Tolerates other types for use with hash lookups.
  */
-const isGuidelineObsolete = (guideline: Principle | Guideline | SuccessCriterion | undefined) =>
+const isGuidelineObsolete = (guideline: WcagItem | undefined) =>
   guideline?.type === "SC" && guideline.level === "";
 
 const actRules = process.env.WCAG_VERSION
@@ -155,7 +154,7 @@ function resolveUnderstandingFileSlug(fileSlug: string) {
   return fileSlug;
 }
 
-export default function (eleventyConfig: any) {
+export default async function (eleventyConfig: any) {
   for (const [name, value] of Object.entries(globalData)) eleventyConfig.addGlobalData(name, value);
 
   // Make baseUrls available to templates
@@ -235,6 +234,10 @@ export default function (eleventyConfig: any) {
     // addPassthroughCopy can only map each file once,
     // but base.css needs to be copied to a 2nd destination
     await copyFile(`${dir.input}/css/base.css`, `${dir.output}/understanding/base.css`);
+
+    // Since json isn't a template format and we're generating it, write it directly
+    if (process.env.WCAG_JSON)
+      await writeFile(`${dir.output}/wcag.json`, await generateWcagJson(allPrinciples));
   });
 
   eleventyConfig.setLibrary(
