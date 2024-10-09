@@ -125,17 +125,14 @@
 </h1>
 
 
-   
    <section id="brief">
 		<h2>In Brief</h2>
 		<dl>
          <dt>Goal</dt><dd>People using assistive technology understand all components.</dd>
          <dt>What to do</dt><dd>Give components correct names, roles, states, and values.</dd>
-         <dt>Why it's important</dt><dd>Assistive technology only works well when code is done properly.</dd> 
+         <dt>Why it's important</dt><dd>Assistive technology only works well when code is done properly.</dd>
       </dl>
-
    </section>
-   
    
 
 <section id="success-criterion" class="box">
@@ -155,31 +152,25 @@
 	
 <section id="intent">
       <h2>Intent</h2>
-      
-      
       <p>The intent of this Success Criterion is to ensure that Assistive Technologies (AT)
          can gather appropriate information about, activate (or set) and keep up to date on the status of
          user interface controls in the content.
       </p>
-      
       <p>When standard controls from accessible technologies are used, this process is straightforward.
          If the user interface elements are used according to specification the conditions
          of this provision will be met. (See examples of Success Criterion 4.1.2 below)
       </p>
-      
       <p>If custom controls are created, however, or interface elements are programmed (in
          code or script) to have a different role and/or function than usual, then additional
          measures need to be taken to ensure that the controls provide important and appropriate information
          to assistive technologies and allow themselves to be controlled by assistive technologies.
       </p>
-     
       <p>What roles and states are appropriate to convey to assistive technology will depend
          on what the control represents. Specifics about such information are defined by other
          specifications, such as <a href="https://www.w3.org/TR/wai-aria/">WAI-ARIA</a>, or the
          relevant platform standards. Another factor to consider is whether there is sufficient
          <a href="#dfn-accessibility-supported">accessibility support</a> with assistive technologies to convey the information as specified.
       </p>
-      
       <p>A particularly important state of a user interface control is whether or not it has
          focus. The focus state of a control can be programmatically determined, and notifications
          about change of focus are sent to user agents and assistive technology. Other examples
@@ -187,49 +178,33 @@
          been selected, or whether a collapsible tree view or accordion is expanded or collapsed.
       </p>
 
-     
       <div class="note">
 				<p class="note-title marker">Note</p>
 				<div>
-         
          <p>Success Criterion 4.1.2 requires a programmatically determinable name for all user
             interface components. Names may be visible or invisible. Occasionally, the name needs
             to be visible, in which case it is identified as a label. Refer to the definition of
             name and label in the glossary for more information.
          </p>
-         
       </div>
 			</div>
-      
-      
    </section>
    <section id="benefits">
       <h2>Benefits</h2>
-      
-      
       <ul>
-         
          <li>Providing role, state, and value information on all user interface components enables
             compatibility with assistive technology, such as screen readers, screen magnifiers,
             and speech recognition software, used by people with disabilities.
          </li>
-         
       </ul>
-      
    </section>
-   
    <section id="examples">
       <h2>Examples</h2>
-      
       <dl>
          <dt>Accessible APIs</dt>
          <dd>A Java applet uses the accessibility API defined by the language.</dd>
       </dl>
-      
    </section>
-   
-   
-   
    
    
 
@@ -240,8 +215,6 @@
 <p>Resources are for information purposes only, no endorsement implied.</p>
 
 
-      
-      
       <ul>
          <li>
             <a href="https://www.w3.org/WAI/PF/roadmap/">Dynamic Accessible Web Content Roadmap</a>
@@ -253,7 +226,6 @@
             <a href="https://www.w3.org/TR/wai-aria/">Web Accessibility Initiative - Accessible Rich Internet Applications (ARIA)</a>
          </li>
       </ul>
-      
    </section>
 <section id="techniques">
       <h2>Techniques</h2>
@@ -267,8 +239,6 @@
 </p>
 
 
-      
-      
       <section id="sufficient">
          <h3>Sufficient Techniques</h3>
 <p>
@@ -277,186 +247,98 @@
 </p>
 
 
-         
-         
          <section class="situation" id="name-role-value-situation-0">
-            
             <h4>Situation A: If using a standard user interface component in a markup language (e.g.,
                HTML):
             </h4>
-            
             <ul>
-               
                <li>
-                  
                   <a href="https://kfranqueiro.github.io/wcag/techniques/aria/ARIA14">ARIA14: Using aria-label to provide an invisible label where a visible label cannot be used</a>
-                  
                </li>
-               
                <li>
-                  
                   <a href="https://kfranqueiro.github.io/wcag/techniques/aria/ARIA16">ARIA16: Using aria-labelledby to provide a name for user interface controls</a>
-                  
                </li>
-               
                <li>
-                  
-                  <p> 
-                     
+                  <p>
                      <a href="https://kfranqueiro.github.io/wcag/techniques/general/G108">G108: Using markup features to expose the name and role, allow user-settable properties to be directly set, and provide notification of changes</a> using technology-specific techniques below:
                   </p>
-                  
                   <ul>
-                     
                      <li>
-                        												               
                         <a href="https://kfranqueiro.github.io/wcag/techniques/html/H91">H91: Using HTML form controls and links</a>
-                        											             
                      </li>
-                     
                      <li>
-                        												               
                         <a href="https://kfranqueiro.github.io/wcag/techniques/html/H44">H44: Using label elements to associate text labels with form controls</a>
-                        											             
                      </li>
-                     
                      <li>
-                        												               
                         <a href="https://kfranqueiro.github.io/wcag/techniques/html/H64">H64: Using the title attribute of the iframe element</a>
-                        											             
                      </li>
-                     
                      <li>
-                        												               
                         <a href="https://kfranqueiro.github.io/wcag/techniques/html/H65">H65: Using the title attribute to identify form controls when the label element cannot be used</a>
-                        											             
                      </li>
-                     
                      <li>
-                        												               
                         <a href="https://kfranqueiro.github.io/wcag/techniques/html/H88">H88: Using HTML according to spec</a>
-                        											             
                      </li>
-                     
                   </ul>
-                  
                </li>
-               
             </ul>
-            
          </section>
-         
          <section class="situation" id="name-role-value-situation-1">
-            
             <h4>Situation B: If using script or code to re-purpose a standard user interface component
                in a markup language:
             </h4>
-            
             <ul>
-               
                <li>
-                  
                   <p>Exposing the names and roles, allowing user-settable properties to be directly set,
                      and providing notification of changes using one of the following techniques:
                   </p>
-                  
                   <ul>
-                     
                      <li>
-                        
                         <a href="https://kfranqueiro.github.io/wcag/techniques/aria/ARIA16">ARIA16: Using aria-labelledby to provide a name for user interface controls</a>
-                        
                      </li>
-                     
                   </ul>
-                  
                </li>
-               
             </ul>
-            
          </section>
-         
          <section class="situation" id="name-role-value-situation-2">
-            
             <h4>Situation C: If using a standard user interface component in a programming technology:</h4>
-            
             <ul>
-               
                <li>
-                  
                   <p>
-                     										           
                      <a href="https://kfranqueiro.github.io/wcag/techniques/general/G135">G135: Using the accessibility API features of a technology to expose names and … notification of changes</a> using technology-specific techniques below:
-                     									
                   </p>
-                  
                   <ul>
-                                        
                      <li>
-                        
                         <a href="https://kfranqueiro.github.io/wcag/techniques/pdf/PDF10">PDF10: Providing labels for interactive form controls in PDF documents</a>
-                        
                      </li>
-                     
                      <li>
-                        
                         <a href="https://kfranqueiro.github.io/wcag/techniques/pdf/PDF12">PDF12: Providing name, role, value information for form fields in PDF documents</a>
-                        
                      </li>
-                     
                   </ul>
-                  
                </li>
-               
             </ul>
-            
          </section>
-         
          <section class="situation" id="name-role-value-situation-3">
-            
             <h4>Situation D: If creating your own user interface component in a programming language:</h4>
-            
             <ul>
-               
                <li>
-                  
                   <p>
-                     										           
                      <a href="https://kfranqueiro.github.io/wcag/techniques/general/G10">G10: Creating components using a technology that supports the accessibility … notification of changes</a> using technology-specific techniques below:
-                     									
                   </p>
-                  
                   <ul>
-                     
                      <li>
-                        
                         <a href="https://kfranqueiro.github.io/wcag/techniques/aria/ARIA4">ARIA4: Using a WAI-ARIA role to expose the role of a user interface component</a>
-                        
                      </li>
-                     
                      <li>
-                        
                         <a href="https://kfranqueiro.github.io/wcag/techniques/aria/ARIA5">ARIA5: Using WAI-ARIA state and property attributes to expose the state of a user interface component</a>
-                        
                      </li>
-                     
                      <li>
-                        
                         <a href="https://kfranqueiro.github.io/wcag/techniques/aria/ARIA16">ARIA16: Using aria-labelledby to provide a name for user interface controls</a>
-                        
                      </li>
-                     
                   </ul>
-                  
                </li>
-               
             </ul>
-            
          </section>
-         
       </section>
-      
-      
       
       <section id="failure">
          <h3>Failures</h3>
@@ -465,58 +347,35 @@
 </p>
 
 
-         
-         
          <ul>
-            
             <li>
-								         
                <a href="https://kfranqueiro.github.io/wcag/techniques/failures/F59">F59: Failure of Success Criterion 4.1.2 due to using script to make div or span a user interface control in HTML without providing a role for the control</a>
-               
             </li>
-            
             <li>
-               									         
                <a href="https://kfranqueiro.github.io/wcag/techniques/failures/F15">F15: Failure of Success Criterion 4.1.2 due to implementing custom controls that do not use an accessibility API for the technology, or do so incompletely</a>
-               								       
             </li>
-            
             <li>
-               									         
                <a href="https://kfranqueiro.github.io/wcag/techniques/failures/F20">F20: Failure of Success Criterion 1.1.1 and 4.1.2 due to not updating text alternatives when
                     changes to non-text content occur</a>
-               								       
             </li>
-            
             <li>
-               									         
+               <a href="https://kfranqueiro.github.io/wcag/techniques/failures/F42">F42: Failure of Success Criteria 1.3.1, 2.1.1, 2.1.3, or 4.1.2 when emulating links</a>
+            </li>
+            <li>
                <a href="https://kfranqueiro.github.io/wcag/techniques/failures/F68">F68: Failure of Success Criterion 4.1.2 due to a user interface control not having a programmatically determined name
    </a>
-               								       
             </li>
-            
             <li>
-               									         
                <a href="https://kfranqueiro.github.io/wcag/techniques/failures/F79">F79: Failure of Success Criterion 4.1.2 due to the focus state of a user interface component not being programmatically determinable or no notification of change of focus state available</a>
-               								       
             </li>
-            
             <li>
-               									         
                <a href="https://kfranqueiro.github.io/wcag/techniques/failures/F86">F86: Failure of Success Criterion 4.1.2 due to not providing names for each part of a multi-part form field, such as a US telephone number</a>
-               								       
             </li>
-            
             <li>
-               									         
                <a href="https://kfranqueiro.github.io/wcag/techniques/failures/F89">F89: Failure of Success Criteria 2.4.4, 2.4.9 and 4.1.2 due to not providing an accessible name for an image which is the only content in a link</a>
-               								       
             </li>
-            
          </ul>
-         
       </section>
-      
    </section>
 
 
@@ -677,7 +536,7 @@
    </p>
 			</div>
    
-   <aside class="example"><p>Assistive technologies that are important in the context of this document include
+   <aside class="example"><p class="example-title marker">Example</p><p>Assistive technologies that are important in the context of this document include
       the following:
    </p>
    
@@ -764,22 +623,22 @@
 			</div></definition></dd><dt id="dfn-presentation">presentation</dt><dd><definition><p>rendering of the <a href="#dfn-content">content</a> in a form to be perceived by users
    </p></definition></dd><dt id="dfn-process">process</dt><dd><definition><p>series of user actions where each action is required in order to complete an activity</p>
    
-   <aside class="example"><p>Successful use of a series of Web pages on a shopping site requires users to view
+   <aside class="example"><p class="example-title marker">Example</p><p>Successful use of a series of Web pages on a shopping site requires users to view
       alternative products, prices and offers, select products, submit an order, provide
       shipping information and provide payment information.
    </p></aside>
    
-   <aside class="example"><p>An account registration page requires successful completion of a <a href="https://www.w3.org/TR/turingtest/">Turing test</a> before
+   <aside class="example"><p class="example-title marker">Example</p><p>An account registration page requires successful completion of a <a href="https://www.w3.org/TR/turingtest/">Turing test</a> before
       the registration form can be accessed.
    </p></aside></definition></dd><dt id="dfn-programmatically-determined">programmatically determined</dt><dd><definition><p>determined by software from author-supplied data provided in a way that different
       <a href="#dfn-user-agent">user agents</a>, including <a href="#dfn-assistive-technology">assistive technologies</a>, can extract and present this information to users in different modalities
    </p>
    
-   <aside class="example"><p>Determined in a markup language from elements and attributes that are accessed directly
+   <aside class="example"><p class="example-title marker">Example</p><p>Determined in a markup language from elements and attributes that are accessed directly
       by commonly available assistive technology.
    </p></aside>
    
-      <aside class="example"><p>Determined from technology-specific data structures in a non-markup language and exposed
+      <aside class="example"><p class="example-title marker">Example</p><p>Determined from technology-specific data structures in a non-markup language and exposed
       to assistive technology via an accessibility API that is supported by commonly available
       assistive technology.
       </p></aside></definition></dd><dt id="dfn-programmatically-set">programmatically set</dt><dd><definition><p>set by software using methods that are supported by user agents, including assistive
@@ -789,7 +648,7 @@
       content
    </p>
    
-   <aside class="example"><p>A number that indicates whether an image functions as a hyperlink, command button,
+   <aside class="example"><p class="example-title marker">Example</p><p>A number that indicates whether an image functions as a hyperlink, command button,
       or check box.
    </p></aside></definition></dd><dt id="dfn-sign-language">sign language</dt><dd><definition><p>a language using combinations of movements of the hands and arms, facial expressions,
       or body positions to convey meaning
@@ -819,14 +678,14 @@
    </p>
 			</div>
    
-   <aside class="example"><p>Some common examples of Web content technologies include HTML, CSS, SVG, PNG, PDF,
+   <aside class="example"><p class="example-title marker">Example</p><p>Some common examples of Web content technologies include HTML, CSS, SVG, PNG, PDF,
       Flash, and JavaScript.
    </p></aside></definition></dd><dt id="dfn-text">text</dt><dd><definition><p>sequence of characters that can be <a href="#dfn-programmatically-determined">programmatically determined</a>, where the sequence is expressing something in <a href="#dfn-human-language">human language</a></p></definition></dd><dt id="dfn-text-alternative">text alternative</dt><dd><definition><p><a href="#dfn-text">Text</a> that is programmatically associated with <a href="#dfn-non-text-content">non-text content</a> or referred to from text that is programmatically associated with non-text content.
       Programmatically associated text is text whose location can be programmatically determined
       from the non-text content.
    </p>
    
-   <aside class="example"><p>An image of a chart is described in text in the paragraph after the chart. The short
+   <aside class="example"><p class="example-title marker">Example</p><p>An image of a chart is described in text in the paragraph after the chart. The short
       text alternative for the chart indicates that a description follows.
    </p></aside>
    
@@ -836,7 +695,7 @@
    </p>
 			</div></definition></dd><dt id="dfn-user-agent">user agent</dt><dd><definition><p>any software that retrieves and presents Web content for users</p>
    
-   <aside class="example"><p>Web browsers, media players, plug-ins, and other programs — including <a href="#dfn-assistive-technology">assistive technologies</a> — that help in retrieving, rendering, and interacting with Web content.
+   <aside class="example"><p class="example-title marker">Example</p><p>Web browsers, media players, plug-ins, and other programs — including <a href="#dfn-assistive-technology">assistive technologies</a> — that help in retrieving, rendering, and interacting with Web content.
    </p></aside></definition></dd><dt id="dfn-user-interface-component">user interface component</dt><dd><definition><p>a part of the content that is perceived by users as a single control for a distinct
       function
    </p>
@@ -863,7 +722,7 @@
    </p>
 			</div>
    
-   <aside class="example"><p>An applet has a "control" that can be used to move through content by line or page
+   <aside class="example"><p class="example-title marker">Example</p><p>An applet has a "control" that can be used to move through content by line or page
       or random access. Since each of these would need to have a name and be settable independently,
       they would each be a "user interface component."
    </p></aside></definition></dd><dt id="dfn-web-page">Web page</dt><dd><definition><p>a non-embedded resource obtained from a single URI using HTTP plus any other resources
@@ -883,19 +742,19 @@
    </p>
 			</div>
    
-   <aside class="example"><p>A Web resource including all embedded images and media.</p></aside>
+   <aside class="example"><p class="example-title marker">Example</p><p>A Web resource including all embedded images and media.</p></aside>
    
-   <aside class="example"><p>A Web mail program built using Asynchronous JavaScript and XML (AJAX). The program
+   <aside class="example"><p class="example-title marker">Example</p><p>A Web mail program built using Asynchronous JavaScript and XML (AJAX). The program
       lives entirely at http://example.com/mail, but includes an inbox, a contacts area
       and a calendar. Links or buttons are provided that cause the inbox, contacts, or calendar
       to display, but do not change the URI of the page as a whole.
    </p></aside>
    
-   <aside class="example"><p>A customizable portal site, where users can choose content to display from a set of
+   <aside class="example"><p class="example-title marker">Example</p><p>A customizable portal site, where users can choose content to display from a set of
       different content modules.
    </p></aside>
    
-   <aside class="example"><p>When you enter "http://shopping.example.com/" in your browser, you enter a movie-like
+   <aside class="example"><p class="example-title marker">Example</p><p>When you enter "http://shopping.example.com/" in your browser, you enter a movie-like
       interactive shopping environment where you visually move around in a store dragging
       products off of the shelves around you and into a visual shopping cart in front of
       you. Clicking on a product causes it to be demonstrated with a specification sheet
