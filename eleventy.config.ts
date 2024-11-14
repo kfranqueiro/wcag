@@ -11,7 +11,6 @@ import { resolveDecimalVersion } from "11ty/common";
 import {
   actRules,
   assertIsWcagVersion,
-  generateWcagJson,
   getErrataForVersion,
   getFlatGuidelines,
   getPrinciples,
@@ -271,8 +270,10 @@ export default async function (eleventyConfig: any) {
     }
 
     // Since json isn't a template format and we're generating it, write it directly
-    if (process.env.WCAG_JSON)
-      await writeFile(`${dir.output}/wcag.json`, await generateWcagJson(allPrinciples));
+    if (process.env.WCAG_JSON) {
+      const { generateWcagJson } = await import("11ty/json");
+      await writeFile(`${dir.output}/wcag.json`, await generateWcagJson());
+    }
   });
 
   eleventyConfig.setLibrary(
