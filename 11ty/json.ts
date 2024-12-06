@@ -7,12 +7,10 @@ import { join } from "path";
 
 import { resolveDecimalVersion } from "./common";
 import {
-  type Principle,
   type WcagVersion,
   type WcagItem,
-  getFlatGuidelines,
   getPrinciplesForVersion,
-  getPrinciples,
+  getTermsMap,
 } from "./guidelines";
 
 const altIds: Record<string, string> = {
@@ -105,6 +103,8 @@ function expandVersions(item: WcagItem) {
 
 export async function generateWcagJson() {
   const principles = await getPrinciplesForVersion("22", false);
+  const termsMap = await getTermsMap("22", { includeSynonyms: false, stripRespec: false });
+
   const spreadCommonProps = (item: WcagItem) => {
     const content$ = load(item.content, null, false);
     return {
@@ -129,13 +129,17 @@ export async function generateWcagJson() {
         })),
       })),
     })),
+    terms: Object.values(termsMap).map(({ definition, name, trId }) => ({
+      id: trId,
+      definition: definition,
+      name: name
+    }))
   };
   return JSON.stringify(data, null, "  ");
 }
 
 // Allow running directly, skipping Eleventy build
 if (import.meta.filename === process.argv[1]) {
-  const json = await generateWcagJson();
   await mkdirp("_site");
-  await writeFile(join("_site", "wcag.json"), json);
+  await writeFile(join("_site", "wcag.json"), await generateWcagJson());
 }
