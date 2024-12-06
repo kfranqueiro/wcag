@@ -202,13 +202,21 @@ interface Term {
 }
 export type TermsMap = Record<string, Term>;
 
+interface GetTermsMapOptions {
+  includeSynonyms?: boolean;
+  stripRespec?: boolean;
+}
+
 /**
  * Resolves term definitions from guidelines/index.html organized for lookup by name;
  * comparable to the term elements in wcag.xml from the guidelines-xml Ant task.
  */
-export async function getTermsMap(version?: WcagVersion) {
+export async function getTermsMap(
+  version?: WcagVersion,
+  { includeSynonyms = true, stripRespec = true }: GetTermsMapOptions = {}
+) {
   const $ = version
-    ? await loadRemoteGuidelines(version)
+    ? await loadRemoteGuidelines(version, stripRespec)
     : await flattenDomFromFile("guidelines/index.html");
   const terms: TermsMap = {};
 
@@ -223,12 +231,16 @@ export async function getTermsMap(version?: WcagVersion) {
       trId: el.attribs.id,
     };
 
-    // Include both original and all-lowercase version to simplify lookups
-    // (since most synonyms are lowercase) while preserving case in name
-    const names = [term.name, term.name.toLowerCase()].concat(
-      (el.attribs["data-lt"] || "").toLowerCase().split("|")
-    );
-    for (const name of names) terms[name] = term;
+    if (includeSynonyms) {
+      // Include both original and all-lowercase version to simplify lookups
+      // (since most synonyms are lowercase) while preserving case in name
+      const names = [term.name, term.name.toLowerCase()].concat(
+        (el.attribs["data-lt"] || "").toLowerCase().split("|")
+      );
+      for (const name of names) terms[name] = term;
+    } else {
+      terms[term.name] = term;
+    }
   });
 
   return terms;
@@ -247,6 +259,10 @@ const loadRemoteGuidelines = async (version: WcagVersion, stripRespec = true) =>
     ).data);
 
   const $ = load(html);
+
+  // Remove extra markup from headings so they can be parsed for names
+  $("bdi").remove();
+
   if (!stripRespec) return $;
 
   // Re-collapse definition links and notes, to be processed by this build system
@@ -263,9 +279,6 @@ const loadRemoteGuidelines = async (version: WcagVersion, stripRespec = true) =>
   // Remove generated IDs and markers from examples
   $(".example[id]").removeAttr("id");
   $(".example .marker:has(.self-link)").remove();
-
-  // Remove extra markup from headings so they can be parsed for names
-  $("bdi").remove();
 
   // Remove abbr elements which exist only in TR, not in informative docs
   $("#acknowledgements li abbr, #glossary abbr").each((_, abbrEl) => {
@@ -293,7 +306,7 @@ export const getAcknowledgementsForVersion = async (version: WcagVersion) => {
 /**
  * Retrieves and processes a pinned WCAG version using published guidelines.
  */
-export const getPrinciplesForVersion = async (version: WcagVersion, stripRespec = true) =>
+export const getPrinciplesForVersion = async (version: WcagVersion, stripRespec?: boolean) =>
   processPrinciples(await loadRemoteGuidelines(version, stripRespec));
 
 /** Parses errata items from the errata document for the specified WCAG version. */
