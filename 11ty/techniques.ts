@@ -10,7 +10,9 @@ import { basename } from "path";
 import { load, loadFromFile } from "./cheerio";
 import {
   assertIsWcagVersion,
+  associationTypes,
   isSuccessCriterion,
+  type AssociationType,
   type FlatGuidelinesMap,
   type SuccessCriterion,
   type WcagVersion,
@@ -40,9 +42,6 @@ function assertIsTechnology(
 ): asserts technology is keyof typeof technologyTitles {
   if (!(technology in technologyTitles)) throw new Error(`Invalid technology name: ${technology}`);
 }
-
-const associationTypes = ["sufficient", "advisory", "failure"] as const;
-type AssociationType = (typeof associationTypes)[number];
 
 interface TechniqueAssociation {
   criterion: SuccessCriterion;

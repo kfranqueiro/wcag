@@ -52,6 +52,9 @@ const scVersions = await (async function () {
   return map;
 })();
 
+export const associationTypes = ["sufficient", "advisory", "failure"] as const;
+export type AssociationType = (typeof associationTypes)[number];
+
 export interface DocNode {
   id: string;
   name: string;

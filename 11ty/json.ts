@@ -5,10 +5,16 @@ import { mkdirp } from "mkdirp";
 import { writeFile } from "fs/promises";
 import { join } from "path";
 
+import { loadFromFile } from "./cheerio";
 import { resolveDecimalVersion } from "./common";
 import {
+  type AssociationType,
+  type Guideline,
+  type Principle,
+  type SuccessCriterion,
   type WcagVersion,
   type WcagItem,
+  associationTypes,
   getPrinciplesForVersion,
   getTermsMap,
 } from "./guidelines";
@@ -101,8 +107,40 @@ function expandVersions(item: WcagItem) {
   return versions;
 }
 
+type TechniqueContentMap = Partial<Record<AssociationType, string>>;
+interface AugmentedSuccessCriterion extends SuccessCriterion {
+  techniqueContent: TechniqueContentMap;
+}
+interface AugmentedGuideline extends Guideline {
+  successCriteria: AugmentedSuccessCriterion[];
+}
+interface AugmentedPrinciple extends Principle {
+  guidelines: AugmentedGuideline[];
+}
+
+async function augmentPrinciples(principles: Principle[]) {
+  const augmentedPrinciples = principles as AugmentedPrinciple[];
+  for (const principle of augmentedPrinciples) {
+    for (const guideline of principle.guidelines) {
+      for (const sc of guideline.successCriteria) {
+        const techniqueContent: TechniqueContentMap = {};
+        const $ = await loadFromFile(join("understanding", sc.version, `${sc.id}.html`));
+        for (const type of associationTypes) {
+          const $subsection = $(`#${type}`);
+          $subsection.find("h3").remove();
+          // - TODO: Clean up situation classes/ids?
+          const html = $subsection.html()?.trim();
+          if (html) techniqueContent[type] = html;
+        }
+        sc.techniqueContent = techniqueContent;
+      }
+    }
+  }
+  return augmentedPrinciples;
+}
+
 export async function generateWcagJson() {
-  const principles = await getPrinciplesForVersion("22", false);
+  const principles = await augmentPrinciples(await getPrinciplesForVersion("22", false));
   const termsMap = await getTermsMap("22", { includeSynonyms: false, stripRespec: false });
 
   const spreadCommonProps = (item: WcagItem) => {
@@ -124,7 +162,7 @@ export async function generateWcagJson() {
         successcriteria: guideline.successCriteria.map((sc) => ({
           ...spreadCommonProps(sc),
           level: sc.level,
-          // TODO: details
+          techniqueContent: sc.techniqueContent,
         })),
       })),
     })),
