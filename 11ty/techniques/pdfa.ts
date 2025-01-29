@@ -5,7 +5,7 @@ import type { ExternalTechnique, TechniqueGroup } from "11ty/techniques";
 
 const destination = import.meta.filename.replace(/\.\w+$/, ".json");
 
-async function updatePdfaTechniques() {
+export async function retrievePdfaTechniques() {
   const pdfaTechniques: TechniqueGroup = {
     title: "PDF Association Techniques for Accessible PDF",
     techniques: []
@@ -44,5 +44,3 @@ async function updatePdfaTechniques() {
     )
   );
 }
-
-if (import.meta.filename === process.argv[1]) await updatePdfaTechniques();
