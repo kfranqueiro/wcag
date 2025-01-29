@@ -1,0 +1,214 @@
+{
+  "pdf": [
+    {
+      "title": "PDF Association Techniques for Accessible PDF",
+      "techniques": [
+        {
+          "id": "PDF100",
+          "title": "G1_01 Custom tag correctly role mapped",
+          "url": "https://pdfa.org/techniques-for-accessible-pdf/custom-tag-correctly-role-mapped/UA1_Tpdf-G1_01/"
+        },
+        {
+          "id": "PDF101",
+          "title": "G2_01 Text content correctly tagged (in one container)",
+          "url": "https://pdfa.org/techniques-for-accessible-pdf/text-content-correctly-tagged-in-one-container/UA1_Tpdf-G2_01/"
+        },
+        {
+          "id": "PDF102",
+          "title": "G2_02 Text content correctly tagged (one container per word)",
+          "url": "https://pdfa.org/techniques-for-accessible-pdf/text-content-correctly-tagged-one-container-per-word/UA1_Tpdf-G2_02/"
+        },
+        {
+          "id": "PDF103",
+          "title": "G2_03 Text content correctly tagged (one container per character)",
+          "url": "https://pdfa.org/techniques-for-accessible-pdf/text-content-correctly-tagged-one-container-per-character/UA1_Tpdf-G2_03/"
+        },
+        {
+          "id": "PDF104",
+          "title": "G2_04 Special character with correct Unicode mapping",
+          "url": "https://pdfa.org/techniques-for-accessible-pdf/special-character-with-correct-unicode-mapping/UA1_Tpdf-G2_04/"
+        },
+        {
+          "id": "PDF105",
+          "title": "G2_05 Graphics representing text correctly tagged",
+          "url": "https://pdfa.org/techniques-for-accessible-pdf/graphics-representing-text-correctly-tagged/UA1_Tpdf-G2_05/"
+        },
+        {
+          "id": "PDF106",
+          "title": "G2_06 ActualText provides correct extractable characters in place of OCR errors",
+          "url": "https://pdfa.org/techniques-for-accessible-pdf/actualtext-provides-correct-extractable-characters-in-place-of-ocr-errors/UA1_Tpdf-G2_06/"
+        },
+        {
+          "id": "PDF107",
+          "title": "G3_01 Real content correctly tagged",
+          "url": "https://pdfa.org/techniques-for-accessible-pdf/real-content-correctly-tagged/UA1_Tpdf-G3_01/"
+        },
+        {
+          "id": "PDF108",
+          "title": "G3_02 Decorative content correctly marked as artifact",
+          "url": "https://pdfa.org/techniques-for-accessible-pdf/decorative-content-correctly-marked-as-artifact/UA1_Tpdf-G3_02/"
+        },
+        {
+          "id": "PDF109",
+          "title": "G4_01 Content order correctly set",
+          "url": "https://pdfa.org/techniques-for-accessible-pdf/content-order-correctly-set/UA1_Tpdf-G4_01/"
+        },
+        {
+          "id": "PDF110",
+          "title": "G4_02 Order of marked content sequences within a tag correctly set",
+          "url": "https://pdfa.org/techniques-for-accessible-pdf/order-of-marked-content-sequences-within-a-tag-correctly-set/UA1_Tpdf-G4_02/"
+        },
+        {
+          "id": "PDF111",
+          "title": "G4_03 Content in columns correctly ordered",
+          "url": "https://pdfa.org/techniques-for-accessible-pdf/content-in-columns-correctly-ordered/UA1_Tpdf-G4_03/"
+        },
+        {
+          "id": "PDF112",
+          "title": "G4_04 Sidebar correctly located in the document’s content order",
+          "url": "https://pdfa.org/techniques-for-accessible-pdf/sidebar-correctly-located-in-the-documents-content-order/UA1_Tpdf-G4_04/"
+        },
+        {
+          "id": "PDF113",
+          "title": "G4_05 Tab order for pages with annotations correctly set",
+          "url": "https://pdfa.org/techniques-for-accessible-pdf/tab-order-for-pages-with-annotations-correctly-set/UA1_Tpdf-G4_05/"
+        },
+        {
+          "id": "PDF114",
+          "title": "G5_01 H1 heading appropriately tagged",
+          "url": "https://pdfa.org/techniques-for-accessible-pdf/h1-heading-appropriately-tagged/UA1_Tpdf-G5_01/"
+        },
+        {
+          "id": "PDF115",
+          "title": "G5_02 Similar real content appropriately tagged",
+          "url": "https://pdfa.org/techniques-for-accessible-pdf/similar-real-content-appropriately-tagged/UA1_Tpdf-G5_02/"
+        },
+        {
+          "id": "PDF116",
+          "title": "G5_03 Visually-separated content appropriately tagged",
+          "url": "https://pdfa.org/techniques-for-accessible-pdf/visually-separated-content-appropriately-tagged/UA1_Tpdf-G5_03/"
+        },
+        {
+          "id": "PDF117",
+          "title": "G5_04 Multiline heading appropriately tagged",
+          "url": "https://pdfa.org/techniques-for-accessible-pdf/multiline-heading-appropriately-tagged/UA1_Tpdf-G5_04/"
+        }
+      ]
+    },
+    {
+      "title": "PDF Association Failures for Accessible PDF",
+      "techniques": [
+        {
+          "id": "PDF-F1",
+          "title": "G1_F01 Custom tag incorrectly role mapped",
+          "url": "https://pdfa.org/techniques-for-accessible-pdf/custom-tag-incorrectly-role-mapped/UA1_Tpdf-G1_F01/"
+        },
+        {
+          "id": "PDF-F2",
+          "title": "G2_F01 Special character missing Unicode mapping",
+          "url": "https://pdfa.org/techniques-for-accessible-pdf/special-character-missing-unicode-mapping/UA1_Tpdf-G2_F01/"
+        },
+        {
+          "id": "PDF-F3",
+          "title": "G2_F02 Special character with incorrect Unicode mapping",
+          "url": "https://pdfa.org/techniques-for-accessible-pdf/special-character-with-incorrect-unicode-mapping/UA1_Tpdf-G2_F02/"
+        },
+        {
+          "id": "PDF-F4",
+          "title": "G2_F03 Graphics representing text incorrectly tagged as figure",
+          "url": "https://pdfa.org/techniques-for-accessible-pdf/graphics-representing-text-incorrectly-tagged-as-figure/UA1_Tpdf-G2_F03/"
+        },
+        {
+          "id": "PDF-F5",
+          "title": "G2_F04 Extractable characters are not present in a document with visible text",
+          "url": "https://pdfa.org/techniques-for-accessible-pdf/extractable-characters-are-not-present-in-a-document-with-visible-text/UA1_Tpdf-G2_F04/"
+        },
+        {
+          "id": "PDF-F6",
+          "title": "G3_F01 Real content not tagged",
+          "url": "https://pdfa.org/techniques-for-accessible-pdf/real-content-not-tagged/UA1_Tpdf-G3_F01/"
+        },
+        {
+          "id": "PDF-F7",
+          "title": "G3_F02 Real content incorrectly tagged",
+          "url": "https://pdfa.org/techniques-for-accessible-pdf/real-content-incorrectly-tagged/UA1_Tpdf-G3_F02/"
+        },
+        {
+          "id": "PDF-F8",
+          "title": "G3_F03 Decorative content incorrectly  tagged as figure",
+          "url": "https://pdfa.org/techniques-for-accessible-pdf/decorative-content-incorrectly-tagged-as-figure/UA1_Tpdf-G3_F03/"
+        },
+        {
+          "id": "PDF-F9",
+          "title": "G3_F04 Decorative content not marked as artifact",
+          "url": "https://pdfa.org/techniques-for-accessible-pdf/decorative-content-not-marked-as-artifact/UA1_Tpdf-G3_F04/"
+        },
+        {
+          "id": "PDF-F10",
+          "title": "G4_F01 Content order incorrectly set",
+          "url": "https://pdfa.org/techniques-for-accessible-pdf/content-order-incorrectly-set/UA1_Tpdf-G4_F01/"
+        },
+        {
+          "id": "PDF-F11",
+          "title": "G4_F02 Order of marked content sequences within a tag incorrectly set",
+          "url": "https://pdfa.org/techniques-for-accessible-pdf/order-of-marked-content-sequences-within-a-tag-incorrectly-set/UA1_Tpdf-G4_F02/"
+        },
+        {
+          "id": "PDF-F12",
+          "title": "G4_F03 Content in columns incorrectly ordered",
+          "url": "https://pdfa.org/techniques-for-accessible-pdf/content-in-columns-incorrectly-ordered/UA1_Tpdf-G4_F03/"
+        },
+        {
+          "id": "PDF-F13",
+          "title": "G4_F04 Sidebar incorrectly located in the document’s content order",
+          "url": "https://pdfa.org/techniques-for-accessible-pdf/sidebar-incorrectly-located-in-the-documents-content-order/UA1_Tpdf-G4_F04/"
+        },
+        {
+          "id": "PDF-F14",
+          "title": "G4_F05 Order of content within a marked content sequence incorrectly set",
+          "url": "https://pdfa.org/techniques-for-accessible-pdf/order-of-content-within-a-marked-content-sequence-incorrectly-set/UA1_Tpdf-G4_F05/"
+        },
+        {
+          "id": "PDF-F15",
+          "title": "G4_F06 Tab order for pages with annotations incorrectly set",
+          "url": "https://pdfa.org/techniques-for-accessible-pdf/tab-order-for-pages-with-annotations-incorrectly-set/UA1_Tpdf-G4_F06/"
+        },
+        {
+          "id": "PDF-F16",
+          "title": "G4_F07 Tab order for pages with annotations missing",
+          "url": "https://pdfa.org/techniques-for-accessible-pdf/tab-order-for-pages-with-annotations-missing/UA1_Tpdf-G4_F07/"
+        },
+        {
+          "id": "PDF-F17",
+          "title": "G5_F01 H1 heading inappropriately tagged",
+          "url": "https://pdfa.org/techniques-for-accessible-pdf/h1-heading-inappropriately-tagged/UA1_Tpdf-G5_F01/"
+        },
+        {
+          "id": "PDF-F18",
+          "title": "G5_F02 Similar real content inappropriately tagged",
+          "url": "https://pdfa.org/techniques-for-accessible-pdf/similar-real-content-inappropriately-tagged/UA1_Tpdf-G5_F02/"
+        },
+        {
+          "id": "PDF-F19",
+          "title": "G5_F03 Single semantic unit of content inappropriately tagged",
+          "url": "https://pdfa.org/techniques-for-accessible-pdf/single-semantic-unit-of-content-inappropriately-tagged/UA1_Tpdf-G5_F03/"
+        },
+        {
+          "id": "PDF-F20",
+          "title": "G5_F04 Visually-separated content inappropriately tagged",
+          "url": "https://pdfa.org/techniques-for-accessible-pdf/visually-separated-content-inappropriately-tagged/UA1_Tpdf-G5_F04/"
+        },
+        {
+          "id": "PDF-F21",
+          "title": "G5_F05 Multiline heading inappropriately tagged",
+          "url": "https://pdfa.org/techniques-for-accessible-pdf/multiline-heading-inappropriately-tagged/UA1_Tpdf-G5_F05/"
+        },
+        {
+          "id": "PDF-F22",
+          "title": "G5_F06 Table header cell inappropriately tagged",
+          "url": "https://pdfa.org/techniques-for-accessible-pdf/table-header-cell-inappropriately-tagged/UA1_Tpdf-G5_F06/"
+        }
+      ]
+    }
+  ]
+}

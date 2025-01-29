@@ -2,13 +2,26 @@
   {% for technology in technologies %}
     {%- if techniques[technology].size == 0 -%}{%- continue -%}{%- endif -%}
     {%- assign technologyTitle = technologyTitles[technology] -%}
-    <h2 id="{{ technology }}">{{ technologyTitle }}<span class="permalink"><a href="#{{ technology }}" aria-label="Permalink for {{ technologyTitle }}" title="Permalink for {{ technologyTitle }}"><span>§</span></a></span></h2>
+    <section id="{{ technology }}">
+      <h2>{{ technologyTitle }}<span class="permalink"><a href="#{{ technology }}" aria-label="Permalink for {{ technologyTitle }}" title="Permalink for {{ technologyTitle }}"><span>§</span></a></span></h2>
 
-    <ul class="toc-wcag-docs">
-      {% for technique in techniques[technology] %}
-      <li>{{ technique.id | linkTechniques }}</li>
+      <ul class="toc-wcag-docs">
+        {% for technique in techniques[technology] %}
+        <li>{{ technique.id | linkTechniques }}</li>
+        {% endfor %}
+      </ul>
+
+      {% for group in externalTechniques[technology] %}
+        <section>
+          <h3>{{ group.title }}</h3>
+          <ul class="toc-wcag-docs">
+            {% for technique in group.techniques %}
+            <li><a href="{{ technique.url }}">{{technique.id }}: {{ technique.title }}</a></li>
+            {% endfor %}
+          </ul>
+        </section>
       {% endfor %}
-    </ul>
+    </section>
   {% endfor %}
 {% elsif isUnderstanding %}
   {%- # See 11ty/guidelines.ts for typings -%}

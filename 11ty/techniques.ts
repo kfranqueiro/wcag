@@ -177,13 +177,16 @@ interface TechniqueFrontMatter {
   obsoleteSince?: WcagVersion;
 }
 
-export interface Technique extends TechniqueFrontMatter {
+interface BaseTechnique {
   /** Letter(s)-then-number technique code; corresponds to source HTML filename */
   id: string;
-  /** Technology this technique is filed under */
-  technology: Technology;
   /** Title derived from each technique page's h1 */
   title: string;
+}
+
+export interface Technique extends BaseTechnique, TechniqueFrontMatter {
+  /** Technology this technique is filed under */
+  technology: Technology;
   /** Title derived from each technique page's h1, with HTML preserved */
   titleHtml: string;
   /**
@@ -194,6 +197,24 @@ export interface Technique extends TechniqueFrontMatter {
   truncatedTitle: string;
 }
 
+export interface ExternalTechnique extends BaseTechnique {
+  /**
+   * Shortcode(s) of any SC associated with this technique
+   */
+  // associatedCriteria: string[];
+  /**
+   * Explicit external URL corresponding to this technique (e.g. for PDFA)
+   */
+  url: string;
+}
+
+/** Subgroup containing externally-hosted techniques */
+export interface TechniqueGroup {
+  techniques: ExternalTechnique[];
+  title: string;
+}
+
+type TechniquesByTechnology = Record<Technology, Technique[]>;
 /**
  * Returns an object mapping each technology category to an array of Techniques.
  * Used to generate index table of contents.
@@ -206,7 +227,7 @@ export async function getTechniquesByTechnology(guidelines: FlatGuidelinesMap) {
       ...map,
       [technology]: [] as string[],
     }),
-    {} as Record<Technology, Technique[]>
+    {} as TechniquesByTechnology
   );
   const scNumbers = Object.values(guidelines)
     .filter((entry): entry is SuccessCriterion => entry.type === "SC")
@@ -291,9 +312,7 @@ export async function getTechniquesByTechnology(guidelines: FlatGuidelinesMap) {
 /**
  * Returns a flattened object hash, mapping each technique ID directly to its data.
  */
-export const getFlatTechniques = (
-  techniques: Awaited<ReturnType<typeof getTechniquesByTechnology>>
-) =>
+export const getFlatTechniques = (techniques: TechniquesByTechnology) =>
   Object.values(techniques)
     .flat()
     .reduce(
@@ -303,3 +322,19 @@ export const getFlatTechniques = (
       },
       {} as Record<string, Technique>
     );
+
+type ExternalTechniquesMap = Partial<Record<Technology, TechniqueGroup[]>>;
+
+/** Combines JSON files under 11ty/techniques/ into a single map, keyed by technology. */
+export async function assembleExternalTechniquesMap() {
+  const filenames = await glob("11ty/techniques/*.json");
+  const externalMap: ExternalTechniquesMap = {};
+  for (const filename of filenames) {
+    const map = JSON.parse(await readFile(filename, "utf8")) as ExternalTechniquesMap;
+    for (const [technology, groups] of Object.entries(map)) {
+      if (!(technology in externalMap)) externalMap[technology as Technology] = groups;
+      else externalMap[technology as Technology]?.push(...groups);
+    }
+  }
+  return externalMap;
+}

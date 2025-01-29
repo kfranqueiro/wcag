@@ -23,6 +23,7 @@ import {
   type SuccessCriterion,
 } from "11ty/guidelines";
 import {
+  assembleExternalTechniquesMap,
   getFlatTechniques,
   getTechniqueAssociations,
   getTechniquesByTechnology,
@@ -112,6 +113,7 @@ const globalData = {
   version,
   versionDecimal: resolveDecimalVersion(version),
   errata: process.env.WCAG_VERSION ? await getErrataForVersion(version) : {},
+  externalTechniques: await assembleExternalTechniquesMap(),
   techniques, // Used for techniques/index.html
   technologies, // Used for techniques/index.html
   technologyTitles, // Used for techniques/index.html
