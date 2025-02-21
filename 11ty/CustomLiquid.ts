@@ -186,6 +186,13 @@ export class CustomLiquid extends Liquid {
           el.tagName = "h2";
         });
 
+        // Add numbers to figcaptions
+        $("figcaption").each((i, el) => {
+          const $el = $(el);
+          if (!$el.find("p").length) $el.wrapInner("<p></p>");
+          $el.prepend(`<p class="figure-number">Figure ${i + 1}</p>`);
+        });
+
         if (isTechniques) {
           // Expand related technique links to include full title
           // (the XSLT process didn't handle this in this particular context)
@@ -239,13 +246,6 @@ export class CustomLiquid extends Liquid {
             }
           });
         } else if (isUnderstanding) {
-          // Add numbers to figcaptions
-          $("figcaption").each((i, el) => {
-            const $el = $(el);
-            if (!$el.find("p").length) $el.wrapInner("<p></p>");
-            $el.prepend(`Figure ${i + 1}`);
-          });
-
           // Remove spurious copy-pasted content in 2.5.3 that doesn't belong there
           if ($("section#benefits").length > 1) $("section#benefits").first().remove();
           // Prevent pages from nesting Benefits inside Intent (old issue that has been fixed)

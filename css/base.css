@@ -471,3 +471,21 @@ margin-right:.8em;
 		margin: 1em 0 0 0;
 	}
 }
+
+figure {
+  display: inline-grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto;
+  min-width: 30ch;
+}
+
+figcaption {
+  border-bottom-color: var(--cloudy);
+  font-weight: 400;
+  min-width: 100%;
+  width: 0;
+}
+
+figcaption .figure-number {
+  font-weight: 700;
+}
