@@ -1,5 +1,5 @@
 <!DOCTYPE html><html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"><head>
-   <title>F4: Failure of Success Criterion 2.2.2 due to using text-decoration:blink without a mechanism to stop it in less than five seconds | WAI | W3C</title>
+   <title>[Obsolete] F4: Failure of Success Criterion 2.2.2 due to using text-decoration:blink without a mechanism to stop it in less than five seconds | WAI | W3C</title>
    
 
 
@@ -11,18 +11,18 @@
 
 
 </head>
-<body dir="ltr">
+<body dir="ltr" class="obsolete">
 
 <a href="#main" class="button button--skip-link">Skip to content</a>
 <div class="minimal-header-container default-grid">
   <header class="minimal-header" id="site-header">
     <div class="minimal-header-name">
-      <a href="https://w3c.github.io/wcag/techniques/">WCAG 2.2 Techniques</a>
+      <a href="https://kfranqueiro.github.io/wcag/techniques/">WCAG 2.2 Techniques</a>
     </div>
     
       <div class="minimal-header-subtitle">Examples of ways to meet WCAG; not required</div>
     
-    <a class="minimal-header-link" href="https://w3c.github.io/wcag/techniques/about">About WCAG Techniques</a>
+    <a class="minimal-header-link" href="https://kfranqueiro.github.io/wcag/techniques/about">About WCAG Techniques</a>
     <div class="minimal-header-logo">
       <a href="http://w3.org/" aria-label="W3C">
         <svg xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 91.968 44">
@@ -71,19 +71,19 @@
 
 
 
+<section class="box obsolete-message">
+  <h2 class="box-h">Obsolete</h2>
+  <div class="box-i">The CSS <a href="https://drafts.csswg.org/css-text-decor/#valdef-text-decoration-line-blink"><code>text-decoration:blink</code> value is deprecated</a> and currently has no modern browser support.
+</div>
+</section>
+
 
 <section id="technique" class="box">
 	<h2 class="box-h box-h-icon">About this Technique</h2>
 	<div class="box-i">
 
 
-  
-  <p>
-    This technique relates to
-    
-<a href="https://w3c.github.io/wcag/understanding/pause-stop-hide">2.2.2: Pause, Stop, Hide</a>
-(<strong>Failure</strong>).</p>
-  
+  <p>This technique is not referenced from any Understanding document.</p>
 
 
 
@@ -96,12 +96,12 @@
    
    <section id="description">
       <h2>Description</h2>
-      <p>CSS defines the blink value for the text-decoration property. When used, it causes any text in elements with this property to blink at a predetermined rate. This cannot be interrupted by the user, nor can it be disabled as a user agent preference. The blinking continues as long as the page is displayed. Therefore, content that uses text-decoration:blink fails the Success Criterion because blinking can continue for more than five seconds.</p>
+      <p>CSS defines the blink value for the text-decoration property. When used, it causes any text in elements with this property to blink at a predetermined rate. This cannot be interrupted by the user, nor can it be disabled as a user agent preference. The blinking continues as long as the page is displayed. Therefore, content that uses text-decoration:blink fails the success criterion because blinking can continue for more than five seconds.</p>
    </section>
    <section id="examples">
       <h2>Examples</h2>
       <section class="example" id="example-1"><h3>Example 1</h3>
-         <p>A product list page uses the text-decoration:blink style on an element to draw attention to sale prices. This fails the Success Criterion because users cannot control the blink.</p>
+         <p>A product list page uses the text-decoration:blink style on an element to draw attention to sale prices. This fails the success criterion because users cannot control the blink.</p>
 <pre xml:space="preserve"><code class="language-html">&lt;p&gt;My Great Product &lt;span style="text-decoration:blink"&gt;Sale! $44,995!&lt;/span&gt;&lt;/p&gt;</code></pre>
       </section>
    </section>
@@ -170,7 +170,7 @@
 </div>
 <footer id="wai-site-footer" class="page-footer default-grid" aria-label="Page">
   <div class="inner" style="grid-column: 2 / 8">
-    <p><strong>Date:</strong> Updated 10 March 2025.</p>
+    <p><strong>Date:</strong> Updated 30 April 2025.</p>
     <p><strong>Developed by</strong>
       <a href="https://www.w3.org/groups/wg/ag/participants">Accessibility Guidelines Working Group (AG WG) Participants</a>
       (Co-Chairs: Alastair Campbell, Charles Adams, Rachael Bradley Montgomery. W3C Staff Contact:

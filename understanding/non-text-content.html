@@ -18,12 +18,12 @@
 <div class="minimal-header-container default-grid">
   <header class="minimal-header" id="site-header">
     <div class="minimal-header-name">
-      <a href="https://w3c.github.io/wcag/understanding/">WCAG 2.2 Understanding Docs</a>
+      <a href="https://kfranqueiro.github.io/wcag/understanding/">WCAG 2.2 Understanding Docs</a>
     </div>
     
       <div class="minimal-header-subtitle">Informative explanations, not required to meet WCAG</div>
     
-    <a class="minimal-header-link" href="https://w3c.github.io/wcag/understanding/about">About WCAG Understanding Docs</a>
+    <a class="minimal-header-link" href="https://kfranqueiro.github.io/wcag/understanding/about">About WCAG Understanding Docs</a>
     <div class="minimal-header-logo">
       <a href="http://w3.org/" aria-label="W3C">
         <svg xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 91.968 44">
@@ -133,7 +133,7 @@
       
       <dd>
          
-         <p>If non-text content is a control or accepts user input, then it has a <a href="#dfn-name">name</a> that describes its purpose. (Refer to <a href="https://w3c.github.io/wcag/guidelines/22/#name-role-value">Success Criterion 4.1.2</a> for additional requirements for controls and content that accepts user input.)
+         <p>If non-text content is a control or accepts user input, then it has a <a href="#dfn-name">name</a> that describes its purpose. (Refer to <a href="https://kfranqueiro.github.io/wcag/guidelines/22/#name-role-value">Success Criterion 4.1.2</a> for additional requirements for controls and content that accepts user input.)
          </p>
          
       </dd>
@@ -143,7 +143,7 @@
       <dd>
          
          <p>If non-text content is time-based media, then text alternatives at least provide descriptive
-            identification of the non-text content. (Refer to <a href="https://w3c.github.io/wcag/guidelines/22/#time-based-media">Guideline 1.2</a> for additional requirements for media.)
+            identification of the non-text content. (Refer to <a href="https://kfranqueiro.github.io/wcag/guidelines/22/#time-based-media">Guideline 1.2</a> for additional requirements for media.)
          </p>
          
       </dd>
@@ -199,7 +199,7 @@
       <h2>Intent</h2>
       
       
-      <p>The intent of this Success Criterion is to make information conveyed by non-text content
+      <p>The intent of this success criterion is to make information conveyed by non-text content
          accessible through the use of a text alternative.  Text alternatives are a primary
          way for making information accessible because they can be rendered through any sensory
          modality (for example, visual, auditory or tactile) to match the needs of the user.
@@ -224,7 +224,7 @@
             <a href="https://www.w3.org/TR/turingtest/">Inaccessibility of CAPTCHA</a>, CAPTCHAs intrinsically push the edges of human abilities in an attempt to defeat
             automated processes. Every type of CAPTCHA will be unsolvable by users with certain
             disabilities. However, they are widely used, and the Web Content Accessibility Guidelines
-            Working Group believes that if CAPTCHAs were forbidden outright, Web sites would choose
+            Working Group believes that if CAPTCHAs were forbidden outright, websites would choose
             not to conform to WCAG rather than abandon CAPTCHA. This would create barriers for
             a great many more users with disabilities. For this reason the Working Group has chosen
             to structure the requirement about CAPTCHA in a way that meets the needs of most people
@@ -251,12 +251,17 @@
          </ul>
          
       </section>
+
+      <section id="note-on-alternatives-matching-the-language-of-content">
+         <h3>Note on alternatives matching the language of content</h3>
+         <p>Text alternatives and equivalents should match the human language of the original content (normally the default human language of the page). The <a href="https://www.w3.org/TR/WCAG22/#conformance-reqs">5.2 Conformance Requirements</a><a href="#"> section, through the defined terms used there, states that success criteria be met through accessibility-supported ways (5.2.4), where the technology is used “in the human language of the content.” Where an alternative version is used (5.2.1), it is defined as something that “provides all of the same information and functionality in the same human language.”</a></p><a href="#dfn-visually-customized">
+      </a></section><a href="#dfn-visually-customized">
       
-      <section id="additional-information">
+      </a><section><a href="#">
          
          <h3>Additional information</h3>
          
-         <p>Non-text content can take a number of forms, and this Success Criterion specifies
+         <p>Non-text content can take a number of forms, and this success criterion specifies
             how each is to be handled.
          </p>
          
@@ -295,13 +300,13 @@
             least knows what the non-text content is and why it is there.
          </p>
          
-         <p> 
+         </a><p><a href="#"> 
             
             <strong>
                Non-text content that is time-based media
             </strong>
             is made accessible through 
-            <a href="time-based-media">1.2: Time-Based Media</a>.  However, it is important that users know what it is when they encounter it on a
+            </a><a href="time-based-media">1.2: Time-Based Media</a>.  However, it is important that users know what it is when they encounter it on a
             page so they can decide what action if any they want to take with it.  A text alternative
             that describes the time-based media and/or gives its title is therefore provided.
             
@@ -346,7 +351,7 @@
             
             <strong>Sometimes there are non-text exercises that are used to prove you are human.</strong> To avoid spam robots and other software from gaining access to a site a device called
             a CAPTCHA is used. These usually involve visual or auditory tasks that are beyond
-            the current capabilities of Web robots. Providing a text alternative to them would
+            the current capabilities of web robots. Providing a text alternative to them would
             however make them operable by Robots, thus defeating their purpose. In this case a
             text alternative would describe the purpose of the CAPTCHA, and alternate forms using
             different modalities would be provided to address the needs of people with different
@@ -379,7 +384,7 @@
       
       <ul>
          
-         <li>This Success Criterion helps people who have difficulty perceiving visual content.
+         <li>This success criterion helps people who have difficulty perceiving visual content.
             Assistive technology can read text aloud, present it visually, or convert it to braille.
          </li>
          
@@ -430,11 +435,11 @@
                already provides a full explanation, the image is an alternative for text and the
                text alternative includes only a brief description of the animation and refers to
                the tutorial text for more information.</dd>
-         <dt>A traffic Web camera</dt>
-         <dd>A Web site allows users to select from a variety of Web cameras positioned throughout
+         <dt>A traffic web camera</dt>
+         <dd>A website allows users to select from a variety of web cameras positioned throughout
                a major city. After a camera is selected, the image updates every two minutes. A short
-               text alternative identifies the Web camera as "traffic Web camera." The site also
-               provides a table of travel times for each of the routes covered by the Web cameras.
+               text alternative identifies the web camera as "traffic web camera." The site also
+               provides a table of travel times for each of the routes covered by the web cameras.
                The table is also updated every two minutes.</dd>
          <dt>A photograph of an historic event in a news story</dt>
          <dd>A photograph of two world leaders shaking hands accompanies a news story about an
@@ -443,7 +448,7 @@
          <dt>A photograph of a historic event in content discussing diplomatic relationships</dt>
          <dd>The same image is used in a different context intended to explain nuances in diplomatic
                encounters. The image of the president shaking hands with the prime minister appears
-               on a Web site discussing intricate diplomatic relationships. The first text alternative
+               on a website discussing intricate diplomatic relationships. The first text alternative
                reads, "President X of country X shakes hands with Prime Minister Y of country Y on
                January 2, 2009." An additional text alternative describes the room where the leaders
                are standing as well as the expressions on the leaders' faces, and identifies the
@@ -451,7 +456,7 @@
                page as the photograph or in a separate file associated with the image through a link
                or other standard programmatic mechanism.</dd>
          <dt>An audio recording of a press conference </dt>
-         <dd>A Web page includes a link to an audio recording of a press conference. The link text
+         <dd>A web page includes a link to an audio recording of a press conference. The link text
                identifies the audio recording. The page also links to a text transcript of the press
                conference. The transcript includes a verbatim record of everything the speakers say.
                It identifies who is speaking as well as noting other significant sounds that are
@@ -469,7 +474,7 @@
          <dt>The same image used on different sites</dt>
          <dd>Different alternatives for an image of the world: An image of the world that is used
                on a travel site as a link to the International Travel section has the text alternative
-               "International Travel". The same image is used as a link on a university Web site
+               "International Travel". The same image is used as a link on a university website
                with the text alternative "International Campuses".</dd>
          <dt>An image map</dt>
          <dd>An image of a building floor plan is interactive, allowing the user to select a
@@ -569,7 +574,7 @@
                
                <li>
                   
-                  <a href="https://w3c.github.io/wcag/techniques/general/G94">G94: Providing short text alternative for non-text content that serves the same purpose and presents the same information as the non-text content</a> using one of the following 
+                  <a href="https://kfranqueiro.github.io/wcag/techniques/general/G94">G94: Providing short text alternative for non-text content that serves the same purpose and presents the same information as the non-text content</a> using one of the following 
                   <strong>
                      
                      <a href="#text-equiv-all-situation-a-shorttext">Short text alternative techniques for Situation A</a>
@@ -588,49 +593,49 @@
                
                <li>
                   
-                  <a href="https://w3c.github.io/wcag/techniques/aria/ARIA6">ARIA6: Using aria-label to provide labels for objects</a>
+                  <a href="https://kfranqueiro.github.io/wcag/techniques/aria/ARIA6">ARIA6: Using aria-label to provide labels for objects</a>
                   
                </li>
                
                <li>
                   
-                  <a href="https://w3c.github.io/wcag/techniques/aria/ARIA10">ARIA10: Using aria-labelledby to provide a text alternative for non-text content</a>
+                  <a href="https://kfranqueiro.github.io/wcag/techniques/aria/ARIA10">ARIA10: Using aria-labelledby to provide a text alternative for non-text content</a>
                   
                </li>
                
                <li>
                   
-                  <a href="https://w3c.github.io/wcag/techniques/general/G196">G196: Using a text alternative on one item within a group of images that describes all items in the group</a>
+                  <a href="https://kfranqueiro.github.io/wcag/techniques/general/G196">G196: Using a text alternative on one item within a group of images that describes all items in the group</a>
                   
                </li>
                
                <li>
                   
-                  <a href="https://w3c.github.io/wcag/techniques/html/H2">H2: Combining adjacent image and text links for the same resource</a>
+                  <a href="https://kfranqueiro.github.io/wcag/techniques/html/H2">H2: Combining adjacent image and text links for the same resource</a>
                   
                </li>
                
                <li>
                   
-                  <a href="https://w3c.github.io/wcag/techniques/html/H37">H37: Using alt attributes on img elements</a>
+                  <a href="https://kfranqueiro.github.io/wcag/techniques/html/H37">H37: Using alt attributes on img elements</a>
                   
                </li>
                
                <li>
                   
-                  <a href="https://w3c.github.io/wcag/techniques/html/H53">H53: Using the body of the object element</a>
+                  <a href="https://kfranqueiro.github.io/wcag/techniques/html/H53">H53: Using the body of the object element</a>
                   
                </li>
                
                <li>
                   
-                  <a href="https://w3c.github.io/wcag/techniques/html/H86">H86: Providing text alternatives for emojis, emoticons, ASCII art, and leetspeak</a>
+                  <a href="https://kfranqueiro.github.io/wcag/techniques/html/H86">H86: Providing text alternatives for emojis, emoticons, ASCII art, and leetspeak</a>
                   
                </li>
                
                <li>
                   
-                  <a href="https://w3c.github.io/wcag/techniques/pdf/PDF1">PDF1: Applying text alternatives to images with the Alt entry in PDF documents</a>
+                  <a href="https://kfranqueiro.github.io/wcag/techniques/pdf/PDF1">PDF1: Applying text alternatives to images with the Alt entry in PDF documents</a>
                   
                </li>
                
@@ -649,7 +654,7 @@
                
                <li> 
                   
-                  <a href="https://w3c.github.io/wcag/techniques/general/G95">G95: Providing short text alternatives that provide a brief description of
+                  <a href="https://kfranqueiro.github.io/wcag/techniques/general/G95">G95: Providing short text alternatives that provide a brief description of
           the non-text content</a> using one of the following 
                   <strong>
                      
@@ -676,50 +681,50 @@
                
                <li>
                   
-                  <a href="https://w3c.github.io/wcag/techniques/aria/ARIA6">ARIA6: Using aria-label to provide labels for objects</a>
+                  <a href="https://kfranqueiro.github.io/wcag/techniques/aria/ARIA6">ARIA6: Using aria-label to provide labels for objects</a>
                   
                </li>
                
                <li>
                   
-                  <a href="https://w3c.github.io/wcag/techniques/aria/ARIA10">ARIA10: Using aria-labelledby to provide a text alternative for non-text content</a>
+                  <a href="https://kfranqueiro.github.io/wcag/techniques/aria/ARIA10">ARIA10: Using aria-labelledby to provide a text alternative for non-text content</a>
                   
                </li>
                
                <li>
                   
-                  <a href="https://w3c.github.io/wcag/techniques/general/G196">G196: Using a text alternative on one item within a group of images that describes all items in the group</a>
+                  <a href="https://kfranqueiro.github.io/wcag/techniques/general/G196">G196: Using a text alternative on one item within a group of images that describes all items in the group</a>
                   
                </li>
                
                <li>
                   
-                  <a href="https://w3c.github.io/wcag/techniques/html/H2">H2: Combining adjacent image and text links for the same resource</a>
+                  <a href="https://kfranqueiro.github.io/wcag/techniques/html/H2">H2: Combining adjacent image and text links for the same resource</a>
                   
                </li>
                
                <li>                  
                   
-                  <a href="https://w3c.github.io/wcag/techniques/html/H37">H37: Using alt attributes on img elements</a>
+                  <a href="https://kfranqueiro.github.io/wcag/techniques/html/H37">H37: Using alt attributes on img elements</a>
 
                   
                </li>
                
                <li>
                   
-                  <a href="https://w3c.github.io/wcag/techniques/html/H53">H53: Using the body of the object element</a>
+                  <a href="https://kfranqueiro.github.io/wcag/techniques/html/H53">H53: Using the body of the object element</a>
                   
                </li>
                
                <li>
                   
-                  <a href="https://w3c.github.io/wcag/techniques/html/H86">H86: Providing text alternatives for emojis, emoticons, ASCII art, and leetspeak</a>
+                  <a href="https://kfranqueiro.github.io/wcag/techniques/html/H86">H86: Providing text alternatives for emojis, emoticons, ASCII art, and leetspeak</a>
                   
                </li>
                
                <li>
                   
-                  <a href="https://w3c.github.io/wcag/techniques/pdf/PDF1">PDF1: Applying text alternatives to images with the Alt entry in PDF documents</a>
+                  <a href="https://kfranqueiro.github.io/wcag/techniques/pdf/PDF1">PDF1: Applying text alternatives to images with the Alt entry in PDF documents</a>
                   
                </li>
                
@@ -734,34 +739,34 @@
                
                <li>
                   
-                  <a href="https://w3c.github.io/wcag/techniques/aria/ARIA15">ARIA15: Using aria-describedby to provide descriptions of images</a>
+                  <a href="https://kfranqueiro.github.io/wcag/techniques/aria/ARIA15">ARIA15: Using aria-describedby to provide descriptions of images</a>
                   
                </li>
                
                <li>
                   
-                  <a href="https://w3c.github.io/wcag/techniques/general/G73">G73: Providing a long description in another location with a link to it that
+                  <a href="https://kfranqueiro.github.io/wcag/techniques/general/G73">G73: Providing a long description in another location with a link to it that
           is immediately adjacent to the non-text content</a>
                   
                </li>
                
                <li>
                   
-                  <a href="https://w3c.github.io/wcag/techniques/general/G74">G74: Providing a long description in text near the non-text content, with a
+                  <a href="https://kfranqueiro.github.io/wcag/techniques/general/G74">G74: Providing a long description in text near the non-text content, with a
           reference to the location of the long description in the short description</a>
                   
                </li>
                
                <li>
                   
-                  <a href="https://w3c.github.io/wcag/techniques/general/G92">G92: Providing long description for non-text content that serves the same
+                  <a href="https://kfranqueiro.github.io/wcag/techniques/general/G92">G92: Providing long description for non-text content that serves the same
           purpose and presents the same information</a>
                   
                </li>
                
                <li>
                   
-                  <a href="https://w3c.github.io/wcag/techniques/html/H53">H53: Using the body of the object element</a>
+                  <a href="https://kfranqueiro.github.io/wcag/techniques/html/H53">H53: Using the body of the object element</a>
                   
                </li>
                
@@ -777,7 +782,7 @@
                
                <li> 
                   
-                  <a href="https://w3c.github.io/wcag/techniques/general/G82">G82: Providing a text alternative that identifies the purpose of the non-text content</a> using one of the following 
+                  <a href="https://kfranqueiro.github.io/wcag/techniques/general/G82">G82: Providing a text alternative that identifies the purpose of the non-text content</a> using one of the following 
                   <strong>
                      
                      <a href="#text-equiv-all-situation-c-controls">Text alternative techniques for controls and input for Situation C</a>
@@ -796,43 +801,43 @@
                
                <li>
                   
-                  <a href="https://w3c.github.io/wcag/techniques/aria/ARIA6">ARIA6: Using aria-label to provide labels for objects</a>
+                  <a href="https://kfranqueiro.github.io/wcag/techniques/aria/ARIA6">ARIA6: Using aria-label to provide labels for objects</a>
                   
                </li>
                
                <li>
                   
-                  <a href="https://w3c.github.io/wcag/techniques/aria/ARIA9">ARIA9: Using aria-labelledby to concatenate a label from several text nodes</a>
+                  <a href="https://kfranqueiro.github.io/wcag/techniques/aria/ARIA9">ARIA9: Using aria-labelledby to concatenate a label from several text nodes</a>
                   
                </li>
                
                <li>
                   
-                  <a href="https://w3c.github.io/wcag/techniques/html/H24">H24: Providing text alternatives for the area elements of image maps</a>
+                  <a href="https://kfranqueiro.github.io/wcag/techniques/html/H24">H24: Providing text alternatives for the area elements of image maps</a>
                   
                </li>
                
                <li>
                   
-                  <a href="https://w3c.github.io/wcag/techniques/html/H30">H30: Providing link text that describes the purpose of a link for anchor elements</a>
+                  <a href="https://kfranqueiro.github.io/wcag/techniques/html/H30">H30: Providing link text that describes the purpose of a link for anchor elements</a>
                   
                </li>
                
                <li>
                   
-                  <a href="https://w3c.github.io/wcag/techniques/html/H36">H36: Using alt attributes on images used as submit buttons</a>
+                  <a href="https://kfranqueiro.github.io/wcag/techniques/html/H36">H36: Using alt attributes on images used as submit buttons</a>
                   
                </li>
                
                <li>
                   
-                  <a href="https://w3c.github.io/wcag/techniques/html/H44">H44: Using label elements to associate text labels with form controls</a>
+                  <a href="https://kfranqueiro.github.io/wcag/techniques/html/H44">H44: Using label elements to associate text labels with form controls</a>
                   
                </li>
                
                <li>
                   
-                  <a href="https://w3c.github.io/wcag/techniques/html/H65">H65: Using the title attribute to identify form controls when the label element cannot be used</a>
+                  <a href="https://kfranqueiro.github.io/wcag/techniques/html/H65">H65: Using the title attribute to identify form controls when the label element cannot be used</a>
                   
                </li>
                
@@ -859,7 +864,7 @@
                
                <li> 
                   
-                  <a href="https://w3c.github.io/wcag/techniques/general/G68">G68: Providing a short text alternative that describes the purpose of live
+                  <a href="https://kfranqueiro.github.io/wcag/techniques/general/G68">G68: Providing a short text alternative that describes the purpose of live
           audio-only and live video-only content</a> using one of the following 
                   <strong>
                      
@@ -870,7 +875,7 @@
                
                <li> 
                   
-                  <a href="https://w3c.github.io/wcag/techniques/general/G100">G100: Providing a short text alternative which is the accepted name or a descriptive name of the non-text content</a> using one of the following 
+                  <a href="https://kfranqueiro.github.io/wcag/techniques/general/G100">G100: Providing a short text alternative which is the accepted name or a descriptive name of the non-text content</a> using one of the following 
                   <strong>
                      
                      <a href="#text-equiv-all-situation-d-shorttext">Short text alternative techniques for Situation D</a>
@@ -889,49 +894,49 @@
                
                <li>
                   
-                  <a href="https://w3c.github.io/wcag/techniques/aria/ARIA6">ARIA6: Using aria-label to provide labels for objects</a>
+                  <a href="https://kfranqueiro.github.io/wcag/techniques/aria/ARIA6">ARIA6: Using aria-label to provide labels for objects</a>
                   
                </li>
                
                <li>
                   
-                  <a href="https://w3c.github.io/wcag/techniques/aria/ARIA10">ARIA10: Using aria-labelledby to provide a text alternative for non-text content</a>
+                  <a href="https://kfranqueiro.github.io/wcag/techniques/aria/ARIA10">ARIA10: Using aria-labelledby to provide a text alternative for non-text content</a>
                   
                </li>
                
                <li>
                   
-                  <a href="https://w3c.github.io/wcag/techniques/general/G196">G196: Using a text alternative on one item within a group of images that describes all items in the group</a>
+                  <a href="https://kfranqueiro.github.io/wcag/techniques/general/G196">G196: Using a text alternative on one item within a group of images that describes all items in the group</a>
                   
                </li>
                
                <li>
                   
-                  <a href="https://w3c.github.io/wcag/techniques/html/H2">H2: Combining adjacent image and text links for the same resource</a>
+                  <a href="https://kfranqueiro.github.io/wcag/techniques/html/H2">H2: Combining adjacent image and text links for the same resource</a>
                   
                </li>
                
                <li>
                   
-                  <a href="https://w3c.github.io/wcag/techniques/html/H37">H37: Using alt attributes on img elements</a>
+                  <a href="https://kfranqueiro.github.io/wcag/techniques/html/H37">H37: Using alt attributes on img elements</a>
                   
                </li>
                
                <li>
                   
-                  <a href="https://w3c.github.io/wcag/techniques/html/H53">H53: Using the body of the object element</a>
+                  <a href="https://kfranqueiro.github.io/wcag/techniques/html/H53">H53: Using the body of the object element</a>
                   
                </li>
                
                <li>
                   
-                  <a href="https://w3c.github.io/wcag/techniques/html/H86">H86: Providing text alternatives for emojis, emoticons, ASCII art, and leetspeak</a>
+                  <a href="https://kfranqueiro.github.io/wcag/techniques/html/H86">H86: Providing text alternatives for emojis, emoticons, ASCII art, and leetspeak</a>
                   
                </li>
                
                <li>
                   
-                  <a href="https://w3c.github.io/wcag/techniques/pdf/PDF1">PDF1: Applying text alternatives to images with the Alt entry in PDF documents</a>
+                  <a href="https://kfranqueiro.github.io/wcag/techniques/pdf/PDF1">PDF1: Applying text alternatives to images with the Alt entry in PDF documents</a>
                   
                </li>
                
@@ -947,11 +952,11 @@
                
                <li>
                   										           
-                  <a href="https://w3c.github.io/wcag/techniques/general/G143">G143: Providing a text alternative that describes the purpose of the CAPTCHA</a>
+                  <a href="https://kfranqueiro.github.io/wcag/techniques/general/G143">G143: Providing a text alternative that describes the purpose of the CAPTCHA</a>
                   										           
                   <strong>AND</strong>
                   										           
-                  <a href="https://w3c.github.io/wcag/techniques/general/G144">G144: Ensuring that the Web Page contains another CAPTCHA serving the same purpose using a different modality</a>
+                  <a href="https://kfranqueiro.github.io/wcag/techniques/general/G144">G144: Ensuring that the Web Page contains another CAPTCHA serving the same purpose using a different modality</a>
                   									         
                </li>
                
@@ -985,19 +990,19 @@
                
                <li>
                   
-                  <a href="https://w3c.github.io/wcag/techniques/css/C9">C9: Using CSS to include decorative images</a>
+                  <a href="https://kfranqueiro.github.io/wcag/techniques/css/C9">C9: Using CSS to include decorative images</a>
                   
                </li>
                
                <li>
                   
-                  <a href="https://w3c.github.io/wcag/techniques/html/H67">H67: Using null alt text and no title attribute on img elements for images that assistive technology should ignore</a>
+                  <a href="https://kfranqueiro.github.io/wcag/techniques/html/H67">H67: Using null alt text and no title attribute on img elements for images that assistive technology should ignore</a>
                   
                </li>
                
                <li>
                   
-                  <a href="https://w3c.github.io/wcag/techniques/pdf/PDF4">PDF4: Hiding decorative images with the Artifact tag in PDF documents</a>
+                  <a href="https://kfranqueiro.github.io/wcag/techniques/pdf/PDF4">PDF4: Hiding decorative images with the Artifact tag in PDF documents</a>
                   
                </li>
                
@@ -1023,7 +1028,7 @@
                
                <li>
                   										           
-                  <a href="https://w3c.github.io/wcag/techniques/css/C18">C18: Using CSS margin and padding rules instead of spacer images for layout design</a>
+                  <a href="https://kfranqueiro.github.io/wcag/techniques/css/C18">C18: Using CSS margin and padding rules instead of spacer images for layout design</a>
                   									         
                </li>
                
@@ -1046,65 +1051,65 @@
             
             <li>
                									         
-               <a href="https://w3c.github.io/wcag/techniques/failures/F3">F3: Failure of Success Criterion 1.1.1 due to using CSS to include images that convey
+               <a href="https://kfranqueiro.github.io/wcag/techniques/failures/F3">F3: Failure of Success Criterion 1.1.1 due to using CSS to include images that convey
                     important information</a>
                								       
             </li>
             
             <li>
                									         
-               <a href="https://w3c.github.io/wcag/techniques/failures/F13">F13: Failure of Success Criterion 1.1.1 and 1.4.1 due to having a text alternative that does not
+               <a href="https://kfranqueiro.github.io/wcag/techniques/failures/F13">F13: Failure of Success Criterion 1.1.1 and 1.4.1 due to having a text alternative that does not
                     include information that is conveyed by color differences in the image</a>
                								       
             </li>
             
             <li>
                									         
-               <a href="https://w3c.github.io/wcag/techniques/failures/F20">F20: Failure of Success Criterion 1.1.1 and 4.1.2 due to not updating text alternatives when
+               <a href="https://kfranqueiro.github.io/wcag/techniques/failures/F20">F20: Failure of Success Criterion 1.1.1 and 4.1.2 due to not updating text alternatives when
                     changes to non-text content occur</a>
                								       
             </li>
             
             <li>
                									         
-               <a href="https://w3c.github.io/wcag/techniques/failures/F30">F30: Failure of Success Criterion 1.1.1 and 1.2.1 due to using text alternatives that are not
+               <a href="https://kfranqueiro.github.io/wcag/techniques/failures/F30">F30: Failure of Success Criterion 1.1.1 and 1.2.1 due to using text alternatives that are not
                     alternatives (e.g., filenames or placeholder text)</a>
                								       
             </li>
             
             <li>
                									         
-               <a href="https://w3c.github.io/wcag/techniques/failures/F38">F38: Failure of Success Criterion 1.1.1 due to not marking up decorative images in HTML in a way that allows assistive technology to ignore them</a>
+               <a href="https://kfranqueiro.github.io/wcag/techniques/failures/F38">F38: Failure of Success Criterion 1.1.1 due to not marking up decorative images in HTML in a way that allows assistive technology to ignore them</a>
                								       
             </li>
             
             <li>
                									         
-               <a href="https://w3c.github.io/wcag/techniques/failures/F39">F39: Failure of Success Criterion 1.1.1 due to providing a text alternative that is not null (e.g., alt="spacer" or alt="image") for images that should be ignored by assistive technology</a>
+               <a href="https://kfranqueiro.github.io/wcag/techniques/failures/F39">F39: Failure of Success Criterion 1.1.1 due to providing a text alternative that is not null (e.g., alt="spacer" or alt="image") for images that should be ignored by assistive technology</a>
                								       
             </li>
             
             <li>
                									         
-               <a href="https://w3c.github.io/wcag/techniques/failures/F65">F65: Failure of Success Criterion 1.1.1 due to omitting the alt attribute or text alternative on img elements, area elements, and input elements of type "image"</a>
+               <a href="https://kfranqueiro.github.io/wcag/techniques/failures/F65">F65: Failure of Success Criterion 1.1.1 due to omitting the alt attribute or text alternative on img elements, area elements, and input elements of type "image"</a>
                								       
             </li>
             
             <li>
                									         
-               <a href="https://w3c.github.io/wcag/techniques/failures/F67">F67: Failure of Success Criterion 1.1.1 and 1.2.1 due to providing long descriptions for non-text content that does not serve the same purpose or does not present the same information</a>
+               <a href="https://kfranqueiro.github.io/wcag/techniques/failures/F67">F67: Failure of Success Criterion 1.1.1 and 1.2.1 due to providing long descriptions for non-text content that does not serve the same purpose or does not present the same information</a>
                								       
             </li>
             
             <li>
                									         
-               <a href="https://w3c.github.io/wcag/techniques/failures/F71">F71: Failure of Success Criterion 1.1.1 due to using text look-alikes to represent text without providing a text alternative</a>
+               <a href="https://kfranqueiro.github.io/wcag/techniques/failures/F71">F71: Failure of Success Criterion 1.1.1 due to using text look-alikes to represent text without providing a text alternative</a>
                								       
             </li>
             
             <li>
                									         
-               <a href="https://w3c.github.io/wcag/techniques/failures/F72">F72: Failure of Success Criterion 1.1.1 due to using ASCII art without providing a text alternative</a>
+               <a href="https://kfranqueiro.github.io/wcag/techniques/failures/F72">F72: Failure of Success Criterion 1.1.1 due to using ASCII art without providing a text alternative</a>
                								       
             </li>
             
@@ -1312,6 +1317,7 @@
    
    <aside class="example"><p class="example-title marker">Example</p><p>Web browsers, media players, plug-ins, and other programs — including <a href="#dfn-assistive-technology">assistive technologies</a> — that help in retrieving, rendering, and interacting with web content.
    </p></aside></dd>
+      <dt id="dfn-visually-customized">visually customized</dt><dd><p>the font, size, color, and background can be set</p></dd>
       <dt id="dfn-web-page">web page</dt><dd><p>a non-embedded resource obtained from a single URI using HTTP plus any other resources
       that are used in the rendering or intended to be rendered together with it by a <a href="#dfn-user-agent">user agent</a></p>
    
@@ -1413,7 +1419,7 @@
 </div>
 <footer id="wai-site-footer" class="page-footer default-grid" aria-label="Page">
   <div class="inner" style="grid-column: 2 / 8">
-    <p><strong>Date:</strong> Updated 10 March 2025.</p>
+    <p><strong>Date:</strong> Updated 30 April 2025.</p>
     <p><strong>Developed by</strong>
       <a href="https://www.w3.org/groups/wg/ag/participants">Accessibility Guidelines Working Group (AG WG) Participants</a>
       (Co-Chairs: Alastair Campbell, Charles Adams, Rachael Bradley Montgomery. W3C Staff Contact:

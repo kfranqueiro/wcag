@@ -17,12 +17,12 @@
 <div class="minimal-header-container default-grid">
   <header class="minimal-header" id="site-header">
     <div class="minimal-header-name">
-      <a href="https://w3c.github.io/wcag/techniques/">WCAG 2.2 Techniques</a>
+      <a href="https://kfranqueiro.github.io/wcag/techniques/">WCAG 2.2 Techniques</a>
     </div>
     
       <div class="minimal-header-subtitle">Examples of ways to meet WCAG; not required</div>
     
-    <a class="minimal-header-link" href="https://w3c.github.io/wcag/techniques/about">About WCAG Techniques</a>
+    <a class="minimal-header-link" href="https://kfranqueiro.github.io/wcag/techniques/about">About WCAG Techniques</a>
     <div class="minimal-header-logo">
       <a href="http://w3.org/" aria-label="W3C">
         <svg xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 91.968 44">
@@ -81,7 +81,7 @@
   <p>
     This technique relates to
     
-<a href="https://w3c.github.io/wcag/understanding/label-in-name">2.5.3: Label in Name</a>
+<a href="https://kfranqueiro.github.io/wcag/understanding/label-in-name">2.5.3: Label in Name</a>
 (<strong>Sufficient</strong>).</p>
   
 
@@ -102,13 +102,13 @@
 			<p>When speech input users interact with a web page, they usually speak a command followed by the reference to some visible label (such as text beside an input field or inside a button or link). For example, they may say "click search" to activate a button labelled Search. When speech recognition software processes speech input and looks for matches, it uses the <a href="https://www.w3.org/TR/accname/"> accessible name</a> of controls. Where there is a mismatch between the text in the label and the text in the accessible name, it can cause issues for the user. The simplest way to enable speech input users and meet 2.5.3 Label in Name is to ensure that the accessible name matches the visible text label.</p>
 			<h3>Determining the appropriate label</h3>
 			<p>Sometimes more than one text string will be positioned in the vicinity of a control that could be considered a candidate for its label. For example, a set of inputs that each have their own labels may also be preceded by a heading, an instruction or a group label (such as an HTML legend/fieldset or an ARIA group or radiogroup). Note that the term "group label" means something different than "label", both programmatically and in regard to 2.5.3 Label in Name.</p>
-			<p>The <a href="https://w3c.github.io/wcag/understanding/label-in-name">Understanding 2.5.3 Label in Name document</a> recommends that only the text string adjacent to or in close proximity to an input should be treated as the label when assessing a control's label for the purposes of meeting 2.5.3 (see the section "Identifying label text for components"). There are both practical and technical reasons for restricting the designation of an input's label in this way. The technical reasons are discussed in the Understanding document's section called Accessible Name and Description Computation specification.</p>
+			<p>The <a href="https://kfranqueiro.github.io/wcag/understanding/label-in-name">Understanding 2.5.3 Label in Name document</a> recommends that only the text string adjacent to or in close proximity to an input should be treated as the label when assessing a control's label for the purposes of meeting 2.5.3 (see the section "Identifying label text for components"). There are both practical and technical reasons for restricting the designation of an input's label in this way. The technical reasons are discussed in the Understanding document's section called Accessible Name and Description Computation specification.</p>
 			
 		</section>
 		<section id="examples">
 			<h2>Examples</h2>
 			
-<p>Mapping a visible label to the accessible name is achieved in many technologies by meeting <a href="https://w3c.github.io/wcag/understanding/info-and-relationships.html"> 1.3.1 Information and Relationships</a> through the proper use of native semantics. Many controls derive accessible names by correct nesting of elements, while other elements have specific attributes which are a valid means of providing or referencing an accessible name.</p>
+<p>Mapping a visible label to the accessible name is achieved in many technologies by meeting <a href="https://kfranqueiro.github.io/wcag/understanding/info-and-relationships.html"> 1.3.1 Information and Relationships</a> through the proper use of native semantics. Many controls derive accessible names by correct nesting of elements, while other elements have specific attributes which are a valid means of providing or referencing an accessible name.</p>
 			<p>The accessible name should be assigned through native elements and semantics where possible. That helps ensure an exact match between the visible label and name.</p>
 			<section class="example" id="example-1-anchor-text-provides-both-the-link's-label-and-its-accessible-name">
 			<h3>Example 1: Anchor text provides both the link's label and its accessible name</h3>
@@ -150,7 +150,7 @@
 					<img src="img/call-me-radio-button-group.png" alt="Call me when balance exceeds $10,000, Yes No">
 					<figcaption>Figure 1 "Call me when balance exceeds $10,000 radio group, with Yes and No choices</figcaption>
 				</figure>
-				<p>The label for each component should be restricted to "Yes" and "No". To meet <a href="https://w3c.github.io/wcag/understanding/info-and-relationships"> 1.3.1 Information and Relationships</a> and <a href="https://w3c.github.io/wcag/understanding/labels-or-instructions.html"> 3.3.2 Labels or Instructions</a>, the "Call me…" text can be coded to convey the relationship to ATs, in this example by using a <code>fieldset</code> and <code>legend</code>.</p>
+				<p>The label for each component should be restricted to "Yes" and "No". To meet <a href="https://kfranqueiro.github.io/wcag/understanding/info-and-relationships"> 1.3.1 Information and Relationships</a> and <a href="https://kfranqueiro.github.io/wcag/understanding/labels-or-instructions.html"> 3.3.2 Labels or Instructions</a>, the "Call me…" text can be coded to convey the relationship to ATs, in this example by using a <code>fieldset</code> and <code>legend</code>.</p>
 				<p>If the label is not restricted to the string adjacent to the radio button, multiple interpretations of what constitutes the label can result in less uniform functionality. If "Yes" alone is not the label for the first radio button, is it "Call me when balance exceeds $10,000"? Or is it a combination of text strings, in which case is the order "Call me when balance exceeds $10,000 Yes" or "Yes, Call me when balance exceeds $10,000"? Decisions to combine text strings can have negative effects on screen reader users since the order of concatenation can affect meaning. In this example, "No, call me when balance exceeds $10,000" could be very confusing to a screen reader user.</p>
 				<code>
 					&lt;fieldset&gt;<br>
@@ -340,7 +340,7 @@
 </div>
 <footer id="wai-site-footer" class="page-footer default-grid" aria-label="Page">
   <div class="inner" style="grid-column: 2 / 8">
-    <p><strong>Date:</strong> Updated 10 March 2025.</p>
+    <p><strong>Date:</strong> Updated 30 April 2025.</p>
     <p><strong>Developed by</strong>
       <a href="https://www.w3.org/groups/wg/ag/participants">Accessibility Guidelines Working Group (AG WG) Participants</a>
       (Co-Chairs: Alastair Campbell, Charles Adams, Rachael Bradley Montgomery. W3C Staff Contact:

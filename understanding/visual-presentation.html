@@ -18,12 +18,12 @@
 <div class="minimal-header-container default-grid">
   <header class="minimal-header" id="site-header">
     <div class="minimal-header-name">
-      <a href="https://w3c.github.io/wcag/understanding/">WCAG 2.2 Understanding Docs</a>
+      <a href="https://kfranqueiro.github.io/wcag/understanding/">WCAG 2.2 Understanding Docs</a>
     </div>
     
       <div class="minimal-header-subtitle">Informative explanations, not required to meet WCAG</div>
     
-    <a class="minimal-header-link" href="https://w3c.github.io/wcag/understanding/about">About WCAG Understanding Docs</a>
+    <a class="minimal-header-link" href="https://kfranqueiro.github.io/wcag/understanding/about">About WCAG Understanding Docs</a>
     <div class="minimal-header-logo">
       <a href="http://w3.org/" aria-label="W3C">
         <svg xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 91.968 44">
@@ -164,7 +164,7 @@
 <section id="intent">
       <h2>Intent</h2>
       
-      <p>The intent of this Success Criterion is to ensure that visually  rendered text is
+      <p>The intent of this success criterion is to ensure that visually  rendered text is
          presented in such a manner that it can be perceived  without its layout interfering
          with its readability. People with some  cognitive, language and learning disabilities
          and some low vision users  cannot perceive the text and/or lose their reading place
@@ -220,7 +220,7 @@
       
       <p>The scaling of content is primarily a user agent  responsibility. User agents that
          satisfy UAAG 1.0 Checkpoint 4.1 allow  users to configure text scale. The author's
-         responsibility is to create  Web content that does not prevent the user agent from
+         responsibility is to create  web content that does not prevent the user agent from
          scaling the  content and that allows the reflow of the content within the current
          width of the viewport. See 
          <a href="resize-text">1.4.4: Resize Text</a> for additional discussion of resizing text. 
@@ -256,12 +256,12 @@
    <section id="benefits">
       <h2>Benefits</h2>
 
-      <p>This Success Criterion helps low vision users by letting them see  text without distracting
+      <p>This success criterion helps low vision users by letting them see  text without distracting
          presentational features. It lets them  configure text in ways that will be easier
          for them to see by letting  them control the color and size of blocks of text. 
       </p>
       
-      <p>This Success Criterion helps people with cognitive, language  and learning disabilities
+      <p>This success criterion helps people with cognitive, language  and learning disabilities
          perceive text and track their location within  blocks of text. 
       </p>
       
@@ -334,7 +334,7 @@
             Anne-Lise Rygvold og Bjørn Gunnar Saltnes
          </li>
          <li>
-            <a href="http://eric.ed.gov/?id=EJ601947">Effective Monitor Display Design</a> on the  ERIC Web portal
+            <a href="http://eric.ed.gov/?id=EJ601947">Effective Monitor Display Design</a> on the  ERIC web portal
          </li>
          <li> 
             <a href="http://www.sigaccess.org/2005/09/september-2005-newsletter/">Cognitive difficulties and access to information systems - an interaction design perspective</a>", Peter Gregor and Anna Dickinson, Applied Computing, University of Dundee
@@ -408,90 +408,101 @@
             items for each of the requirements below. 
          </p>
          
-         <section>
+         <section id="first-requirement-techniques-to-ensure-foreground-and-background-colors-can-be-selected-by-the-user">
+            <h4>First Requirement: Techniques to ensure foreground and background colors can be selected by the user</h4>
             <ul>
                <li>
-                  <a href="https://w3c.github.io/wcag/techniques/css/C23">C23: Specifying text and background colors of secondary content such as banners, features and navigation in CSS while not specifying text and background colors of the main content</a> OR 
+                  <a href="https://kfranqueiro.github.io/wcag/techniques/css/C23">C23: Specifying text and background colors of secondary content such as banners, features and navigation in CSS while not specifying text and background colors of the main content</a> OR 
                </li>
                <li>
-                  <a href="https://w3c.github.io/wcag/techniques/css/C25">C25: Specifying borders and layout in CSS to delineate areas of a Web page while not specifying text and text-background colors</a> OR 
+                  <a href="https://kfranqueiro.github.io/wcag/techniques/css/C25">C25: Specifying borders and layout in CSS to delineate areas of a web page while not specifying text and text-background colors</a> OR 
                </li>
                <li>
-                  <a href="https://w3c.github.io/wcag/techniques/general/G156">G156: Using a technology that has commonly-available user agents that can change the foreground and background of blocks of text</a> OR 
+                  <a href="https://kfranqueiro.github.io/wcag/techniques/general/G156">G156: Using a technology that has commonly-available user agents that can change the foreground and background of blocks of text</a> OR 
                </li>
                <li>
-                  <a href="https://w3c.github.io/wcag/techniques/general/G148">G148: Not specifying background color, not specifying text color, and not using technology features that change those defaults</a> OR 
+                  <a href="https://kfranqueiro.github.io/wcag/techniques/general/G148">G148: Not specifying background color, not specifying text color, and not using technology features that change those defaults</a> OR 
                </li>
                <li>
-                  <a href="https://w3c.github.io/wcag/techniques/general/G175">G175: Providing a multi color selection tool on the page for foreground and background colors</a>
+                  <a href="https://kfranqueiro.github.io/wcag/techniques/general/G175">G175: Providing a multi color selection tool on the page for foreground and background colors</a>
                </li>
             </ul>
          </section>
-         <section>
+         <section id="second-requirement-techniques-to-ensure-width-is-no-more-than-80-characters-or-glyphs-40-if-cjk">
+            <h4>Second Requirement: Techniques to ensure width is no more than 80 characters or glyphs (40 if CJK)</h4>
             <ul>
                <li>
-                  <a href="https://w3c.github.io/wcag/techniques/general/G204">G204: Not interfering with the user agent's reflow of text as the viewing window is narrowed</a> OR
+                  <a href="https://kfranqueiro.github.io/wcag/techniques/general/G204">G204: Not interfering with the user agent's reflow of text as the viewing window is narrowed</a> OR
                </li>
                <li>
-                  <a href="https://w3c.github.io/wcag/techniques/css/C20">C20: Using relative measurements to set column widths so that lines can average 80 characters or less when the browser is resized</a>
+                  <a href="https://kfranqueiro.github.io/wcag/techniques/css/C20">C20: Using relative measurements to set column widths so that lines can average 80 characters or less when the browser is resized</a>
                </li>
             </ul>
          </section>
-         <section>
+         <section id="third-requirement-techniques-to-ensure-text-is-not-justified-aligned-to-both-the-left-and-the-right-margins">
+            <h4>Third Requirement: Techniques to ensure text is not justified (aligned to both the left and the right margins)</h4>
             <ul>
                <li>
-                  <a href="https://w3c.github.io/wcag/techniques/css/C19">C19: Specifying alignment either to the left or right in CSS</a> OR
+                  <a href="https://kfranqueiro.github.io/wcag/techniques/css/C19">C19: Specifying alignment either to the left or right in CSS</a> OR
                </li>
                <li>
-                  <a href="https://w3c.github.io/wcag/techniques/general/G172">G172: Providing a mechanism to remove full justification of text</a> OR 
+                  <a href="https://kfranqueiro.github.io/wcag/techniques/general/G172">G172: Providing a mechanism to remove full justification of text</a> OR 
                </li>
                <li>
-                  <a href="https://w3c.github.io/wcag/techniques/general/G169">G169: Aligning text on only one side</a>
+                  <a href="https://kfranqueiro.github.io/wcag/techniques/general/G169">G169: Aligning text on only one side</a>
                </li>
             </ul>
          </section>
-         <section>
+         <section id="-fourth-requirement-techniques-to-ensure-line-spacing-leading-is-at-least-space-and-a-half-within-paragraphs-and-paragraph-spacing-is-at-least-1.5-times-larger-than-the-line-spacing-">
+            <h4>
+              Fourth Requirement: Techniques to ensure line spacing (leading) is at least space-and-a-half within paragraphs,
+              and paragraph spacing is at least 1.5 times larger than the line spacing
+            </h4>
             <ul>
                <li>
-                  <a href="https://w3c.github.io/wcag/techniques/general/G188">G188: Providing a button on the page to increase line spaces and paragraph spaces</a> OR
+                  <a href="https://kfranqueiro.github.io/wcag/techniques/general/G188">G188: Providing a button on the page to increase line spaces and paragraph spaces</a> OR
                </li>
                <li>
-                  <a href="https://w3c.github.io/wcag/techniques/css/C21">C21: Specifying line spacing in CSS</a>
+                  <a href="https://kfranqueiro.github.io/wcag/techniques/css/C21">C21: Specifying line spacing in CSS</a>
                </li>
             </ul>
          </section>
-         <section>
+         <section id="-fifth-requirement-techniques-to-ensure-text-can-be-resized-without-assistive-technology-up-to-200-percent-in-a-way-that-does-not-require-the-user-to-scroll-horizontally-to-read-a-line-of-text-on-a-full-screen-window-">
+            <h4>
+              Fifth Requirement: Techniques to ensure text can be resized without assistive technology up to 200 percent in a way that
+              does not require the user to scroll horizontally to read a line of text on a full-screen window
+            </h4>
             <ul>
                <li>
-                  <a href="https://w3c.github.io/wcag/techniques/general/G204">G204: Not interfering with the user agent's reflow of text as the viewing window is narrowed</a> OR
+                  <a href="https://kfranqueiro.github.io/wcag/techniques/general/G204">G204: Not interfering with the user agent's reflow of text as the viewing window is narrowed</a> OR
                </li>
                <li>
                   <p> 
-                     <a href="https://w3c.github.io/wcag/techniques/general/G146">G146: Using liquid layout</a>
+                     <a href="https://kfranqueiro.github.io/wcag/techniques/general/G146">G146: Using liquid layout</a>
                      <em>AND</em> using measurements that are relative to other measurements in the content by using
                      one or more of the following techniques:
                   </p>
                   
                   <ul>
                      <li> 
-                        <a href="https://w3c.github.io/wcag/techniques/css/C12">C12: Using percent for font sizes</a> OR 
+                        <a href="https://kfranqueiro.github.io/wcag/techniques/css/C12">C12: Using percent for font sizes</a> OR 
                      </li>
                      <li> 
-                        <a href="https://w3c.github.io/wcag/techniques/css/C13">C13: Using named font sizes</a> OR 
+                        <a href="https://kfranqueiro.github.io/wcag/techniques/css/C13">C13: Using named font sizes</a> OR 
                      </li>
                      <li> 
-                        <a href="https://w3c.github.io/wcag/techniques/css/C14">C14: Using em units for font sizes</a> OR 
+                        <a href="https://kfranqueiro.github.io/wcag/techniques/css/C14">C14: Using em units for font sizes</a> OR 
                      </li>
                      <li>
-                        <a href="https://w3c.github.io/wcag/techniques/css/C24">C24: Using percentage values in CSS for container sizes</a> OR 
+                        <a href="https://kfranqueiro.github.io/wcag/techniques/css/C24">C24: Using percentage values in CSS for container sizes</a> OR 
                      </li>
                      <li>
-                        <a href="https://w3c.github.io/wcag/techniques/client-side-script/SCR34">SCR34: Calculating size and position in a way that scales with text size</a> OR 
+                        <a href="https://kfranqueiro.github.io/wcag/techniques/client-side-script/SCR34">SCR34: Calculating size and position in a way that scales with text size</a> OR 
                      </li>
                   </ul>
                </li>
                <li>
-                  <a href="https://w3c.github.io/wcag/techniques/general/G206">G206: Providing options within the content to switch to a layout that does not require the user to scroll horizontally to read a line of text</a>
+                  <a href="https://kfranqueiro.github.io/wcag/techniques/general/G206">G206: Providing options within the content to switch to a layout that does not require the user to scroll horizontally to read a line of text</a>
                </li>
             </ul>
          </section>
@@ -508,11 +519,11 @@
 
          <ul>
             <li>
-               <a href="https://w3c.github.io/wcag/techniques/failures/F24">F24: Failure of Success Criterion 1.4.3, 1.4.6 and 1.4.8 due to specifying foreground colors without
+               <a href="https://kfranqueiro.github.io/wcag/techniques/failures/F24">F24: Failure of Success Criterion 1.4.3, 1.4.6 and 1.4.8 due to specifying foreground colors without
       specifying background colors or vice versa</a>
             </li>
             <li>
-               <a href="https://w3c.github.io/wcag/techniques/failures/F88">F88: Failure of Success Criterion 1.4.8 due to using text that is justified (aligned to both the left and the right margins)</a>
+               <a href="https://kfranqueiro.github.io/wcag/techniques/failures/F88">F88: Failure of Success Criterion 1.4.8 due to using text that is justified (aligned to both the left and the right margins)</a>
             </li>
          </ul>
       </section>
@@ -706,7 +717,7 @@
 </div>
 <footer id="wai-site-footer" class="page-footer default-grid" aria-label="Page">
   <div class="inner" style="grid-column: 2 / 8">
-    <p><strong>Date:</strong> Updated 10 March 2025.</p>
+    <p><strong>Date:</strong> Updated 30 April 2025.</p>
     <p><strong>Developed by</strong>
       <a href="https://www.w3.org/groups/wg/ag/participants">Accessibility Guidelines Working Group (AG WG) Participants</a>
       (Co-Chairs: Alastair Campbell, Charles Adams, Rachael Bradley Montgomery. W3C Staff Contact:

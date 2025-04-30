@@ -14,12 +14,12 @@
 <div class="minimal-header-container default-grid">
   <header class="minimal-header" id="site-header">
     <div class="minimal-header-name">
-      <a href="https://w3c.github.io/wcag/techniques/">WCAG 2.2 Techniques</a>
+      <a href="https://kfranqueiro.github.io/wcag/techniques/">WCAG 2.2 Techniques</a>
     </div>
     
       <div class="minimal-header-subtitle">Examples of ways to meet WCAG; not required</div>
     
-    <a class="minimal-header-link" href="https://w3c.github.io/wcag/techniques/about">About WCAG Techniques</a>
+    <a class="minimal-header-link" href="https://kfranqueiro.github.io/wcag/techniques/about">About WCAG Techniques</a>
     <div class="minimal-header-logo">
       <a href="http://w3.org/" aria-label="W3C">
         <svg xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 91.968 44">
@@ -79,13 +79,13 @@
   
     <li>
       
-<a href="https://w3c.github.io/wcag/understanding/on-input">3.2.2: On Input</a>
+<a href="https://kfranqueiro.github.io/wcag/understanding/on-input">3.2.2: On Input</a>
 (<strong>Sufficient</strong>)
     </li>
   
     <li>
       
-<a href="https://w3c.github.io/wcag/understanding/change-on-request">3.2.5: Change on Request</a>
+<a href="https://kfranqueiro.github.io/wcag/understanding/change-on-request">3.2.5: Change on Request</a>
 (<strong>Sufficient</strong>)
     </li>
   
@@ -101,16 +101,16 @@
 	
 
 <section id="description"><h2>Description</h2>
-      <p>The objective of this technique is to demonstrate how to correctly use an onchange event with a select element to update other elements on the Web page. This technique will not cause a change of context. When there are one or more select elements on the Web page, an onchange event on one, can update the options in another select element on the Web page. All of the data required by the select elements is included within the Web page.</p>
-      <p> It is important to note that the select item which is modified is after the trigger select element in the reading order of the Web page. This ensures that assistive technologies will pick up the change and users will encounter the new data when the modified element receives focus. This technique relies on JavaScript support in the user agent. </p>
+      <p>The objective of this technique is to demonstrate how to correctly use an onchange event with a select element to update other elements on the web page. This technique will not cause a change of context. When there are one or more select elements on the web page, an onchange event on one, can update the options in another select element on the web page. All of the data required by the select elements is included within the web page.</p>
+      <p> It is important to note that the select item which is modified is after the trigger select element in the reading order of the web page. This ensures that assistive technologies will pick up the change and users will encounter the new data when the modified element receives focus. This technique relies on JavaScript support in the user agent. </p>
    </section><section id="examples"><h2>Examples</h2>
       <section class="example" id="example-1"><h3>Example 1</h3>
-         <p>This example contains two select elements. When an item is selected in the first select, the choices in the other select are updated appropriately. The first select element contains a list of continents. The second select element will contain a partial list of countries located in the selected continent. There is an onchange event associated with the continent select. When the continent selection changes, the items in the country select are modified using JavaScript via the Document Object Model (DOM). All of the data required, the list of countries and continents, is included within the Web page.</p>
+         <p>This example contains two select elements. When an item is selected in the first select, the choices in the other select are updated appropriately. The first select element contains a list of continents. The second select element will contain a partial list of countries located in the selected continent. There is an onchange event associated with the continent select. When the continent selection changes, the items in the country select are modified using JavaScript via the Document Object Model (DOM). All of the data required, the list of countries and continents, is included within the web page.</p>
             <p>Overview of the code below</p>
             <ul>
                <li><code class="language-javascript">countryLists</code> array variable which contains the list of countries for each continent in the trigger select element.</li>
                <li><code class="language-javascript">countryChange()</code> function which is called by the onchange event of the continent select element.</li>
-               <li>The HTML code to create the select elements in the body of the Web page.</li>
+               <li>The HTML code to create the select elements in the body of the web page.</li>
             </ul>
          
 <pre xml:space="preserve"><code class="language-html">&lt;!doctype html&gt; 
@@ -204,7 +204,7 @@
                   <a href="http://usability.com.au/2008/09/accessible-forms-using-wcag-2-0/">Accessible Forms using WCAG 2.0</a>
                </li>
              <li>
-                  <a href="https://w3c.github.io/wcag/guidelines/22/#dfn-change-of-context" target="terms">Change of context</a> definition
+                  <a href="https://kfranqueiro.github.io/wcag/guidelines/22/#dfn-change-of-context" target="terms">Change of context</a> definition
                </li>
          </ul>
       
@@ -259,7 +259,7 @@
 </div>
 <footer id="wai-site-footer" class="page-footer default-grid" aria-label="Page">
   <div class="inner" style="grid-column: 2 / 8">
-    <p><strong>Date:</strong> Updated 10 March 2025.</p>
+    <p><strong>Date:</strong> Updated 30 April 2025.</p>
     <p><strong>Developed by</strong>
       <a href="https://www.w3.org/groups/wg/ag/participants">Accessibility Guidelines Working Group (AG WG) Participants</a>
       (Co-Chairs: Alastair Campbell, Charles Adams, Rachael Bradley Montgomery. W3C Staff Contact:
