@@ -10,16 +10,12 @@ export default function (data) {
         // 1.2.1
         sufficient: [
           {
-            situations: [
-              {
-                title: "If the content is prerecorded audio-only:",
-                techniques: ["G158"],
-              },
-              {
-                title: "If the content is prerecorded video-only:",
-                techniques: ["G159", "G166"],
-              },
-            ],
+            title: "Situation A: If the content is prerecorded audio-only:",
+            techniques: ["G158"],
+          },
+          {
+            title: "Situation B: If the content is prerecorded video-only:",
+            techniques: ["G159", "G166"],
           },
         ],
         advisory: ["H96"],
@@ -127,25 +123,21 @@ export default function (data) {
         // 1.2.8
         sufficient: [
           {
-            situations: [
+            title: "Situation A: If the content is prerecorded synchronized media:",
+            techniques: [
               {
-                title: "If the content is prerecorded synchronized media:",
-                techniques: [
-                  {
-                    id: "G69",
-                    using: ["G58"],
-                  },
-                  {
-                    title: "Linking to the alternative for time-based media",
-                    using: ["H53"],
-                  },
-                ],
+                id: "G69",
+                using: ["G58"],
               },
               {
-                title: "If the content is prerecorded video-only:",
-                techniques: ["G159"],
+                title: "Linking to the alternative for time-based media",
+                using: ["H53"],
               },
             ],
+          },
+          {
+            title: "Situation B: If the content is prerecorded video-only:",
+            techniques: ["G159"],
           },
         ],
         failures: ["F74"],
@@ -160,61 +152,57 @@ export default function (data) {
         // 1.3.1
         sufficient: [
           {
-            situations: [
+            title:
+              "Situation A: The technology provides semantic structure to make information and relationships conveyed through presentation programmatically determinable:",
+            techniques: [
+              "ARIA11",
+              "H101",
+              "ARIA12",
+              "ARIA13",
+              "ARIA16",
+              "ARIA17",
+              "ARIA20",
+              { and: ["G115", "H49"] },
+              "G117",
+              "G140",
+              "ARIA24",
               {
                 title:
-                  "The technology provides semantic structure to make information and relationships conveyed through presentation programmatically determinable:",
-                techniques: [
-                  "ARIA11",
-                  "H101",
-                  "ARIA12",
-                  "ARIA13",
-                  "ARIA16",
-                  "ARIA17",
-                  "ARIA20",
-                  { and: ["G115", "H49"] },
-                  "G117",
-                  "G140",
-                  "ARIA24",
-                  {
-                    title:
-                      "Making information and relationships conveyed through presentation programmatically determinable",
-                    using: [
-                      "G138",
-                      "H51",
-                      "PDF6",
-                      "PDF20",
-                      "H39",
-                      "H63",
-                      "H43",
-                      "H44",
-                      "H65",
-                      "PDF10",
-                      "PDF12",
-                      "H71",
-                      "H85",
-                      "H48",
-                      "H42",
-                      "PDF9",
-                      "PDF11",
-                      "PDF17",
-                      "PDF21",
-                      "H97",
-                    ],
-                  },
+                  "Making information and relationships conveyed through presentation programmatically determinable",
+                using: [
+                  "G138",
+                  "H51",
+                  "PDF6",
+                  "PDF20",
+                  "H39",
+                  "H63",
+                  "H43",
+                  "H44",
+                  "H65",
+                  "PDF10",
+                  "PDF12",
+                  "H71",
+                  "H85",
+                  "H48",
+                  "H42",
+                  "PDF9",
+                  "PDF11",
+                  "PDF17",
+                  "PDF21",
+                  "H97",
                 ],
               },
+            ],
+          },
+          {
+            title:
+              "Situation B: The technology in use does NOT provide the semantic structure to make the information and relationships conveyed through presentation programmatically determinable:",
+            techniques: [
+              "G117",
               {
                 title:
-                  "The technology in use does NOT provide the semantic structure to make the information and relationships conveyed through presentation programmatically determinable:",
-                techniques: [
-                  "G117",
-                  {
-                    title:
-                      "Making information and relationships conveyed through presentation programmatically determinable or available in text",
-                    using: ["T1", "T2", "T3"],
-                  },
-                ],
+                  "Making information and relationships conveyed through presentation programmatically determinable or available in text",
+                using: ["T1", "T2", "T3"],
               },
             ],
           },
@@ -282,17 +270,13 @@ export default function (data) {
         // 1.4.1
         sufficient: [
           {
-            situations: [
-              {
-                title:
-                  "If the color of particular words, backgrounds, or other content is used to indicate information:",
-                techniques: ["G14", "G205", "G182", "G183"],
-              },
-              {
-                title: "If color is used within an image to convey information:",
-                techniques: ["G111", "G14"],
-              },
-            ],
+            title:
+              "Situation A: If the color of particular words, backgrounds, or other content is used to indicate information:",
+            techniques: ["G14", "G205", "G182", "G183"],
+          },
+          {
+            title: "Situation B: If color is used within an image to convey information:",
+            techniques: ["G111", "G14"],
           },
         ],
         advisory: ["C15"],
@@ -309,16 +293,14 @@ export default function (data) {
         // 1.4.3
         sufficient: [
           {
-            situations: [
-              {
-                title: "text is less than 18 point if not bold and less than 14 point if bold",
-                techniques: ["G18", "G148", "G174"],
-              },
-              {
-                title: "text is at least 18 point if not bold and at least 14 point if bold",
-                techniques: ["G145", "G148", "G174"],
-              },
-            ],
+            title:
+              "Situation A: text is less than 18 point if not bold and less than 14 point if bold",
+            techniques: ["G18", "G148", "G174"],
+          },
+          {
+            title:
+              "Situation B: text is at least 18 point if not bold and at least 14 point if bold",
+            techniques: ["G145", "G148", "G174"],
           },
         ],
         advisory: ["G156"],
@@ -366,16 +348,14 @@ export default function (data) {
         // 1.4.6
         sufficient: [
           {
-            situations: [
-              {
-                title: "text is less than 18 point if not bold and less than 14 point if bold",
-                techniques: ["G17", "G148", "G174"],
-              },
-              {
-                title: "text is as least 18 point if not bold and at least 14 point if bold",
-                techniques: ["G18", "G148", "G174"],
-              },
-            ],
+            title:
+              "Situation A: text is less than 18 point if not bold and less than 14 point if bold",
+            techniques: ["G17", "G148", "G174"],
+          },
+          {
+            title:
+              "Situation B: text is as least 18 point if not bold and at least 14 point if bold",
+            techniques: ["G18", "G148", "G174"],
           },
         ],
         advisory: ["G156"],
@@ -389,47 +369,45 @@ export default function (data) {
 
       "visual-presentation": {
         // 1.4.8
+        sufficientIntro: `
+          <strong>Instructions:</strong> Since this is a multi-part success criterion,
+          you must satisfy one of the numbered items for each of the requirements below.
+        `,
         sufficient: [
           {
-            intro:
-              "<strong>Instructions:</strong> Since this is a multi-part success criterion, you must satisfy one of the numbered items for each of the requirements below.",
-            sections: [
+            title:
+              "First Requirement: Techniques to ensure foreground and background colors can be selected by the user",
+            techniques: ["C23", "C25", "G156", "G148", "G175"],
+          },
+          {
+            title:
+              "Second Requirement: Techniques to ensure width is no more than 80 characters or glyphs (40 if CJK)",
+            techniques: ["G204", "C20"],
+          },
+          {
+            title:
+              "Third Requirement: Techniques to ensure text is not justified (aligned to both the left and the right margins)",
+            techniques: ["C19", "G172", "G169"],
+          },
+          {
+            title:
+              "Fourth Requirement: Techniques to ensure line spacing (leading) is at least space-and-a-half within paragraphs, and paragraph spacing is at least 1.5 times larger than the line spacing",
+            techniques: ["G188", "C21"],
+          },
+          {
+            title:
+              "Fifth Requirement: Techniques to ensure text can be resized without assistive technology up to 200 percent in a way that does not require the user to scroll horizontally to read a line of text on a full-screen window",
+            techniques: [
+              "G204",
               {
-                title:
-                  "First Requirement: Techniques to ensure foreground and background colors can be selected by the user",
-                techniques: ["C23", "C25", "G156", "G148", "G175"],
-              },
-              {
-                title:
-                  "Second Requirement: Techniques to ensure width is no more than 80 characters or glyphs (40 if CJK)",
-                techniques: ["G204", "C20"],
-              },
-              {
-                title:
-                  "Third Requirement: Techniques to ensure text is not justified (aligned to both the left and the right margins)",
-                techniques: ["C19", "G172", "G169"],
-              },
-              {
-                title:
-                  "Fourth Requirement: Techniques to ensure line spacing (leading) is at least space-and-a-half within paragraphs, and paragraph spacing is at least 1.5 times larger than the line spacing",
-                techniques: ["G188", "C21"],
-              },
-              {
-                title:
-                  "Fifth Requirement: Techniques to ensure text can be resized without assistive technology up to 200 percent in a way that does not require the user to scroll horizontally to read a line of text on a full-screen window",
-                techniques: [
-                  "G204",
-                  {
-                    and: [
-                      "G146",
-                      "using measurements that are relative to other measurements in the content",
-                    ],
-                    using: ["C12", "C13", "C14", "C24", "SCR34"],
-                    usingQuantity: "one or more",
-                  },
-                  "G206",
+                and: [
+                  "G146",
+                  "using measurements that are relative to other measurements in the content",
                 ],
+                using: ["C12", "C13", "C14", "C24", "SCR34"],
+                usingQuantity: "one or more",
               },
+              "G206",
             ],
           },
         ],
@@ -470,17 +448,13 @@ export default function (data) {
         // 1.4.11
         sufficient: [
           {
-            situations: [
-              {
-                title:
-                  "Color is used to identify user interface components or used to identify user interface component states",
-                techniques: ["G195", "G174"],
-              },
-              {
-                title: "Color is required to understand graphical content",
-                techniques: ["G207", "G209"],
-              },
-            ],
+            title:
+              "Situation A: Color is used to identify user interface components or used to identify user interface component states",
+            techniques: ["G195", "G174"],
+          },
+          {
+            title: "Situation B: Color is required to understand graphical content",
+            techniques: ["G207", "G209"],
           },
         ],
         failures: ["F78"],
@@ -551,20 +525,16 @@ export default function (data) {
         // 2.2.1
         sufficient: [
           {
-            situations: [
-              {
-                title: "If there are session time limits:",
-                techniques: ["G133", "G198"],
-              },
-              {
-                title: "If a time limit is controlled by a script on the page:",
-                techniques: ["G198", "G180", "SCR16"],
-              },
-              {
-                title: "If there are time limits on reading:",
-                techniques: ["G4", "G198", "SCR33", "SCR36"],
-              },
-            ],
+            title: "Situation A: If there are session time limits:",
+            techniques: ["G133", "G198"],
+          },
+          {
+            title: "Situation B: If a time limit is controlled by a script on the page:",
+            techniques: ["G198", "G180", "SCR16"],
+          },
+          {
+            title: "Situation C: If there are time limits on reading:",
+            techniques: ["G4", "G198", "SCR33", "SCR36"],
           },
         ],
         failures: ["F40", "F41", "F58"],
@@ -866,47 +836,44 @@ export default function (data) {
       // 3.1.3
       sufficient: [
         {
-          situations: [
+          title: "Situation A: If the word or phrase has a unique meaning within the web page:",
+          techniques: [
             {
-              title: "If the word or phrase has a unique meaning within the web page:",
-              techniques: [
-                {
-                  id: "G101",
-                  using: [
-                    { id: "G55", using: ["H40"] },
-                    { id: "G112", using: ["H54"] },
-                  ],
-                  usingText:
-                    "for the first occurrence of the word or phrase in a web page using one of the following techniques:",
-                },
-                {
-                  id: "G101",
-                  using: [
-                    {
-                      id: "G55",
-                      using: ["H40"],
-                    },
-                    "G62",
-                    "G70",
-                  ],
-                  usingText:
-                    "for each occurrence of the word or phrase in a web page using one of the following techniques:",
-                },
+              id: "G101",
+              using: [
+                { id: "G55", using: ["H40"] },
+                { id: "G112", using: ["H54"] },
               ],
+              usingText:
+                "for the first occurrence of the word or phrase in a web page using one of the following techniques:",
             },
             {
-              title: "If the word or phrase means different things within the same web page:",
-              techniques: [
+              id: "G101",
+              using: [
                 {
-                  id: "G101",
-                  using: [
-                    { id: "G55", using: ["H40"] },
-                    { id: "G112", using: ["H54"] },
-                  ],
-                  usingText:
-                    "for each occurrence of the word or phrase in a web page using one of the following techniques:",
+                  id: "G55",
+                  using: ["H40"],
                 },
+                "G62",
+                "G70",
               ],
+              usingText:
+                "for each occurrence of the word or phrase in a web page using one of the following techniques:",
+            },
+          ],
+        },
+        {
+          title:
+            "Situation B: If the word or phrase means different things within the same web page:",
+          techniques: [
+            {
+              id: "G101",
+              using: [
+                { id: "G55", using: ["H40"] },
+                { id: "G112", using: ["H54"] },
+              ],
+              usingText:
+                "for each occurrence of the word or phrase in a web page using one of the following techniques:",
             },
           ],
         },
@@ -917,34 +884,31 @@ export default function (data) {
       // 3.1.4
       sufficient: [
         {
-          situations: [
+          title: "Situation A: If the abbreviation has only one meaning within the web page:",
+          techniques: [
             {
-              title: "If the abbreviation has only one meaning within the web page:",
-              techniques: [
-                {
-                  id: "G102",
-                  using: ["G97", "G55", "PDF8"],
-                  usingText:
-                    "for the first occurrence of the abbreviation in a web page using one of the following techniques:",
-                },
-                {
-                  id: "G102",
-                  using: ["G55", "G62", "G70", "PDF8"],
-                  usingText:
-                    "for all occurrences of the abbreviation in a web page using one of the following techniques:",
-                },
-              ],
+              id: "G102",
+              using: ["G97", "G55", "PDF8"],
+              usingText:
+                "for the first occurrence of the abbreviation in a web page using one of the following techniques:",
             },
             {
-              title: "If the abbreviation means different things within the same web page:",
-              techniques: [
-                {
-                  id: "G102",
-                  using: ["G55", "PDF8"],
-                  usingText:
-                    "for all occurrences of abbreviations in a web page using one of the following techniques:",
-                },
-              ],
+              id: "G102",
+              using: ["G55", "G62", "G70", "PDF8"],
+              usingText:
+                "for all occurrences of the abbreviation in a web page using one of the following techniques:",
+            },
+          ],
+        },
+        {
+          title:
+            "Situation B: If the abbreviation means different things within the same web page:",
+          techniques: [
+            {
+              id: "G102",
+              using: ["G55", "PDF8"],
+              usingText:
+                "for all occurrences of abbreviations in a web page using one of the following techniques:",
             },
           ],
         },
@@ -1043,35 +1007,31 @@ export default function (data) {
       // 3.2.5
       sufficient: [
         {
-          situations: [
+          title: "Situation A: If the web page allows automatic updates:",
+          techniques: ["G76"],
+        },
+        {
+          title: "Situation B: If automatic redirects are possible:",
+          techniques: [
+            "SVR1",
             {
-              title: "If the web page allows automatic updates:",
-              techniques: ["G76"],
-            },
-            {
-              title: "If automatic redirects are possible:",
-              techniques: [
-                "SVR1",
-                {
-                  id: "G110",
-                  using: ["H76"],
-                },
-              ],
-            },
-            {
-              title: "If the web page uses pop-up windows:",
-              techniques: [
-                {
-                  title: "Including pop-up windows",
-                  using: ["H83", "SCR24"],
-                },
-              ],
-            },
-            {
-              title: "If using an onchange event on a select element:",
-              techniques: ["SCR19"],
+              id: "G110",
+              using: ["H76"],
             },
           ],
+        },
+        {
+          title: "Situation C: If the web page uses pop-up windows:",
+          techniques: [
+            {
+              title: "Including pop-up windows",
+              using: ["H83", "SCR24"],
+            },
+          ],
+        },
+        {
+          title: "Situation D: If using an onchange event on a select element:",
+          techniques: ["SCR19"],
         },
       ],
       advisory: ["G200"],
@@ -1088,17 +1048,14 @@ export default function (data) {
       // 3.3.1
       sufficient: [
         {
-          situations: [
-            {
-              title: "If a form contains fields for which information from the user is mandatory.",
-              techniques: ["G83", "ARIA2", "ARIA21", "SCR18", "PDF5"],
-            },
-            {
-              title:
-                "If information provided by the user is required to be in a specific data format or of certain values.",
-              techniques: ["ARIA18", "ARIA19", "ARIA21", "G84", "G85", "SCR18", "SCR32", "PDF22"],
-            },
-          ],
+          title:
+            "Situation A: If a form contains fields for which information from the user is mandatory.",
+          techniques: ["G83", "ARIA2", "ARIA21", "SCR18", "PDF5"],
+        },
+        {
+          title:
+            "Situation B: If information provided by the user is required to be in a specific data format or of certain values.",
+          techniques: ["ARIA18", "ARIA19", "ARIA21", "G84", "G85", "SCR18", "SCR32", "PDF22"],
         },
       ],
       advisory: ["G139", "G199"],
@@ -1130,17 +1087,14 @@ export default function (data) {
       // 3.3.3
       sufficient: [
         {
-          situations: [
-            {
-              title: "If information for a field is required to be in a specific data format:",
-              techniques: ["ARIA18", "G85", "G177", "PDF22"],
-            },
-            {
-              title:
-                "Information provided by the user is required to be one of a limited set of values:",
-              techniques: ["ARIA18", "G84", "G177", "PDF22"],
-            },
-          ],
+          title:
+            "Situation A: If information for a field is required to be in a specific data format:",
+          techniques: ["ARIA18", "G85", "G177", "PDF22"],
+        },
+        {
+          title:
+            "Situation B: Information provided by the user is required to be one of a limited set of values:",
+          techniques: ["ARIA18", "G84", "G177", "PDF22"],
         },
       ],
       advisory: ["G139", "G199", "SCR18", "SCR32"],
@@ -1150,21 +1104,17 @@ export default function (data) {
       // 3.3.4
       sufficient: [
         {
-          situations: [
-            {
-              title:
-                "If an application causes a legal transaction to occur, such as making a purchase or submitting an income tax return:",
-              techniques: ["G164", "G98", "G155"],
-            },
-            {
-              title: "If an action causes information to be deleted:",
-              techniques: ["G99", "G168", "G155"],
-            },
-            {
-              title: "If the web page includes a testing application",
-              techniques: ["G98", "G168"],
-            },
-          ],
+          title:
+            "Situation A: If an application causes a legal transaction to occur, such as making a purchase or submitting an income tax return:",
+          techniques: ["G164", "G98", "G155"],
+        },
+        {
+          title: "Situation B: If an action causes information to be deleted:",
+          techniques: ["G99", "G168", "G155"],
+        },
+        {
+          title: "Situation C: If the web page includes a testing application",
+          techniques: ["G98", "G168"],
         },
       ],
       advisory: ["SCR18", "G199"],
@@ -1174,16 +1124,12 @@ export default function (data) {
       // 3.3.5
       sufficient: [
         {
-          situations: [
-            {
-              title: "If a form requires text input:",
-              techniques: ["G71", "G193", "G194", "G184"],
-            },
-            {
-              title: "If a form requires text input in an expected data format:",
-              techniques: ["G89", "G184"],
-            },
-          ],
+          title: "Situation A: If a form requires text input:",
+          techniques: ["G71", "G193", "G194", "G184"],
+        },
+        {
+          title: "Situation B: If a form requires text input in an expected data format:",
+          techniques: ["G89", "G184"],
         },
       ],
       advisory: ["H89"],
@@ -1247,50 +1193,48 @@ export default function (data) {
       // 4.1.2
       sufficient: [
         {
-          situations: [
+          title:
+            "Situation A: If using a standard user interface component in a markup language (e.g., HTML):",
+          techniques: [
+            "ARIA14",
+            "ARIA16",
+            {
+              id: "G108",
+              using: ["H91", "H44", "H64", "H65", "H88"],
+              usingQuantity: "one or more",
+            },
+          ],
+        },
+        {
+          title:
+            "Situation B: If using script or code to re-purpose a standard user interface component in a markup language:",
+          techniques: [
             {
               title:
-                "If using a standard user interface component in a markup language (e.g., HTML):",
-              techniques: [
-                "ARIA14",
-                "ARIA16",
-                {
-                  id: "G108",
-                  using: ["H91", "H44", "H64", "H65", "H88"],
-                  usingQuantity: "one or more",
-                },
-              ],
+                "Exposing the names and roles, allowing user-settable properties to be directly set, and providing notification of changes",
+              using: ["ARIA16"],
             },
+          ],
+        },
+        {
+          title:
+            "Situation C: If using a standard user interface component in a programming technology:",
+          techniques: [
             {
-              title:
-                "If using script or code to re-purpose a standard user interface component in a markup language:",
-              techniques: [
-                {
-                  title:
-                    "Exposing the names and roles, allowing user-settable properties to be directly set, and providing notification of changes",
-                  using: ["ARIA16"],
-                },
-              ],
+              id: "G135",
+              using: ["PDF10", "PDF12"],
+              usingQuantity: "one or more",
             },
+          ],
+        },
+        {
+          title:
+            "Situation D: If creating your own user interface component in a programming language:",
+          techniques: [
             {
-              title: "If using a standard user interface component in a programming technology:",
-              techniques: [
-                {
-                  id: "G135",
-                  using: ["PDF10", "PDF12"],
-                  usingQuantity: "one or more",
-                },
-              ],
-            },
-            {
-              title: "If creating your own user interface component in a programming language:",
-              techniques: [
-                {
-                  id: "G10",
-                  using: ["ARIA4", "ARIA5", "ARIA16"],
-                  usingQuantity: "one or more",
-                },
-              ],
+              id: "G10",
+              using: ["ARIA4", "ARIA5", "ARIA16"],
+              usingQuantity: "one or more",
             },
           ],
         },
@@ -1302,41 +1246,34 @@ export default function (data) {
       // 4.1.3
       sufficient: [
         {
-          situations: [
+          title:
+            "Situation A: If a status message advises on the success or results of an action, or the state of an application:",
+          techniques: [
             {
-              title:
-                "If a status message advises on the success or results of an action, or the state of an application:",
-              techniques: [
-                {
-                  id: "ARIA22",
-                  using: ["G199"],
-                  usingQuantity: "any",
-                  usingConjunction: "in combination with",
-                },
-              ],
-            },
-            {
-              title:
-                "If a status message conveys a suggestion, or a warning on the existence of an error:",
-              techniques: [
-                {
-                  id: "ARIA19",
-                  using: ["G83", "G84", "G85", "G177", "G194"],
-                  usingQuantity: "any",
-                  usingConjunction: "in combination with",
-                },
-              ],
-              note: 'Not all examples in the preceding general techniques use status messages to convey warnings or errors to users. A role of "alert" is only necessary where a change of context does not take place.',
-            },
-            {
-              title: "If a status message conveys information on the progress of a process:",
-              techniques: [
-                "ARIA23",
-                'Using <code>role="progressbar"</code> (future link)',
-                "ARIA22",
-              ],
+              id: "ARIA22",
+              using: ["G199"],
+              usingQuantity: "any",
+              usingConjunction: "in combination with",
             },
           ],
+        },
+        {
+          title:
+            "Situation B: If a status message conveys a suggestion, or a warning on the existence of an error:",
+          techniques: [
+            {
+              id: "ARIA19",
+              using: ["G83", "G84", "G85", "G177", "G194"],
+              usingQuantity: "any",
+              usingConjunction: "in combination with",
+            },
+          ],
+          note: 'Not all examples in the preceding general techniques use status messages to convey warnings or errors to users. A role of "alert" is only necessary where a change of context does not take place.',
+        },
+        {
+          title:
+            "Situation C: If a status message conveys information on the progress of a process:",
+          techniques: ["ARIA23", 'Using <code>role="progressbar"</code> (future link)', "ARIA22"],
         },
       ],
       advisory: [
