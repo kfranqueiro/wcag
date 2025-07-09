@@ -595,6 +595,10 @@ export default function (data) {
             using: ["G105", "G181"],
           },
         ],
+        sufficientNote: `
+          Refer to <a href="timing-adjustable#techniques">Techniques for Addressing Success Criterion 2.2.1</a>
+          for techniques related to providing notifications about time limits.
+        `,
       },
       failures: ["F12"],
     },
@@ -707,6 +711,10 @@ export default function (data) {
     "headings-and-labels": {
       // 2.4.6
       sufficient: ["G130", "G131"],
+      sufficientNote: `
+        Headings and labels must be programmatically determined,
+        per <a href="info-and-relationships">Success Criterion 1.3.1</a>.
+      `,
     },
 
     "focus-visible": {
@@ -947,6 +955,16 @@ export default function (data) {
     "reading-level": {
       // 3.1.5
       sufficient: ["G86", "G103", "G79", "G153", "G160"],
+      sufficientNote: `
+        Different sites may address this success criterion in different ways.
+        An audio version of the content may be helpful to some users.
+        For some people who are deaf, a sign language version of the page may be
+        easier to understand than a written language version since sign language may be their first language.
+        Some sites may decide to do both or other combinations.
+        No technique will help all users who have difficulty.
+        So different techniques are provided as sufficient techniques here for authors trying to make their sites more accessible.
+        Any numbered technique or combination above can be used by a particular site and it is considered sufficient by the Working Group.
+      `,
     },
 
     pronunciation: {
@@ -957,6 +975,10 @@ export default function (data) {
     "on-focus": {
       // 3.2.1
       sufficient: ["G107"],
+      sufficientNote: `
+        A change of content is not always a <a>change of context</a>.
+        This success criterion is automatically met if changes in content are not also changes of context.
+      `,
       advisory: ["G200", "G201"],
       failures: ["F55"],
     },
@@ -971,6 +993,10 @@ export default function (data) {
         "G13",
         "SCR19",
       ],
+      sufficientNote: `
+        A change of content is not always a <a>change of context</a>.
+        This success criterion is automatically met if changes in content are not also changes of context.
+      `,
       advisory: ["G201"],
       failures: ["F36", "F37"],
     },
@@ -992,6 +1018,24 @@ export default function (data) {
           ],
         },
       ],
+      sufficientNote: `
+        <p>
+          Text alternatives that are "consistent" are not always "identical."
+          For instance, you may have a graphical arrow at the bottom of a web page that
+          links to the next web page. The text alternative may say "Go to page 4."
+          Naturally, it would not be appropriate to repeat this exact text alternative on the next web page.
+          It would be more appropriate to say "Go to page 5". Although these text alternatives
+          would not be identical, they would be consistent, and therefore would satisfy this success criterion.
+        </p><p>
+          A single non-text-content-item may be used to serve different functions.
+          In such cases, different text alternatives are necessary and should be used.
+          Examples can be commonly found with the use of icons such as check marks, cross marks, and traffic signs.
+          Their functions can be different depending on the context of the web page.
+          A check mark icon may function as "approved", "completed", or "included", to name a few, depending on the situation.
+          Using "check mark" as text alternative across all web pages does not help users understand the function of the icon.
+          Different text alternatives can be used when the same non-text content serves multiple functions.
+        </p>
+      `,
       failures: ["F31"],
     },
 
@@ -1073,6 +1117,11 @@ export default function (data) {
         "H71",
         "G167",
       ],
+      sufficientNote: `
+        The techniques at the end of the above list should be considered "last resort" and
+        only used when the other techniques cannot be applied to the page.
+        The earlier techniques are preferred because they increase accessibility to a wider user group.
+      `,
       advisory: ["G13"],
       failures: ["F82"],
     },
