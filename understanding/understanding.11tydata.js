@@ -4,7 +4,109 @@ export default function (data) {
     headerUrl: data.understandingUrl,
     isUnderstanding: true,
     associations: {
-      // TODO: non-text-content (1.1.1)
+      "non-text-content": {
+        // 1.1.1
+        sufficient: [
+          {
+            title:
+              "Situation A: If a short description can serve the same purpose and present the same information as the non-text content:",
+            techniques: [
+              {
+                id: "G94",
+                using: ["text-equiv-all-situation-a-shorttext"],
+              },
+            ],
+            groups: [
+              {
+                id: "text-equiv-all-situation-a-shorttext",
+                title: "Short text alternative techniques for Situation A",
+                techniques: ["ARIA6", "ARIA10", "G196", "H2", "H37", "H53", "H86", "PDF1"],
+              },
+            ],
+          },
+          {
+            title:
+              "Situation B: If a short description can not serve the same purpose and present the same information as the non-text content (e.g., a chart or diagram):",
+            techniques: [
+              {
+                id: "G95",
+                using: [
+                  "text-equiv-all-situation-b-shorttext",
+                  "text-equiv-all-situation-b-longtext",
+                ],
+              },
+            ],
+            groups: [
+              {
+                id: "text-equiv-all-situation-b-shorttext",
+                title: "Short text alternative techniques for Situation B",
+                techniques: ["ARIA6", "ARIA10", "G196", "H2", "H37", "H53", "H86", "PDF1"],
+              },
+              {
+                id: "text-equiv-all-situation-b-longtext",
+                title: "Long text alternative techniques for Situation B",
+                techniques: ["ARIA15", "G73", "G74", "G92", "H53"],
+              },
+            ],
+          },
+          {
+            title: "Situation C: If non-text content is a control or accepts user input:",
+            techniques: [
+              {
+                id: "G82",
+                using: ["text-equiv-all-situation-c-controls"],
+              },
+            ],
+            groups: [
+              {
+                id: "text-equiv-all-situation-c-controls",
+                title: "Text alternative techniques for controls and input for Situation C:",
+                techniques: ["ARIA6", "ARIA9", "H24", "H30", "H36", "H44", "H65"],
+              },
+            ],
+          },
+          {
+            title:
+              "Situation D: If non-text content is time-based media (including live video-only and live audio-only); a test or exercise that would be invalid if presented in text; or primarily intended to create a specific sensory experience",
+            techniques: [
+              {
+                title: "Providing a descriptive label",
+                using: ["text-equiv-all-situation-d-shorttext"],
+              },
+            ],
+            groups: [
+              {
+                id: "text-equiv-all-situation-d-shorttext",
+                title: "Short text alternative techniques for Situation D",
+                techniques: ["ARIA6", "ARIA10", "G196", "H2", "H37", "H53", "H86", "PDF1"],
+              },
+            ],
+          },
+          {
+            title: "Situation E: If non-text content is a CAPTCHA:",
+            techniques: [{ and: ["G143", "G144"] }],
+          },
+          {
+            title:
+              "Situation F: If the non-text content should be ignored by assistive technology:",
+            techniques: [
+              {
+                title:
+                  "Implementing or marking the non-text content so that it will be ignored by assistive technology",
+                using: ["text-equiv-all-situation-f-notrequired"],
+              },
+            ],
+            groups: [
+              {
+                id: "text-equiv-all-situation-f-notrequired",
+                techniques: ["C9", "H67", "PDF4"],
+              },
+            ],
+          },
+        ],
+        advisory: ["C18"],
+        failures: ["F3", "F13", "F20", "F30", "F38", "F39", "F65", "F67", "F71", "F72"],
+      },
 
       "audio-only-and-video-only-prerecorded": {
         // 1.2.1
