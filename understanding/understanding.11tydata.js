@@ -105,7 +105,7 @@ export default function (data) {
           },
         ],
         advisory: ["C18"],
-        failures: ["F3", "F13", "F20", "F30", "F38", "F39", "F65", "F67", "F71", "F72"],
+        failure: ["F3", "F13", "F20", "F30", "F38", "F39", "F65", "F67", "F71", "F72"],
       },
 
       "audio-only-and-video-only-prerecorded": {
@@ -121,7 +121,7 @@ export default function (data) {
           },
         ],
         advisory: ["H96"],
-        failures: ["F30", "F67"],
+        failure: ["F30", "F67"],
       },
 
       captions: {
@@ -139,7 +139,7 @@ export default function (data) {
             usingQuantity: "any",
           },
         ],
-        failures: ["F8", "F75", "F74"],
+        failure: ["F8", "F75", "F74"],
       },
 
       "audio-description-or-media-alternative-prerecorded": {
@@ -196,7 +196,7 @@ export default function (data) {
           "G203",
         ],
         advisory: ["H96"],
-        failures: ["F113"],
+        failure: ["F113"],
       },
 
       "sign-language-prerecorded": {
@@ -242,7 +242,7 @@ export default function (data) {
             techniques: ["G159"],
           },
         ],
-        failures: ["F74"],
+        failure: ["F74"],
       },
 
       "audio-only-live": {
@@ -310,7 +310,7 @@ export default function (data) {
           },
         ],
         advisory: ["C22", "G162", "ARIA1", "ARIA2", "G141"],
-        failures: ["F2", "F33", "F34", "F42", "F43", "F46", "F48", "F90", "F91", "F92", "F111"],
+        failure: ["F2", "F33", "F34", "F42", "F43", "F46", "F48", "F90", "F91", "F92", "F111"],
       },
 
       "meaningful-sequence": {
@@ -333,25 +333,25 @@ export default function (data) {
           "C27",
           "PDF3",
         ],
-        failures: ["F34", "F33", "F32", "F49", "F1"],
+        failure: ["F34", "F33", "F32", "F49", "F1"],
       },
 
       "sensory-characteristics": {
         // 1.3.3
         sufficient: ["G96"],
-        failures: ["F14", "F26"],
+        failure: ["F14", "F26"],
       },
 
       orientation: {
         // 1.3.4
         sufficient: ["G214"],
-        failures: ["F97", "F100"],
+        failure: ["F97", "F100"],
       },
 
       "identify-input-purpose": {
         // 1.3.5
         sufficient: ["H98"],
-        failures: ["F107"],
+        failure: ["F107"],
       },
 
       "identify-purpose": {
@@ -382,13 +382,13 @@ export default function (data) {
           },
         ],
         advisory: ["C15"],
-        failures: ["F13", "F73", "F81"],
+        failure: ["F13", "F73", "F81"],
       },
 
       "audio-control": {
         // 1.4.2
         sufficient: ["G60", "G170", "G171"],
-        failures: ["F23", "F93"],
+        failure: ["F23", "F93"],
       },
 
       "contrast-minimum": {
@@ -406,7 +406,7 @@ export default function (data) {
           },
         ],
         advisory: ["G156"],
-        failures: ["F24", "F83"],
+        failure: ["F24", "F83"],
       },
 
       "resize-text": {
@@ -437,7 +437,7 @@ export default function (data) {
           "G179",
         ],
         advisory: ["C17", "C20", "C22"],
-        failures: ["F69", "F80", "F94"],
+        failure: ["F69", "F80", "F94"],
       },
 
       "images-of-text": {
@@ -461,7 +461,7 @@ export default function (data) {
           },
         ],
         advisory: ["G156"],
-        failures: ["F24", "F83"],
+        failure: ["F24", "F83"],
       },
 
       "low-or-no-background-audio": {
@@ -513,7 +513,7 @@ export default function (data) {
             ],
           },
         ],
-        failures: ["F24", "F88"],
+        failure: ["F24", "F88"],
       },
 
       "images-of-text-no-exception": {
@@ -543,7 +543,7 @@ export default function (data) {
           "Mechanism to allow mobile view at any time (Potential future technique)",
           "Alternate view supporting Reflow for otherwise excepted content (Potential future technique)",
         ],
-        failures: ["F102"],
+        failure: ["F102"],
       },
 
       "non-text-contrast": {
@@ -559,14 +559,14 @@ export default function (data) {
             techniques: ["G207", "G209"],
           },
         ],
-        failures: ["F78"],
+        failure: ["F78"],
       },
 
       "text-spacing": {
         // 1.4.12
         sufficient: ["C36", "C35"],
         advisory: ["C8", "C21", "C28"],
-        failures: ["F104"],
+        failure: ["F104"],
       },
 
       "content-on-hover-or-focus": {
@@ -576,7 +576,7 @@ export default function (data) {
           'ARIA: Using role="tooltip" (Potential future technique)',
           "CSS: Using hover and focus pseudo classes (Potential future technique)",
         ],
-        failures: [
+        failure: [
           "F95",
           "Failure to make content dismissible without moving pointer hover or keyboard focus (Potential future technique)",
           "Failure to meet by content on hover or focus not remaining visible until dismissed or invalid (Potential future technique)",
@@ -604,13 +604,13 @@ export default function (data) {
             ],
           },
         ],
-        failures: ["F54", "F55", "F42"],
+        failure: ["F54", "F55", "F42"],
       },
 
       "no-keyboard-trap": {
         // 2.1.2
         sufficient: ["G21"],
-        failures: ["F10"],
+        failure: ["F10"],
       },
 
       "keyboard-no-exception": {
@@ -620,7 +620,7 @@ export default function (data) {
       "character-key-shortcuts": {
         // 2.1.4
         sufficient: ["G217"],
-        failures: ["F99"],
+        failure: ["F99"],
       },
 
       "timing-adjustable": {
@@ -639,13 +639,13 @@ export default function (data) {
             techniques: ["G4", "G198", "SCR33", "SCR36"],
           },
         ],
-        failures: ["F40", "F41", "F58"],
+        failure: ["F40", "F41", "F58"],
       },
 
       "pause-stop-hide": {
         // 2.2.2
         sufficient: ["G4", "SCR33", "G11", "G152", "SCR22", "G186", "G191"],
-        failures: ["F16", "F112", "F50", "F7"],
+        failure: ["F16", "F112", "F50", "F7"],
       },
 
       "no-timing": {
@@ -656,7 +656,7 @@ export default function (data) {
       interruptions: {
         // 2.2.4
         sufficient: ["G75", "G76", "SCR14"],
-        failures: ["F40", "F41"],
+        failure: ["F40", "F41"],
       },
 
       "re-authenticating": {
@@ -672,7 +672,7 @@ export default function (data) {
           for techniques related to providing notifications about time limits.
         `,
       },
-      failures: ["F12"],
+      failure: ["F12"],
     },
 
     timeouts: {
@@ -723,7 +723,7 @@ export default function (data) {
         },
       ],
       advisory: ["G127"],
-      failures: ["F25"],
+      failure: ["F25"],
     },
 
     "focus-order": {
@@ -740,7 +740,7 @@ export default function (data) {
           using: ["SCR26", "H102", "SCR27"],
         },
       ],
-      failures: ["F44", "F85"],
+      failure: ["F44", "F85"],
     },
 
     "link-purpose-in-context": {
@@ -766,7 +766,7 @@ export default function (data) {
         { and: ["G91", "semantically indicating links"], using: ["PDF11", "PDF13"] },
       ],
       advisory: ["H2", "H80"],
-      failures: ["F63", "F89"],
+      failure: ["F63", "F89"],
     },
 
     "multiple-ways": {
@@ -792,7 +792,7 @@ export default function (data) {
     "focus-visible": {
       // 2.4.7
       sufficient: ["G149", "C15", "G165", "G195", "C40", "C45", "SCR31"],
-      failures: ["F55", "F78"],
+      failure: ["F55", "F78"],
     },
 
     location: {
@@ -822,7 +822,7 @@ export default function (data) {
         },
       ],
       advisory: ["H2", "H33"],
-      failures: ["F84", "F89"],
+      failure: ["F84", "F89"],
     },
 
     "section-headings": {
@@ -833,13 +833,13 @@ export default function (data) {
     "focus-not-obscured-minimum": {
       // 2.4.11
       sufficient: ["C43"],
-      failures: ["F110"],
+      failure: ["F110"],
     },
 
     "focus-not-obscured-enhanced": {
       // 2.4.12
       sufficient: ["C43"],
-      failures: [
+      failure: [
         "An interaction that causes content to appear over the component with keyboard focus, visually covering part of the focus indicator. This behavior might be encountered with advertising or promotional material meant to provide more information about a product as the user navigates through a catalogue.",
         'A page has a sticky footer (attached to the bottom of the viewport). When tabbing down the page, a focused item is partially obscured by the footer because content in the viewport scrolls without sufficient <a href="https://www.w3.org/TR/css-scroll-snap/#propdef-scroll-padding" rel="nofollow">scroll padding</a>.',
       ],
@@ -848,13 +848,13 @@ export default function (data) {
     "focus-appearance": {
       // 2.4.13
       sufficient: ["G195", "C40", "C41"],
-      failures: ["F55", "F78"],
+      failure: ["F55", "F78"],
     },
 
     "pointer-gestures": {
       // 2.5.1
       sufficient: ["G215", "G216"],
-      failures: ["F105"],
+      failure: ["F105"],
     },
 
     "pointer-cancellation": {
@@ -864,7 +864,7 @@ export default function (data) {
         "G212",
         "Touch events are only triggered when touch is removed from a control (Potential future technique)",
       ],
-      failures: ["F101"],
+      failure: ["F101"],
     },
 
     "label-in-name": {
@@ -874,7 +874,7 @@ export default function (data) {
         "G162",
         "If an icon has no accompanying text, consider using its hover text as its accessible name (Potential future technique)",
       ],
-      failures: [
+      failure: [
         "F96",
         "F111",
         "Accessible name contains the visible label text, but the words of the visible label are not in the same order as they are in the visible label text (Potential future technique)",
@@ -888,7 +888,7 @@ export default function (data) {
         "G213",
         "GXXX: Supporting system level features which allow the user to disable motion actuation",
       ],
-      failures: [
+      failure: [
         "F106",
         "FXXX: Failure of Success Criterion 2.5.4 due to disrupting or disabling system level features which allow the user to disable motion actuation",
       ],
@@ -898,7 +898,7 @@ export default function (data) {
       // 2.5.5
       sufficient: ["Ensuring that targets are at least 44 by 44 CSS pixels"],
       advisory: ["Ensuring inline links provide sufficiently large activation target"],
-      failures: [
+      failure: [
         "Failure of Success Criterion 2.5.5 due to target being less than 44 by 44 CSS pixels",
       ],
     },
@@ -909,13 +909,13 @@ export default function (data) {
         "Only using high-level, input-agnostic event handlers, such as <code>focus</code>, <code>blur</code>, <code>click</code>, in Javascript (Potential future technique)",
         'Registering event handlers for keyboard/keyboard-like and pointer inputs simultaneously in Javascript; see <a href="https://www.w3.org/TR/pointerevents2/#example_1">Example 1 in Pointer Events Level 2</a> (Potential future technique)',
       ],
-      failures: ["F98"],
+      failure: ["F98"],
     },
 
     "dragging-movements": {
       // 2.5.7
       sufficient: ["G219"],
-      failures: ["F108"],
+      failure: ["F108"],
     },
 
     "target-size-minimum": {
@@ -1046,7 +1046,7 @@ export default function (data) {
         This success criterion is automatically met if changes in content are not also changes of context.
       `,
       advisory: ["G200", "G201"],
-      failures: ["F55"],
+      failure: ["F55"],
     },
 
     "on-input": {
@@ -1064,14 +1064,14 @@ export default function (data) {
         This success criterion is automatically met if changes in content are not also changes of context.
       `,
       advisory: ["G201"],
-      failures: ["F36", "F37"],
+      failure: ["F36", "F37"],
     },
 
     "consistent-navigation": {
       // 3.2.3
       sufficient: ["G61"],
       advisory: ["PDF14", "PDF17"],
-      failures: ["F66"],
+      failure: ["F66"],
     },
 
     "consistent-identification": {
@@ -1102,7 +1102,7 @@ export default function (data) {
           Different text alternatives can be used when the same non-text content serves multiple functions.
         </p>
       `,
-      failures: ["F31"],
+      failure: ["F31"],
     },
 
     "change-on-request": {
@@ -1137,13 +1137,13 @@ export default function (data) {
         },
       ],
       advisory: ["G200"],
-      failures: ["F60", "F61", "F9", "F22", "F52", "F40", "F41"],
+      failure: ["F60", "F61", "F9", "F22", "F52", "F40", "F41"],
     },
 
     "consistent-help": {
       // 3.2.6
       sufficient: ["G220"],
-      failures: ["Inconsistent Help Location"],
+      failure: ["Inconsistent Help Location"],
     },
 
     "error-identification": {
@@ -1182,7 +1182,7 @@ export default function (data) {
         The earlier techniques are preferred because they increase accessibility to a wider user group.
       `,
       advisory: ["G13"],
-      failures: ["F82"],
+      failure: ["F82"],
     },
 
     "error-suggestion": {
@@ -1261,7 +1261,7 @@ export default function (data) {
         "Providing a third-party login using OAuth (Potential future technique)",
         "Using two techniques to provide two-factor authentication (Potential future technique)",
       ],
-      failures: ["F109"],
+      failure: ["F109"],
     },
 
     "accessible-authentication-enhanced": {
@@ -1273,7 +1273,7 @@ export default function (data) {
         "Providing a third-party login using OAuth (Potential future technique)",
         "Using two techniques to provide two-factor authentication (Potential future technique)",
       ],
-      failures: ["F109"],
+      failure: ["F109"],
     },
 
     parsing: {
@@ -1287,7 +1287,7 @@ export default function (data) {
           using: ["H74", "H75"],
         },
       ],
-      failures: ["F70", "F77"],
+      failure: ["F70", "F77"],
     },
     // TODO: check where else parsing-related techniques are referenced (I've been looking at 2.2 docs to populate this)
 
@@ -1341,7 +1341,7 @@ export default function (data) {
           ],
         },
       ],
-      failures: ["F59", "F15", "F20", "F42", "F68", "F79", "F86", "F89", "F111"],
+      failure: ["F59", "F15", "F20", "F42", "F68", "F79", "F86", "F89", "F111"],
     },
 
     "status-messages": {
@@ -1392,7 +1392,7 @@ export default function (data) {
           title: "Supporting personalization with <SCR14>",
         },
       ],
-      failures: [
+      failure: [
         "F103",
         'Using <code>role="alert"</code> or <code>aria-live="assertive"</code> on content which is not important and time-sensitive (future link)',
       ],
