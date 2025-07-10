@@ -3,7 +3,7 @@ export default function (data) {
     headerLabel: "Understanding Docs",
     headerUrl: data.understandingUrl,
     isUnderstanding: true,
-    associations: {
+    associatedTechniques: {
       "non-text-content": {
         // 1.1.1
         sufficient: [
@@ -131,7 +131,7 @@ export default function (data) {
           {
             id: "G87",
             title:
-              "<G87> using any readily available media format that has a video player that supports closed captioning",
+              "<> using any readily available media format that has a video player that supports closed captioning",
           },
           {
             id: "G87",
@@ -148,7 +148,7 @@ export default function (data) {
           { id: "G69", using: ["G58"] },
           {
             title:
-              "Linking to the alternative for time-based media using one of the following techniques",
+              "Linking to the alternative for time-based media",
             using: ["H53"],
           },
           "G78",
@@ -293,6 +293,7 @@ export default function (data) {
                   "PDF21",
                   "H97",
                 ],
+                usingQuantity: "",
               },
             ],
           },
@@ -318,7 +319,7 @@ export default function (data) {
         sufficient: [
           {
             id: "G57",
-            title: "<G57> for all the content in the web page",
+            title: "<> for all the content in the web page",
           },
           {
             title: "Marking sequences in the content as meaningful",
@@ -326,7 +327,7 @@ export default function (data) {
             usingAnd: [
               {
                 id: "G57",
-                title: "<G57> for those sequences",
+                title: "<> for those sequences",
               },
             ],
           },
@@ -1385,11 +1386,11 @@ export default function (data) {
         'Using <code>role="timer"</code> (future link)',
         {
           id: "ARIA18",
-          title: "Where appropriate, moving focus to new content with <ARIA18>",
+          title: "Where appropriate, moving focus to new content with <>",
         },
         {
           id: "SCR14",
-          title: "Supporting personalization with <SCR14>",
+          title: "Supporting personalization with <>",
         },
       ],
       failure: [
