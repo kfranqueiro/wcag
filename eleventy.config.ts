@@ -404,6 +404,18 @@ export default async function (eleventyConfig: any) {
     }
   );
 
+  // Strict version of default that will only fall back on null or undefined (not e.g. "")
+  eleventyConfig.addFilter("default-strict", (value: any, fallback: any) =>
+    value == null ? fallback : value
+  );
+
+  // Expands a technique shorthand string to an object with id or title
+  eleventyConfig.addFilter("expand-technique", (idOrTitle: string | {}) => {
+    if (typeof idOrTitle !== "string") return idOrTitle; // Already expanded
+    if (/^[A-Z]+\d+$/.test(idOrTitle)) return { id: idOrTitle };
+    return { title: idOrTitle };
+  });
+
   // Renders a link to a GitHub commit or pull request
   eleventyConfig.addShortcode("gh", (id: string) => {
     if (/^#\d+$/.test(id)) {

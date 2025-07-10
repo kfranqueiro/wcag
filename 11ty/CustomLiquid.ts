@@ -438,8 +438,8 @@ export class CustomLiquid extends Liquid {
         if (scope.guideline?.level === "") $("section#techniques").remove();
       }
 
-      // Process defined terms within #render,
-      // where we have access to global data and the about box's HTML
+      // Process defined terms within #render, where we have access to
+      // global data and the rendered HTML for the About box and related Techniques
       const $termLinks = $(termLinkSelector);
       const extractTermName = ($el: CheerioAnyNode) => {
         const name = $el

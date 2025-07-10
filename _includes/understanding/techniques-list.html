@@ -1,0 +1,50 @@
+{%- comment -%}
+Expected inputs:
+- techniques = Array of technique objects or shorthand strings
+- groups = Optional array of groups, if they exist in context (for referencing IDs)
+{%- endcomment -%}
+<ul>
+{%- for technique in techniques %}
+  <li>
+    {%- if technique.and -%}
+      {%- for tech in technique.and %}
+        {% unless forloop.first %}<strong>AND</strong>{% endunless %}
+        {% include "understanding/techniques-entry.html", technique: technique %}
+      {% endfor -%}
+    {%- else -%}
+      {% if technique.using %}{% unless technique.groups %}<p>{% endunless %}{% endif %}
+      {% include "understanding/techniques-entry.html", technique: technique %}
+    {%- endif -%}
+    {%- if technique.using %}
+      {%- assign usingConjunction = technique.usingConjunction | default-strict: "using" -%}
+      {%- assign usingQuantity = technique.usingQuantity | default-strict: "one" -%}
+      {%- if technique.usingText -%}
+        {{ technique.usingText }}
+      {%- elsif technique.usingText == "" -%}
+        {%- # intentionally empty -%}
+      {%- else -%}
+        {{ usingConjunction }}
+        {% if groups -%}
+          {% # When groups are involved, flatten using to a single phrase joined by "AND" %}
+          {%- for usingId in using -%}
+            {%- unless forloop.first %} <strong>AND</strong> {% endunless -%}
+            {%- for group in groups -%}
+              {%- if group.id == usingId -%}
+                {{ usingQuantity }} {% if usingQuantity %}of {% endif %}the following
+                <strong><a href="#{{ group.id }}">{{ group.title }}</a></strong>
+                {%- break -%}
+              {%- endif -%}
+            {%- endfor -%}
+          {%- endfor -%}
+        {% else -%}
+          {{ usingQuantity }} {% if usingQuantity %}of {% endif %}the following techniques
+        {%- endif -%}:
+        {% unless groups %}</p>{% endunless %}
+      {%- endif -%}
+      {%- unless groups -%}
+        {% include "understanding/techniques-list.html", techniques: technique.using %}
+      {%- endunless -%}
+    {% endif -%}
+  </li>
+{% endfor -%}
+</ul>
