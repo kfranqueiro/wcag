@@ -26,7 +26,7 @@ export default function (data) {
           },
           {
             title:
-              "Situation B: If a short description can not serve the same purpose and present the same information as the non-text content (e.g., a chart or diagram):",
+              "Situation B: If a short description can <strong>not</strong> serve the same purpose and present the same information as the non-text content (e.g., a chart or diagram):",
             techniques: [
               {
                 id: "G95",
@@ -60,7 +60,7 @@ export default function (data) {
             groups: [
               {
                 id: "text-equiv-all-situation-c-controls",
-                title: "Text alternative techniques for controls and input for Situation C:",
+                title: "Text alternative techniques for controls and input for Situation C",
                 techniques: ["ARIA6", "ARIA9", "H24", "H30", "H36", "H44", "H65"],
               },
             ],
@@ -71,6 +71,14 @@ export default function (data) {
             techniques: [
               {
                 title: "Providing a descriptive label",
+                using: ["text-equiv-all-situation-d-shorttext"],
+              },
+              {
+                id: "G68",
+                using: ["text-equiv-all-situation-d-shorttext"],
+              },
+              {
+                id: "G100",
                 using: ["text-equiv-all-situation-d-shorttext"],
               },
             ],
@@ -99,6 +107,7 @@ export default function (data) {
             groups: [
               {
                 id: "text-equiv-all-situation-f-notrequired",
+                title: "Techniques to indicate that text alternatives are not required for Situation F",
                 techniques: ["C9", "H67", "PDF4"],
               },
             ],
@@ -124,7 +133,7 @@ export default function (data) {
         failure: ["F30", "F67"],
       },
 
-      captions: {
+      "captions-prerecorded": {
         // 1.2.2
         sufficient: [
           "G93",
@@ -147,8 +156,7 @@ export default function (data) {
         sufficient: [
           { id: "G69", using: ["G58"] },
           {
-            title:
-              "Linking to the alternative for time-based media",
+            title: "Linking to the alternative for time-based media",
             using: ["H53"],
           },
           "G78",
@@ -323,7 +331,8 @@ export default function (data) {
           },
           {
             id: "G57",
-            title: "Marking sequences in the content as meaningful using one of the following techniques <strong>AND</strong> <> for those sequences",
+            title:
+              "Marking sequences in the content as meaningful using one of the following techniques <strong>AND</strong> <> for those sequences",
             using: ["H34", "H56", "C6", "C8"],
             usingText: "",
           },
