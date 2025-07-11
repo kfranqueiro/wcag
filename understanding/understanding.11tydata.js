@@ -322,14 +322,10 @@ export default function (data) {
             title: "<> for all the content in the web page",
           },
           {
-            title: "Marking sequences in the content as meaningful",
+            id: "G57",
+            title: "Marking sequences in the content as meaningful using one of the following techniques <strong>AND</strong> <> for those sequences",
             using: ["H34", "H56", "C6", "C8"],
-            usingAnd: [
-              {
-                id: "G57",
-                title: "<> for those sequences",
-              },
-            ],
+            usingText: "",
           },
           "C27",
           "PDF3",
