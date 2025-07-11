@@ -13,7 +13,7 @@ Also references global guideline and associatedTechniques data.
     {%- assign isSituation = titleStart == "Situation " -%}
 
     {%- if forloop.first and isSituation and type == "sufficient" -%}
-      {% include "understanding/intro/sufficient-situation" %}
+      {% include "understanding/intro/sufficient-situation.html" %}
     {%- endif -%}
 
     {%- comment -%}
@@ -29,6 +29,13 @@ Also references global guideline and associatedTechniques data.
         <p id="{{ group.id }}"><strong>{{ group.title }}</strong>:</p>
         {% include "understanding/techniques-list.html", techniques: group.techniques %}
       {% endfor %}
+      {% if section.note -%}
+        {%- assign noteStart = section.note | lstrip | slice: 0 -%}
+        {%- capture noteTag %}{% if noteStart == "<" %}div{% else %}p{% endif %}{% endcapture -%}
+        <{{ noteTag }} class="note">
+          {{ section.note | strip }}
+        </{{ noteTag }}>
+      {%- endif %}
     </section>
   {%- endfor -%}
 {%- else -%}
