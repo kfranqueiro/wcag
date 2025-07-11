@@ -139,12 +139,12 @@ export default function (data) {
           "G93",
           {
             id: "G87",
-            title:
-              "<> using any readily available media format that has a video player that supports closed captioning",
-          },
-          {
-            id: "G87",
-            using: ["SM11", "SM12", "H95"],
+            using: [
+              "SM11",
+              "SM12",
+              "H95",
+              "Using any readily available media format that has a video player that supports closed captioning",
+            ],
             usingQuantity: "any",
           },
         ],
@@ -179,12 +179,11 @@ export default function (data) {
           { and: ["G9", "G93"] },
           {
             and: ["G9", "G87"],
-            using:
-              "any readily available media format that has a video player that supports closed captioning",
-          },
-          {
-            and: ["G9", "G87"],
-            using: ["SM11", "SM12"],
+            using: [
+              "SM11",
+              "SM12",
+              "Using any readily available media format that has a video player that supports closed captioning",
+            ],
           },
         ],
       },
