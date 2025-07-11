@@ -107,7 +107,8 @@ export default function (data) {
             groups: [
               {
                 id: "text-equiv-all-situation-f-notrequired",
-                title: "Techniques to indicate that text alternatives are not required for Situation F",
+                title:
+                  "Techniques to indicate that text alternatives are not required for Situation F",
                 techniques: ["C9", "H67", "PDF4"],
               },
             ],
@@ -186,6 +187,7 @@ export default function (data) {
             ],
           },
         ],
+        sufficientNote: "Captions may be generated using real-time text translation service.",
       },
 
       "audio-description-prerecorded": {
@@ -313,6 +315,7 @@ export default function (data) {
                 title:
                   "Making information and relationships conveyed through presentation programmatically determinable or available in text",
                 using: ["T1", "T2", "T3"],
+                usingQuantity: "",
               },
             ],
           },
@@ -428,12 +431,12 @@ export default function (data) {
               {
                 title: "Techniques for relative measurements",
                 using: ["C12", "C13", "C14"],
-                usingText: "", // (No "using ...", only child list)
+                usingText: "",
               },
               {
                 title: "Techniques for text container resizing",
                 using: ["SCR34", "G146"],
-                usingText: "", // (No "using ...", only child list)
+                usingText: "",
               },
             ],
             usingQuantity: "one or more",
@@ -637,7 +640,7 @@ export default function (data) {
           },
           {
             title: "Situation B: If a time limit is controlled by a script on the page:",
-            techniques: ["G198", "G180", "SCR16"],
+            techniques: ["G198", "G180", { and: ["SCR16", "SCR1"] }],
           },
           {
             title: "Situation C: If there are time limits on reading:",
@@ -676,357 +679,350 @@ export default function (data) {
           Refer to <a href="timing-adjustable#techniques">Techniques for Addressing Success Criterion 2.2.1</a>
           for techniques related to providing notifications about time limits.
         `,
+        failure: ["F12"],
       },
-      failure: ["F12"],
-    },
 
-    timeouts: {
-      // 2.2.6
-      sufficient: [
-        "Setting a session timeout to occur following at least 20 hours of inactivity",
-        "Storing user data for more than 20 hours",
-        "Providing a warning of the duration of user inactivity at the start of a process",
-      ],
-    },
+      timeouts: {
+        // 2.2.6
+        sufficient: [
+          "Setting a session timeout to occur following at least 20 hours of inactivity",
+          "Storing user data for more than 20 hours",
+          "Providing a warning of the duration of user inactivity at the start of a process",
+        ],
+      },
 
-    "three-flashes-or-below-threshold": {
-      // 2.3.1
-      sufficient: ["G19", "G176", "G15"],
-    },
+      "three-flashes-or-below-threshold": {
+        // 2.3.1
+        sufficient: ["G19", "G176", "G15"],
+      },
 
-    "three-flashes": {
-      // 2.3.2
-      sufficient: ["G19"],
-    },
+      "three-flashes": {
+        // 2.3.2
+        sufficient: ["G19"],
+      },
 
-    "animation-from-interactions": {
-      // 2.3.3
-      sufficient: ["C39", "Gx: Allowing users to set a preference that prevents animation"],
-    },
+      "animation-from-interactions": {
+        // 2.3.3
+        sufficient: ["C39", "Gx: Allowing users to set a preference that prevents animation"],
+      },
 
-    "bypass-blocks": {
-      // 2.4.1
-      sufficient: [
-        {
-          title: "Creating links to skip blocks of repeated material",
-          using: ["G1", "G123", "G124"],
-        },
-        {
-          title: "Grouping blocks of repeated material in a way that can be skipped,",
-          using: ["ARIA11", "H69", "PDF9", "H64", "SCR28"],
-        },
-      ],
-      advisory: ["C6", "H97"],
-    },
+      "bypass-blocks": {
+        // 2.4.1
+        sufficient: [
+          {
+            title: "Creating links to skip blocks of repeated material",
+            using: ["G1", "G123", "G124"],
+          },
+          {
+            title: "Grouping blocks of repeated material in a way that can be skipped,",
+            using: ["ARIA11", "H69", "PDF9", "H64", "SCR28"],
+          },
+        ],
+        advisory: ["C6", "H97"],
+      },
 
-    "page-titled": {
-      // 2.4.2
-      sufficient: [
-        {
-          and: ["G88", "associating a title with a web page"],
-          using: ["H25", "PDF18"],
-        },
-      ],
-      advisory: ["G127"],
-      failure: ["F25"],
-    },
+      "page-titled": {
+        // 2.4.2
+        sufficient: [
+          {
+            and: ["G88", "associating a title with a web page"],
+            using: ["H25", "PDF18"],
+          },
+        ],
+        advisory: ["G127"],
+        failure: ["F25"],
+      },
 
-    "focus-order": {
-      // 2.4.3
-      sufficient: [
-        "G59",
-        {
-          title:
-            "Giving focus to elements in an order that follows sequences and relationships within the content",
-          using: ["C27", "PDF3"],
-        },
-        {
-          title: "Changing a web page dynamically",
-          using: ["SCR26", "H102", "SCR27"],
-        },
-      ],
-      failure: ["F44", "F85"],
-    },
+      "focus-order": {
+        // 2.4.3
+        sufficient: [
+          "G59",
+          {
+            title:
+              "Giving focus to elements in an order that follows sequences and relationships within the content",
+            using: ["C27", "PDF3"],
+          },
+          {
+            title: "Changing a web page dynamically",
+            using: ["SCR26", "H102", "SCR27"],
+          },
+        ],
+        failure: ["F44", "F85"],
+      },
 
-    "link-purpose-in-context": {
-      // 2.4.4
-      sufficient: [
-        "G91",
-        "H30",
-        "H24",
-        {
-          title: "Allowing the user to choose short or long link text",
-          using: ["G189", "SCR30"],
-        },
-        "G153",
-        {
-          title: "Providing a supplemental description of the purpose of a link",
-          using: ["H33", "C7"],
-        },
-        {
-          title:
-            "Identifying the purpose of a link using link text combined with programmatically determined link context",
-          using: ["ARIA7", "ARIA8", "H77", "H78", "H79", "H81"],
-        },
-        { and: ["G91", "semantically indicating links"], using: ["PDF11", "PDF13"] },
-      ],
-      advisory: ["H2", "H80"],
-      failure: ["F63", "F89"],
-    },
+      "link-purpose-in-context": {
+        // 2.4.4
+        sufficient: [
+          "G91",
+          "H30",
+          "H24",
+          {
+            title: "Allowing the user to choose short or long link text",
+            using: ["G189", "SCR30"],
+          },
+          "G53",
+          {
+            title: "Providing a supplemental description of the purpose of a link",
+            using: ["H33", "C7"],
+          },
+          {
+            title:
+              "Identifying the purpose of a link using link text combined with programmatically determined link context",
+            using: ["ARIA7", "ARIA8", "H77", "H78", "H79", "H81"],
+          },
+          { and: ["G91", "semantically indicating links"], using: ["PDF11", "PDF13"] },
+        ],
+        advisory: ["H2", "H80"],
+        failure: ["F63", "F89"],
+      },
 
-    "multiple-ways": {
-      // 2.4.5
-      sufficient: [
-        {
-          using: ["G125", "G64", "G63", "G161", "G126", "G185"],
-          usingQuantity: "two or more",
-        },
-      ],
-      advisory: ["PDF2"],
-    },
+      "multiple-ways": {
+        // 2.4.5
+        sufficient: [
+          {
+            using: ["G125", "G64", "G63", "G161", "G126", "G185"],
+            usingConjunction: "Using",
+            usingQuantity: "two or more",
+          },
+        ],
+        advisory: ["PDF2"],
+      },
 
-    "headings-and-labels": {
-      // 2.4.6
-      sufficient: ["G130", "G131"],
-      sufficientNote: `
+      "headings-and-labels": {
+        // 2.4.6
+        sufficient: ["G130", "G131"],
+        sufficientNote: `
         Headings and labels must be programmatically determined,
         per <a href="info-and-relationships">Success Criterion 1.3.1</a>.
       `,
-    },
+      },
 
-    "focus-visible": {
-      // 2.4.7
-      sufficient: ["G149", "C15", "G165", "G195", "C40", "C45", "SCR31"],
-      failure: ["F55", "F78"],
-    },
+      "focus-visible": {
+        // 2.4.7
+        sufficient: ["G149", "C15", "G165", "G195", "C40", "C45", "SCR31"],
+        failure: ["F55", "F78"],
+      },
 
-    location: {
-      // 2.4.8
-      sufficient: ["G65", "G63", "G128", "G127"],
-      advisory: ["PDF14", "PDF17"],
-    },
+      location: {
+        // 2.4.8
+        sufficient: ["G65", "G63", "G128", "G127"],
+        advisory: ["PDF14", "PDF17"],
+      },
 
-    "link-purpose-link-only": {
-      // 2.4.9
-      sufficient: [
-        "ARIA8",
-        "G91",
-        "H30",
-        "H24",
-        {
-          title: "Allowing the user to choose short or long link text",
-          using: ["G189", "SCR30"],
-        },
-        {
-          title: "Providing a supplemental description of the purpose of a link",
-          using: ["C7"],
-        },
-        {
-          title: "Semantically indicating links",
-          using: ["PDF11", "PDF13"],
-        },
-      ],
-      advisory: ["H2", "H33"],
-      failure: ["F84", "F89"],
-    },
+      "link-purpose-link-only": {
+        // 2.4.9
+        sufficient: [
+          "ARIA8",
+          "G91",
+          "H30",
+          "H24",
+          {
+            title: "Allowing the user to choose short or long link text",
+            using: ["G189", "SCR30"],
+          },
+          {
+            title: "Providing a supplemental description of the purpose of a link",
+            using: ["C7"],
+          },
+          {
+            title: "Semantically indicating links",
+            using: ["PDF11", "PDF13"],
+          },
+        ],
+        advisory: ["H2", "H33"],
+        failure: ["F84", "F89"],
+      },
 
-    "section-headings": {
-      // 2.4.10
-      sufficient: ["G41", "H69"],
-    },
+      "section-headings": {
+        // 2.4.10
+        sufficient: ["G141", "H69"],
+      },
 
-    "focus-not-obscured-minimum": {
-      // 2.4.11
-      sufficient: ["C43"],
-      failure: ["F110"],
-    },
+      "focus-not-obscured-minimum": {
+        // 2.4.11
+        sufficient: ["C43"],
+        failure: ["F110"],
+      },
 
-    "focus-not-obscured-enhanced": {
-      // 2.4.12
-      sufficient: ["C43"],
-      failure: [
-        "An interaction that causes content to appear over the component with keyboard focus, visually covering part of the focus indicator. This behavior might be encountered with advertising or promotional material meant to provide more information about a product as the user navigates through a catalogue.",
-        'A page has a sticky footer (attached to the bottom of the viewport). When tabbing down the page, a focused item is partially obscured by the footer because content in the viewport scrolls without sufficient <a href="https://www.w3.org/TR/css-scroll-snap/#propdef-scroll-padding" rel="nofollow">scroll padding</a>.',
-      ],
-    },
+      "focus-not-obscured-enhanced": {
+        // 2.4.12
+        sufficient: ["C43"],
+        failure: [
+          "An interaction that causes content to appear over the component with keyboard focus, visually covering part of the focus indicator. This behavior might be encountered with advertising or promotional material meant to provide more information about a product as the user navigates through a catalogue.",
+          'A page has a sticky footer (attached to the bottom of the viewport). When tabbing down the page, a focused item is partially obscured by the footer because content in the viewport scrolls without sufficient <a href="https://www.w3.org/TR/css-scroll-snap/#propdef-scroll-padding" rel="nofollow">scroll padding</a>.',
+        ],
+      },
 
-    "focus-appearance": {
-      // 2.4.13
-      sufficient: ["G195", "C40", "C41"],
-      failure: ["F55", "F78"],
-    },
+      "focus-appearance": {
+        // 2.4.13
+        sufficient: ["G195", "C40", "C41"],
+        failure: ["F55", "F78"],
+      },
 
-    "pointer-gestures": {
-      // 2.5.1
-      sufficient: ["G215", "G216"],
-      failure: ["F105"],
-    },
+      "pointer-gestures": {
+        // 2.5.1
+        sufficient: ["G215", "G216"],
+        failure: ["F105"],
+      },
 
-    "pointer-cancellation": {
-      // 2.5.2
-      sufficient: [
-        "G210",
-        "G212",
-        "Touch events are only triggered when touch is removed from a control (Potential future technique)",
-      ],
-      failure: ["F101"],
-    },
+      "pointer-cancellation": {
+        // 2.5.2
+        sufficient: [
+          "G210",
+          "G212",
+          "Touch events are only triggered when touch is removed from a control (Potential future technique)",
+        ],
+        failure: ["F101"],
+      },
 
-    "label-in-name": {
-      // 2.5.3
-      sufficient: ["G208", "G211"],
-      advisory: [
-        "G162",
-        "If an icon has no accompanying text, consider using its hover text as its accessible name (Potential future technique)",
-      ],
-      failure: [
-        "F96",
-        "F111",
-        "Accessible name contains the visible label text, but the words of the visible label are not in the same order as they are in the visible label text (Potential future technique)",
-        "Accessible name contains the visible label text, but one or more other words are interspersed in the label (Potential future technique)",
-      ],
-    },
+      "label-in-name": {
+        // 2.5.3
+        sufficient: ["G208", "G211"],
+        advisory: [
+          "G162",
+          "If an icon has no accompanying text, consider using its hover text as its accessible name (Potential future technique)",
+        ],
+        failure: [
+          "F96",
+          "F111",
+          "Accessible name contains the visible label text, but the words of the visible label are not in the same order as they are in the visible label text (Potential future technique)",
+          "Accessible name contains the visible label text, but one or more other words are interspersed in the label (Potential future technique)",
+        ],
+      },
 
-    "motion-actuation": {
-      // 2.5.4
-      sufficient: [
-        "G213",
-        "GXXX: Supporting system level features which allow the user to disable motion actuation",
-      ],
-      failure: [
-        "F106",
-        "FXXX: Failure of Success Criterion 2.5.4 due to disrupting or disabling system level features which allow the user to disable motion actuation",
-      ],
-    },
+      "motion-actuation": {
+        // 2.5.4
+        sufficient: [
+          "G213",
+          "GXXX: Supporting system level features which allow the user to disable motion actuation",
+        ],
+        failure: [
+          "F106",
+          "FXXX: Failure of Success Criterion 2.5.4 due to disrupting or disabling system level features which allow the user to disable motion actuation",
+        ],
+      },
 
-    "target-size-enhanced": {
-      // 2.5.5
-      sufficient: ["Ensuring that targets are at least 44 by 44 CSS pixels"],
-      advisory: ["Ensuring inline links provide sufficiently large activation target"],
-      failure: [
-        "Failure of Success Criterion 2.5.5 due to target being less than 44 by 44 CSS pixels",
-      ],
-    },
+      "target-size-enhanced": {
+        // 2.5.5
+        sufficient: ["Ensuring that targets are at least 44 by 44 CSS pixels"],
+        advisory: ["Ensuring inline links provide sufficiently large activation target"],
+        failure: [
+          "Failure of Success Criterion 2.5.5 due to target being less than 44 by 44 CSS pixels",
+        ],
+      },
 
-    "concurrent-input-mechanisms": {
-      // 2.5.6
-      sufficient: [
-        "Only using high-level, input-agnostic event handlers, such as <code>focus</code>, <code>blur</code>, <code>click</code>, in Javascript (Potential future technique)",
-        'Registering event handlers for keyboard/keyboard-like and pointer inputs simultaneously in Javascript; see <a href="https://www.w3.org/TR/pointerevents2/#example_1">Example 1 in Pointer Events Level 2</a> (Potential future technique)',
-      ],
-      failure: ["F98"],
-    },
+      "concurrent-input-mechanisms": {
+        // 2.5.6
+        sufficient: [
+          "Only using high-level, input-agnostic event handlers, such as <code>focus</code>, <code>blur</code>, <code>click</code>, in Javascript (Potential future technique)",
+          'Registering event handlers for keyboard/keyboard-like and pointer inputs simultaneously in Javascript; see <a href="https://www.w3.org/TR/pointerevents2/#example_1">Example 1 in Pointer Events Level 2</a> (Potential future technique)',
+        ],
+        failure: ["F98"],
+      },
 
-    "dragging-movements": {
-      // 2.5.7
-      sufficient: ["G219"],
-      failure: ["F108"],
-    },
+      "dragging-movements": {
+        // 2.5.7
+        sufficient: ["G219"],
+        failure: ["F108"],
+      },
 
-    "target-size-minimum": {
-      // 2.5.8
-      sufficient: ["C42"],
-    },
+      "target-size-minimum": {
+        // 2.5.8
+        sufficient: ["C42"],
+      },
 
-    "language-of-page": {
-      // 3.1.1
-      sufficient: ["H57", "PDF16", "PDF19"],
-      advisory: ["SVR5"],
-    },
+      "language-of-page": {
+        // 3.1.1
+        sufficient: ["H57", "PDF16", "PDF19"],
+        advisory: ["SVR5"],
+      },
 
-    "language-of-parts": {
-      // 3.1.2
-      sufficient: ["H58", "PDF19"],
-    },
+      "language-of-parts": {
+        // 3.1.2
+        sufficient: ["H58", "PDF19"],
+      },
 
-    "unusual-words": {
-      // 3.1.3
-      sufficient: [
-        {
-          title: "Situation A: If the word or phrase has a unique meaning within the web page:",
-          techniques: [
-            {
-              id: "G101",
-              using: [
-                { id: "G55", using: ["H40"] },
-                { id: "G112", using: ["H54"] },
-              ],
-              usingText:
-                "for the first occurrence of the word or phrase in a web page using one of the following techniques:",
-            },
-            {
-              id: "G101",
-              using: [
-                {
-                  id: "G55",
-                  using: ["H40"],
-                },
-                "G62",
-                "G70",
-              ],
-              usingText:
-                "for each occurrence of the word or phrase in a web page using one of the following techniques:",
-            },
-          ],
-        },
-        {
-          title:
-            "Situation B: If the word or phrase means different things within the same web page:",
-          techniques: [
-            {
-              id: "G101",
-              using: [
-                { id: "G55", using: ["H40"] },
-                { id: "G112", using: ["H54"] },
-              ],
-              usingText:
-                "for each occurrence of the word or phrase in a web page using one of the following techniques:",
-            },
-          ],
-        },
-      ],
-    },
+      "unusual-words": {
+        // 3.1.3
+        sufficient: [
+          {
+            title: "Situation A: If the word or phrase has a unique meaning within the web page:",
+            techniques: [
+              {
+                id: "G101",
+                using: [
+                  { id: "G55", using: ["H40"], usingText: "" },
+                  { id: "G112", using: ["H54"], usingText: "" },
+                ],
+                usingText:
+                  "for the first occurrence of the word or phrase in a web page using one of the following techniques:",
+              },
+              {
+                id: "G101",
+                using: [{ id: "G55", using: ["H40"], usingText: "" }, "G62", "G70"],
+                usingText:
+                  "for each occurrence of the word or phrase in a web page using one of the following techniques:",
+              },
+            ],
+          },
+          {
+            title:
+              "Situation B: If the word or phrase means different things within the same web page:",
+            techniques: [
+              {
+                id: "G101",
+                using: [
+                  { id: "G55", using: ["H40"], usingText: "" },
+                  { id: "G112", using: ["H54"], usingText: "" },
+                ],
+                usingText:
+                  "for each occurrence of the word or phrase in a web page using one of the following techniques:",
+              },
+            ],
+          },
+        ],
+      },
 
-    abbreviations: {
-      // 3.1.4
-      sufficient: [
-        {
-          title: "Situation A: If the abbreviation has only one meaning within the web page:",
-          techniques: [
-            {
-              id: "G102",
-              using: ["G97", "G55", "PDF8"],
-              usingText:
-                "for the first occurrence of the abbreviation in a web page using one of the following techniques:",
-            },
-            {
-              id: "G102",
-              using: ["G55", "G62", "G70", "PDF8"],
-              usingText:
-                "for all occurrences of the abbreviation in a web page using one of the following techniques:",
-            },
-          ],
-        },
-        {
-          title:
-            "Situation B: If the abbreviation means different things within the same web page:",
-          techniques: [
-            {
-              id: "G102",
-              using: ["G55", "PDF8"],
-              usingText:
-                "for all occurrences of abbreviations in a web page using one of the following techniques:",
-            },
-          ],
-        },
-      ],
-      advisory: ["H28"],
-    },
+      abbreviations: {
+        // 3.1.4
+        sufficient: [
+          {
+            title: "Situation A: If the abbreviation has only one meaning within the web page:",
+            techniques: [
+              {
+                id: "G102",
+                using: ["G97", "G55", "PDF8"],
+                usingText:
+                  "for the first occurrence of the abbreviation in a web page using one of the following techniques:",
+              },
+              {
+                id: "G102",
+                using: ["G55", "G62", "G70", "PDF8"],
+                usingText:
+                  "for all occurrences of the abbreviation in a web page using one of the following techniques:",
+              },
+            ],
+          },
+          {
+            title:
+              "Situation B: If the abbreviation means different things within the same web page:",
+            techniques: [
+              {
+                id: "G102",
+                using: ["G55", "PDF8"],
+                usingText:
+                  "for all occurrences of abbreviations in a web page using one of the following techniques:",
+              },
+            ],
+          },
+        ],
+        advisory: ["H28"],
+      },
 
-    "reading-level": {
-      // 3.1.5
-      sufficient: ["G86", "G103", "G79", "G153", "G160"],
-      sufficientNote: `
+      "reading-level": {
+        // 3.1.5
+        sufficient: ["G86", "G103", "G79", "G153", "G160"],
+        sufficientNote: `
         Different sites may address this success criterion in different ways.
         An audio version of the content may be helpful to some users.
         For some people who are deaf, a sign language version of the page may be
@@ -1036,60 +1032,70 @@ export default function (data) {
         So different techniques are provided as sufficient techniques here for authors trying to make their sites more accessible.
         Any numbered technique or combination above can be used by a particular site and it is considered sufficient by the Working Group.
       `,
-    },
+      },
 
-    pronunciation: {
-      // 3.1.6
-      sufficient: ["G120", "G121", "G62", "G163", "H62"],
-    },
+      pronunciation: {
+        // 3.1.6
+        sufficient: [
+          "G120",
+          "G121",
+          {
+            id: "G62",
+            title:
+              "<> that includes pronunciation information for words that have a unique pronunciation in the content and have meaning that depends on pronunciation",
+          },
+          "G163",
+          "H62",
+        ],
+      },
 
-    "on-focus": {
-      // 3.2.1
-      sufficient: ["G107"],
-      sufficientNote: `
+      "on-focus": {
+        // 3.2.1
+        sufficient: ["G107"],
+        sufficientNote: `
         A change of content is not always a <a>change of context</a>.
         This success criterion is automatically met if changes in content are not also changes of context.
       `,
-      advisory: ["G200", "G201"],
-      failure: ["F55"],
-    },
+        advisory: ["G200", "G201"],
+        failure: ["F55"],
+      },
 
-    "on-input": {
-      // 3.2.2
-      sufficient: [
-        {
-          id: "G80",
-          using: ["H32", "H84", "PDF15"],
-        },
-        "G13",
-        "SCR19",
-      ],
-      sufficientNote: `
+      "on-input": {
+        // 3.2.2
+        sufficient: [
+          {
+            id: "G80",
+            using: ["H32", "H84", "PDF15"],
+          },
+          "G13",
+          "SCR19",
+        ],
+        sufficientNote: `
         A change of content is not always a <a>change of context</a>.
         This success criterion is automatically met if changes in content are not also changes of context.
       `,
-      advisory: ["G201"],
-      failure: ["F36", "F37"],
-    },
+        advisory: ["G201"],
+        failure: ["F36", "F37"],
+      },
 
-    "consistent-navigation": {
-      // 3.2.3
-      sufficient: ["G61"],
-      advisory: ["PDF14", "PDF17"],
-      failure: ["F66"],
-    },
+      "consistent-navigation": {
+        // 3.2.3
+        sufficient: ["G61"],
+        advisory: ["PDF14", "PDF17"],
+        failure: ["F66"],
+      },
 
-    "consistent-identification": {
-      // 3.2.4
-      sufficient: [
-        {
-          and: [
-            "G197",
-            'following the <a href="non-text-content#techniques">sufficient techniques for Success Criterion 1.1.1</a> and <a href="name-role-value#techniques">sufficient techniques for Success Criterion 4.1.2</a> for providing labels, names, and text alternatives',
-          ],
-        },
-      ],
-      sufficientNote: `
+      "consistent-identification": {
+        // 3.2.4
+        sufficient: [
+          {
+            and: [
+              "G197",
+              'following the <a href="non-text-content#techniques">sufficient techniques for Success Criterion 1.1.1</a> and <a href="name-role-value#techniques">sufficient techniques for Success Criterion 4.1.2</a> for providing labels, names, and text alternatives',
+            ],
+          },
+        ],
+        sufficientNote: `
         <p>
           Text alternatives that are "consistent" are not always "identical."
           For instance, you may have a graphical arrow at the bottom of a web page that
@@ -1107,300 +1113,310 @@ export default function (data) {
           Different text alternatives can be used when the same non-text content serves multiple functions.
         </p>
       `,
-      failure: ["F31"],
-    },
+        failure: ["F31"],
+      },
 
-    "change-on-request": {
-      // 3.2.5
-      sufficient: [
-        {
-          title: "Situation A: If the web page allows automatic updates:",
-          techniques: ["G76"],
-        },
-        {
-          title: "Situation B: If automatic redirects are possible:",
-          techniques: [
-            "SVR1",
-            {
-              id: "G110",
-              using: ["H76"],
-            },
-          ],
-        },
-        {
-          title: "Situation C: If the web page uses pop-up windows:",
-          techniques: [
-            {
-              title: "Including pop-up windows",
-              using: ["H83", "SCR24"],
-            },
-          ],
-        },
-        {
-          title: "Situation D: If using an onchange event on a select element:",
-          techniques: ["SCR19"],
-        },
-      ],
-      advisory: ["G200"],
-      failure: ["F60", "F61", "F9", "F22", "F52", "F40", "F41"],
-    },
+      "change-on-request": {
+        // 3.2.5
+        sufficient: [
+          {
+            title: "Situation A: If the web page allows automatic updates:",
+            techniques: ["G76"],
+          },
+          {
+            title: "Situation B: If automatic redirects are possible:",
+            techniques: [
+              "SVR1",
+              {
+                id: "G110",
+                using: ["H76"],
+              },
+            ],
+          },
+          {
+            title: "Situation C: If the web page uses pop-up windows:",
+            techniques: [
+              {
+                title: "Including pop-up windows",
+                using: ["H83", "SCR24"],
+              },
+            ],
+          },
+          {
+            title: "Situation D: If using an onchange event on a select element:",
+            techniques: ["SCR19"],
+          },
+        ],
+        advisory: ["G200"],
+        failure: ["F60", "F61", "F9", "F22", "F52", "F40", "F41"],
+      },
 
-    "consistent-help": {
-      // 3.2.6
-      sufficient: ["G220"],
-      failure: ["Inconsistent Help Location"],
-    },
+      "consistent-help": {
+        // 3.2.6
+        sufficient: ["G220"],
+        failure: ["Inconsistent Help Location"],
+      },
 
-    "error-identification": {
-      // 3.3.1
-      sufficient: [
-        {
-          title:
-            "Situation A: If a form contains fields for which information from the user is mandatory.",
-          techniques: ["G83", "ARIA2", "ARIA21", "SCR18", "PDF5"],
-        },
-        {
-          title:
-            "Situation B: If information provided by the user is required to be in a specific data format or of certain values.",
-          techniques: ["ARIA18", "ARIA19", "ARIA21", "G84", "G85", "SCR18", "SCR32", "PDF22"],
-        },
-      ],
-      advisory: ["G139", "G199"],
-    },
+      "error-identification": {
+        // 3.3.1
+        sufficient: [
+          {
+            title:
+              "Situation A: If a form contains fields for which information from the user is mandatory.",
+            techniques: ["G83", "ARIA2", "ARIA21", "SCR18", "PDF5"],
+          },
+          {
+            title:
+              "Situation B: If information provided by the user is required to be in a specific data format or of certain values.",
+            techniques: ["ARIA18", "ARIA19", "ARIA21", "G84", "G85", "SCR18", "SCR32", "PDF22"],
+          },
+        ],
+        advisory: ["G139", "G199"],
+      },
 
-    "labels-or-instructions": {
-      // 3.3.2
-      sufficient: [
-        {
-          id: "G131",
-          using: ["ARIA1", "ARIA9", "ARIA17", "G89", "G184", "G162", "G83", "H90", "PDF5"],
-          usingConjunction: "<strong>AND</strong>",
-        },
-        "H44",
-        "PDF10",
-        "H71",
-        "G167",
-      ],
-      sufficientNote: `
+      "labels-or-instructions": {
+        // 3.3.2
+        sufficient: [
+          {
+            id: "G131",
+            using: ["ARIA1", "ARIA9", "ARIA17", "G89", "G184", "G162", "G83", "H90", "PDF5"],
+            usingConjunction: "<strong>AND</strong>",
+          },
+          "H44",
+          "PDF10",
+          "H71",
+          "G167",
+        ],
+        sufficientNote: `
         The techniques at the end of the above list should be considered "last resort" and
         only used when the other techniques cannot be applied to the page.
         The earlier techniques are preferred because they increase accessibility to a wider user group.
       `,
-      advisory: ["G13"],
-      failure: ["F82"],
-    },
+        advisory: ["G13"],
+        failure: ["F82"],
+      },
 
-    "error-suggestion": {
-      // 3.3.3
-      sufficient: [
-        {
-          title:
-            "Situation A: If information for a field is required to be in a specific data format:",
-          techniques: ["ARIA18", "G85", "G177", "PDF22"],
-        },
-        {
-          title:
-            "Situation B: Information provided by the user is required to be one of a limited set of values:",
-          techniques: ["ARIA18", "G84", "G177", "PDF22"],
-        },
-      ],
-      advisory: ["G139", "G199", "SCR18", "SCR32"],
-    },
+      "error-suggestion": {
+        // 3.3.3
+        sufficient: [
+          {
+            title:
+              "Situation A: If information for a field is required to be in a specific data format:",
+            techniques: ["ARIA18", "G85", "G177", "PDF22"],
+          },
+          {
+            title:
+              "Situation B: Information provided by the user is required to be one of a limited set of values:",
+            techniques: ["ARIA18", "G84", "G177", "PDF22"],
+          },
+        ],
+        sufficientNote:
+          "In some cases, more than one of these situations may apply. For example, when a mandatory field also requires the data to be in a specific format.",
+        advisory: ["G139", "G199", "SCR18", "SCR32"],
+      },
 
-    "error-prevention-legal-financial-data": {
-      // 3.3.4
-      sufficient: [
-        {
-          title:
-            "Situation A: If an application causes a legal transaction to occur, such as making a purchase or submitting an income tax return:",
-          techniques: ["G164", "G98", "G155"],
-        },
-        {
-          title: "Situation B: If an action causes information to be deleted:",
-          techniques: ["G99", "G168", "G155"],
-        },
-        {
-          title: "Situation C: If the web page includes a testing application",
-          techniques: ["G98", "G168"],
-        },
-      ],
-      advisory: ["SCR18", "G199"],
-    },
+      "error-prevention-legal-financial-data": {
+        // 3.3.4
+        sufficient: [
+          {
+            title:
+              "Situation A: If an application causes a legal transaction to occur, such as making a purchase or submitting an income tax return:",
+            techniques: ["G164", "G98", "G155"],
+          },
+          {
+            title: "Situation B: If an action causes information to be deleted:",
+            techniques: ["G99", "G168", "G155"],
+          },
+          {
+            title: "Situation C: If the web page includes a testing application",
+            techniques: ["G98", "G168"],
+          },
+        ],
+        advisory: ["SCR18", "G199"],
+      },
 
-    help: {
-      // 3.3.5
-      sufficient: [
-        {
-          title: "Situation A: If a form requires text input:",
-          techniques: ["G71", "G193", "G194", "G184"],
-        },
-        {
-          title: "Situation B: If a form requires text input in an expected data format:",
-          techniques: ["G89", "G184"],
-        },
-      ],
-      advisory: ["H89"],
-    },
+      help: {
+        // 3.3.5
+        sufficient: [
+          {
+            title: "Situation A: If a form requires text input:",
+            techniques: ["G71", "G193", "G194", "G184"],
+          },
+          {
+            title: "Situation B: If a form requires text input in an expected data format:",
+            techniques: ["G89", "G184"],
+          },
+        ],
+        advisory: ["H89"],
+      },
 
-    "error-prevention-all": {
-      // 3.3.6
-      sufficient: [
-        'Following the <a href="error-prevention-legal-financial-data#techniques">sufficient techniques for Success Criterion 3.3.4</a> for all forms that require the user to submit information',
-      ],
-    },
+      "error-prevention-all": {
+        // 3.3.6
+        sufficient: [
+          'Following the <a href="error-prevention-legal-financial-data#techniques">sufficient techniques for Success Criterion 3.3.4</a> for all forms that require the user to submit information',
+        ],
+      },
 
-    "redundant-entry": {
-      // 3.3.7
-      sufficient: [
-        "G221",
-        "Not requesting the same information twice (Potential future technique)",
-      ],
-    },
+      "redundant-entry": {
+        // 3.3.7
+        sufficient: [
+          "G221",
+          "Not requesting the same information twice (Potential future technique)",
+        ],
+      },
 
-    "accessible-authentication-minimum": {
-      // 3.3.8
-      sufficient: [
-        "G218",
-        "H100",
-        "Providing WebAuthn as an alternative to username/password (Potential future technique)",
-        "Providing a third-party login using OAuth (Potential future technique)",
-        "Using two techniques to provide two-factor authentication (Potential future technique)",
-      ],
-      failure: ["F109"],
-    },
+      "accessible-authentication-minimum": {
+        // 3.3.8
+        sufficient: [
+          "G218",
+          "H100",
+          "Providing WebAuthn as an alternative to username/password (Potential future technique)",
+          "Providing a third-party login using OAuth (Potential future technique)",
+          "Using two techniques to provide two-factor authentication (Potential future technique)",
+        ],
+        failure: ["F109"],
+      },
 
-    "accessible-authentication-enhanced": {
-      // 3.3.9
-      sufficient: [
-        "G218",
-        "H100",
-        "Providing WebAuthn as an alternative to username/password (Potential future technique)",
-        "Providing a third-party login using OAuth (Potential future technique)",
-        "Using two techniques to provide two-factor authentication (Potential future technique)",
-      ],
-      failure: ["F109"],
-    },
+      "accessible-authentication-enhanced": {
+        // 3.3.9
+        sufficient: [
+          "G218",
+          "H100",
+          "Providing WebAuthn as an alternative to username/password (Potential future technique)",
+          "Providing a third-party login using OAuth (Potential future technique)",
+          "Using two techniques to provide two-factor authentication (Potential future technique)",
+        ],
+        failure: ["F109"],
+      },
 
-    parsing: {
-      // 4.1.1 (techniques not listed in 2.2)
-      sufficient: [
-        "G134",
-        "G192",
-        "H88",
-        {
-          title: "Ensuring that web pages can be parsed",
-          using: ["H74", "H75"],
-        },
-      ],
-      failure: ["F70", "F77"],
-    },
-    // TODO: check where else parsing-related techniques are referenced (I've been looking at 2.2 docs to populate this)
+      parsing: {
+        // 4.1.1 (techniques not listed in 2.2)
+        sufficient: [
+          "G134",
+          "G192",
+          "H88",
+          {
+            title: "Ensuring that web pages can be parsed",
+            using: ["H74", "H75"],
+          },
+        ],
+        failure: ["F70", "F77"],
+      },
+      // TODO: check where else parsing-related techniques are referenced (I've been looking at 2.2 docs to populate this)
 
-    "name-role-value": {
-      // 4.1.2
-      sufficient: [
-        {
-          title:
-            "Situation A: If using a standard user interface component in a markup language (e.g., HTML):",
-          techniques: [
-            "ARIA14",
-            "ARIA16",
-            {
-              id: "G108",
-              using: ["H91", "H44", "H64", "H65", "H88"],
-              usingQuantity: "one or more",
-            },
-          ],
-        },
-        {
-          title:
-            "Situation B: If using script or code to re-purpose a standard user interface component in a markup language:",
-          techniques: [
-            {
-              title:
-                "Exposing the names and roles, allowing user-settable properties to be directly set, and providing notification of changes",
-              using: ["ARIA16"],
-            },
-          ],
-        },
-        {
-          title:
-            "Situation C: If using a standard user interface component in a programming technology:",
-          techniques: [
-            {
-              id: "G135",
-              using: ["PDF10", "PDF12"],
-              usingQuantity: "one or more",
-            },
-          ],
-        },
-        {
-          title:
-            "Situation D: If creating your own user interface component in a programming language:",
-          techniques: [
-            {
-              id: "G10",
-              using: ["ARIA4", "ARIA5", "ARIA16"],
-              usingQuantity: "one or more",
-            },
-          ],
-        },
-      ],
-      failure: ["F59", "F15", "F20", "F42", "F68", "F79", "F86", "F89", "F111"],
-    },
+      "name-role-value": {
+        // 4.1.2
+        sufficient: [
+          {
+            title:
+              "Situation A: If using a standard user interface component in a markup language (e.g., HTML):",
+            techniques: [
+              "ARIA14",
+              "ARIA16",
+              {
+                id: "G108",
+                using: ["H91", "H44", "H64", "H65", "H88"],
+                usingQuantity: "one or more",
+              },
+            ],
+          },
+          {
+            title:
+              "Situation B: If using script or code to re-purpose a standard user interface component in a markup language:",
+            techniques: [
+              {
+                title:
+                  "Exposing the names and roles, allowing user-settable properties to be directly set, and providing notification of changes",
+                using: ["ARIA16"],
+              },
+            ],
+          },
+          {
+            title:
+              "Situation C: If using a standard user interface component in a programming technology:",
+            techniques: [
+              {
+                id: "G135",
+                using: ["PDF10", "PDF12"],
+                usingQuantity: "one or more",
+              },
+            ],
+          },
+          {
+            title:
+              "Situation D: If creating your own user interface component in a programming language:",
+            techniques: [
+              {
+                id: "G10",
+                using: ["ARIA4", "ARIA5", "ARIA16"],
+                usingQuantity: "one or more",
+              },
+            ],
+          },
+        ],
+        failure: ["F59", "F15", "F20", "F42", "F68", "F79", "F86", "F89", "F111"],
+      },
 
-    "status-messages": {
-      // 4.1.3
-      sufficient: [
-        {
-          title:
-            "Situation A: If a status message advises on the success or results of an action, or the state of an application:",
-          techniques: [
-            {
-              id: "ARIA22",
-              using: ["G199"],
-              usingQuantity: "any",
-              usingConjunction: "in combination with",
-            },
-          ],
-        },
-        {
-          title:
-            "Situation B: If a status message conveys a suggestion, or a warning on the existence of an error:",
-          techniques: [
-            {
-              id: "ARIA19",
-              using: ["G83", "G84", "G85", "G177", "G194"],
-              usingQuantity: "any",
-              usingConjunction: "in combination with",
-            },
-          ],
-          note: 'Not all examples in the preceding general techniques use status messages to convey warnings or errors to users. A role of "alert" is only necessary where a change of context does not take place.',
-        },
-        {
-          title:
-            "Situation C: If a status message conveys information on the progress of a process:",
-          techniques: ["ARIA23", 'Using <code>role="progressbar"</code> (future link)', "ARIA22"],
-        },
-      ],
-      advisory: [
-        "Using aria-live regions with chat clients (future link)",
-        'Using aria-live regions to support <a href="content-on-hover-or-focus">1.4.13 Content on Hover or Focus</a> (future link)',
-        'Using <code>role="marquee"</code> (future link)',
-        'Using <code>role="timer"</code> (future link)',
-        {
-          id: "ARIA18",
-          title: "Where appropriate, moving focus to new content with <>",
-        },
-        {
-          id: "SCR14",
-          title: "Supporting personalization with <>",
-        },
-      ],
-      failure: [
-        "F103",
-        'Using <code>role="alert"</code> or <code>aria-live="assertive"</code> on content which is not important and time-sensitive (future link)',
-      ],
+      "status-messages": {
+        // 4.1.3
+        sufficient: [
+          {
+            title:
+              "Situation A: If a status message advises on the success or results of an action, or the state of an application:",
+            techniques: [
+              {
+                id: "ARIA22",
+                using: ["G199"],
+                usingQuantity: "any",
+                usingConjunction: "in combination with",
+              },
+            ],
+          },
+          {
+            title:
+              "Situation B: If a status message conveys a suggestion, or a warning on the existence of an error:",
+            techniques: [
+              {
+                id: "ARIA19",
+                using: ["G83", "G84", "G85", "G177", "G194"],
+                usingQuantity: "any",
+                usingConjunction: "in combination with",
+              },
+            ],
+            note: 'Not all examples in the preceding general techniques use status messages to convey warnings or errors to users. A role of "alert" is only necessary where a change of context does <em>not</em> take place.',
+          },
+          {
+            title:
+              "Situation C: If a status message conveys information on the progress of a process:",
+            techniques: [
+              "ARIA23",
+              'Using <code>role="progressbar"</code> (future link)',
+              {
+                and: ["ARIA22", "G193"],
+                andConjunction: "in combination with",
+              },
+            ],
+          },
+        ],
+        advisory: [
+          "Using aria-live regions with chat clients (future link)",
+          'Using aria-live regions to support <a href="content-on-hover-or-focus">1.4.13 Content on Hover or Focus</a> (future link)',
+          'Using <code>role="marquee"</code> (future link)',
+          'Using <code>role="timer"</code> (future link)',
+          {
+            id: "ARIA18",
+            title: "Where appropriate, moving focus to new content with <>",
+          },
+          {
+            id: "SCR14",
+            title: "Supporting personalization with <>",
+          },
+        ],
+        failure: [
+          "F103",
+          'Using <code>role="alert"</code> or <code>aria-live="assertive"</code> on content which is not important and time-sensitive (future link)',
+        ],
+      },
     },
   };
 }
