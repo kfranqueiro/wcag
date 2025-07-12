@@ -622,7 +622,13 @@ export default function (data) {
       },
 
       "keyboard-no-exception": {
-        // 2.1.3 (contains a note in its page to consult 2.1.1: Keyboard for Sufficient Techniques)
+        // 2.1.3
+        sufficient: [`
+          No additional techniques exist for this success criterion.
+          Follow <a href="keyboard#techniques">techniques for Success Criterion 2.1.1</a>.
+          If that is not possible because there is a requirement for path-dependent input,
+          then it is not possible to meet this Level AAA success criterion.
+        `]
       },
 
       "character-key-shortcuts": {
