@@ -22,13 +22,9 @@ Data for associated techniques is defined in understanding/understanding.11tydat
         <p>{{ assocEntry.sufficientIntro }}</p>
       {% endif -%}
       {% include "understanding/techniques-subsection.html", type: "sufficient" %}
-      {%- if assocEntry.sufficientNote %}
-        {%- assign noteStart = assocEntry.sufficientNote | lstrip | slice: 0 -%}
-        {%- capture noteTag %}{% if noteStart == "<" %}div{% else %}p{% endif %}{% endcapture -%}
-        <{{ noteTag }} class="note">
-          {{ assocEntry.sufficientNote | strip }}
-        </{{ noteTag }}>
-      {% endif -%}
+      {%- if assocEntry.sufficientNote -%}
+        {% include "note.html", note: assocEntry.sufficientNote %}
+      {%- endif -%}
     </section>
   {% endif -%}
 
