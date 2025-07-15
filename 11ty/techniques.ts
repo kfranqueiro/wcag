@@ -3,11 +3,13 @@ import { glob } from "glob";
 import matter from "gray-matter";
 import capitalize from "lodash-es/capitalize";
 import uniqBy from "lodash-es/uniqBy";
+import z from "zod";
 
 import { readFile } from "fs/promises";
 import { basename } from "path";
 
-import { load, loadFromFile } from "./cheerio";
+import eleventyUnderstanding from "../understanding/understanding.11tydata";
+import { load } from "./cheerio";
 import {
   assertIsWcagVersion,
   isSuccessCriterion,
@@ -63,11 +65,6 @@ interface TechniqueAssociation {
   with: string[];
 }
 
-function assertIsAssociationType(type?: string): asserts type is TechniqueAssociationType {
-  if (!techniqueAssociationTypes.includes(type as TechniqueAssociationType))
-    throw new Error(`Association processed for unexpected section ${type}`);
-}
-
 /**
  * Pulls the basename out of a technique link href.
  * This intentionally returns empty string (falsy) if a directory link happens to be passed.
@@ -86,79 +83,184 @@ export const understandingToTechniqueLinkSelector = [
   .map((value) => `a${value}`)
   .join(", ") as "a";
 
+// Zod schemas to provide validation and typings for associatedTechniques in understanding.11tydata.js
+
+const associatedTechniqueSimpleEntrySchema = z.strictObject({
+  id: z.string().optional(),
+  title: z.string().optional(),
+});
+
+// This schema does not represent a full object; it is combined with multiple other schemas below
+const associatedTechniqueUsingOptionsSchema = z.strictObject({
+  usingConjunction: z.string().optional(),
+  usingQuantity: z.string().optional(),
+  usingText: z.string().optional(),
+});
+
+// Note: `using` is defined as a getter in each schema where it is used,
+// in order for recursion to work without the need for explicit typings.
+// The getter must be defined directly in extend, and won't work with spread operators present.
+// See https://zod.dev/v4?id=recursive-objects RE getters in zod v4,
+// and https://github.com/colinhacks/zod/issues/4691#issuecomment-2978123999 RE spread.
+
+const associatedTechniqueEntrySchema = associatedTechniqueSimpleEntrySchema
+  .extend(associatedTechniqueUsingOptionsSchema.shape)
+  .extend({
+    get using() {
+      return associatedTechniqueArraySchema.optional();
+    },
+  });
+
+const associatedTechniqueConjunctionSchema = associatedTechniqueUsingOptionsSchema.extend({
+  get using() {
+    return associatedTechniqueArraySchema.optional();
+  },
+  and: z.array(z.union([z.string(), associatedTechniqueSimpleEntrySchema])),
+  andConjunction: z.string().optional(),
+});
+
+const associatedTechniqueArraySchema = z.array(
+  z.union([
+    z.string(),
+    // *SimpleEntrySchema is a subset of *EntrySchema, but list both for more useful typings
+    associatedTechniqueSimpleEntrySchema,
+    associatedTechniqueEntrySchema,
+    associatedTechniqueConjunctionSchema,
+  ])
+);
+type AssociatedTechniqueArray = z.infer<typeof associatedTechniqueArraySchema>;
+
+/** Allows optionally defining sections and subgroups within top-level associations */
+const associatedTechniqueSectionSchema = associatedTechniqueSimpleEntrySchema.extend({
+  groups: z
+    .array(
+      associatedTechniqueSimpleEntrySchema.extend({
+        techniques: associatedTechniqueArraySchema,
+      })
+    )
+    .optional(),
+  techniques: associatedTechniqueArraySchema,
+  note: z.string().optional(),
+});
+
+const understandingAssociatedTechniquesSchema = z.strictObject({
+  sufficientIntro: z.string().optional(),
+  sufficientNote: z.string().optional(),
+  sufficient: z
+    .union([z.array(associatedTechniqueSectionSchema), associatedTechniqueArraySchema])
+    .optional(),
+  advisory: associatedTechniqueArraySchema.optional(),
+  failure: associatedTechniqueArraySchema.optional(),
+});
+
 /**
- * Returns object mapping technique IDs to SCs that reference it;
- * comparable to technique-associations.xml but in a more ergonomic format.
+ * Given a shorthand string of either a technique ID or title,
+ * expands to an object with either the id or title property defined.
+ */
+export function expandTechniqueToObject<O extends AssociatedTechniqueArray[number]>(
+  idOrTitle: string | O
+) {
+  if (typeof idOrTitle !== "string") return idOrTitle; // Already expanded
+  if (/^[A-Z]+\d+$/.test(idOrTitle)) return { id: idOrTitle };
+  return { title: idOrTitle };
+}
+
+/**
+ * Returns object mapping technique IDs to SCs that reference it,
+ * essentially inverting understanding.11tydata.js.
  */
 export async function getTechniqueAssociations(guidelines: FlatGuidelinesMap) {
   const associations: Record<string, TechniqueAssociation[]> = {};
-  const itemSelector = techniqueAssociationTypes.map((type) => `section#${type} li`).join(", ");
+  const associatedTechniques = eleventyUnderstanding({}).associatedTechniques;
 
-  const paths = await glob("understanding/*/*.html");
-  for (const path of paths) {
-    const criterion = guidelines[basename(path, ".html")];
-    if (!isSuccessCriterion(criterion)) continue;
+  function addAssociation(id: string, association: TechniqueAssociation) {
+    if (!(id in associations)) associations[id] = [association];
+    else associations[id].push(association);
+  }
 
-    const $ = await loadFromFile(path);
-    $(itemSelector).each((_, liEl) => {
-      const $liEl = $(liEl);
-      const $parentListItem = $liEl.closest("ul, ol").closest("li");
-      // Identify which expected section the list was found under
-      const associationType = $liEl
-        .closest(techniqueAssociationTypes.map((type) => `section#${type}`).join(", "))
-        .attr("id");
-      assertIsAssociationType(associationType);
+  function traverse(
+    techniques: AssociatedTechniqueArray,
+    criterion: SuccessCriterion,
+    type: TechniqueAssociationType,
+    parent?:
+      | z.infer<typeof associatedTechniqueEntrySchema>
+      | z.infer<typeof associatedTechniqueConjunctionSchema>
+  ) {
+    function resolveParentIds() {
+      if (!parent) return [];
+      if ("and" in parent)
+        return parent.and.reduce((ids, technique) => {
+          const expandedTechnique = expandTechniqueToObject(technique);
+          if (expandedTechnique.id) ids.push(expandedTechnique.id);
+          return ids;
+        }, [] as string[]);
+      return parent.id ? [parent.id] : [];
+    }
 
-      /** Finds matches only within the given list item (not under child lists) */
-      const queryNonNestedChildren = ($el: Cheerio<any>, selector: string) =>
-        $el.find(selector).filter((_, aEl) => $(aEl).closest("li")[0] === $el[0]);
+    function resolveParentDescription() {
+      if (!parent || !parent.using) return "";
+      const { using, usingQuantity, usingConjunction, usingText } = parent;
+      return ""; // TODO
+      // TODO: if (usingQuantity !== "one" && !usingText.includes("using one ")) append "when combined with other techniques"
+    }
 
-      const $techniqueLinks = queryNonNestedChildren($liEl, understandingToTechniqueLinkSelector);
-      $techniqueLinks.each((_, aEl) => {
-        const usageParentIds = queryNonNestedChildren(
-          $parentListItem,
-          understandingToTechniqueLinkSelector
-        )
-          .toArray()
-          .map((el) => resolveTechniqueIdFromHref(el.attribs.href));
+    const commonAssociationData = {
+      criterion,
+      type: capitalize(type) as Capitalize<TechniqueAssociationType>,
+      hasUsageChildren: false,
+      usageParentIds: resolveParentIds(),
+      usageParentDescription: resolveParentDescription(),
+    } satisfies Partial<TechniqueAssociation>;
 
-        // Capture the "X" in "X or more" phrasing, to include a phrase about
-        // combining with other techniques if more than one is required.
-        const descriptionDependencyPattern =
-          /(?:^|,?\s+)(?:by )?using\s+(?:(\w+) (?:or more )?of )?the\s+(?:following )?techniques(?: below)?(?::|\.)?\s*$/i;
-        const parentHtml = usageParentIds.length
-          ? null
-          : queryNonNestedChildren($parentListItem, "p").html();
-        const match = parentHtml && descriptionDependencyPattern.exec(parentHtml);
-        const parentDescription = parentHtml
-          ? parentHtml.replace(
-              descriptionDependencyPattern,
-              !match?.[1] || match?.[1] === "one" ? "" : "when combined with other techniques"
-            )
-          : "";
-        const usageParentDescription =
-          parentDescription &&
-          (parentDescription.startsWith("when")
-            ? parentDescription
-            : `when used for ${parentDescription[0].toLowerCase()}${parentDescription.slice(1)}`);
+    for (const techniqueOrString of techniques) {
+      const technique = expandTechniqueToObject(techniqueOrString);
+      if ("and" in technique) {
+        for (const andEntry of technique.and) {
+          const expandedEntry = expandTechniqueToObject(andEntry);
+          if (!expandedEntry.id || !isSuccessCriterion(criterion)) continue;
+          addAssociation(expandedEntry.id, {
+            ...commonAssociationData,
+            hasUsageChildren: false,
+            with: technique.and.reduce((ids, entry) => {
+              if (entry === andEntry) return ids;
+              const expandedEntry = expandTechniqueToObject(entry);
+              if (expandedEntry.id) ids.push(expandedEntry.id);
+              return ids;
+            }, [] as string[]),
+          });
+        }
+      } else if (technique.id) {
+        addAssociation(technique.id, {
+          ...commonAssociationData,
+          hasUsageChildren: "using" in technique,
+          with: [],
+        });
+      }
+      if ("using" in technique && technique.using) {
+        traverse(technique.using, criterion, type, technique);
+      }
+    }
+  }
 
-        const association: TechniqueAssociation = {
-          criterion,
-          type: capitalize(associationType) as Capitalize<TechniqueAssociationType>,
-          hasUsageChildren: !!$liEl.find("ul, ol").length,
-          usageParentIds,
-          usageParentDescription,
-          with: $techniqueLinks
-            .toArray()
-            .filter((el) => el !== aEl)
-            .map((el) => resolveTechniqueIdFromHref(el.attribs.href)),
-        };
+  for (const id of Object.keys(associatedTechniques)) {
+    const criterion = guidelines[id];
+    if (!criterion || !isSuccessCriterion(criterion)) continue; // Skip SCs not present in the version being processed
+    const association = understandingAssociatedTechniquesSchema.parse(
+      associatedTechniques[id as keyof typeof associatedTechniques]
+    );
 
-        const id = resolveTechniqueIdFromHref(aEl.attribs.href);
-        if (!(id in associations)) associations[id] = [association];
-        else associations[id].push(association);
-      });
-    });
+    for (const type of techniqueAssociationTypes) {
+      const topLevelEntries = association[type];
+      if (!topLevelEntries?.length) continue;
+      if (typeof topLevelEntries[0] !== "string" && "techniques" in topLevelEntries[0])
+        for (const section of topLevelEntries as z.infer<
+          typeof associatedTechniqueSectionSchema
+        >[]) {
+          traverse(section.techniques, criterion, type);
+          for (const group of section.groups || []) traverse(group.techniques, criterion, type);
+        }
+      else traverse(topLevelEntries, criterion, type);
+    }
   }
 
   // Remove duplicates (due to similar shape across understanding docs) and sort by SC number

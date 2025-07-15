@@ -22,6 +22,7 @@ import {
   type WcagItem,
 } from "11ty/guidelines";
 import {
+  expandTechniqueToObject,
   getFlatTechniques,
   getTechniqueAssociations,
   getTechniquesByTechnology,
@@ -410,11 +411,7 @@ export default async function (eleventyConfig: any) {
   );
 
   // Expands a technique shorthand string to an object with id or title
-  eleventyConfig.addFilter("expand-technique", (idOrTitle: string | {}) => {
-    if (typeof idOrTitle !== "string") return idOrTitle; // Already expanded
-    if (/^[A-Z]+\d+$/.test(idOrTitle)) return { id: idOrTitle };
-    return { title: idOrTitle };
-  });
+  eleventyConfig.addFilter("expand-technique", expandTechniqueToObject);
 
   // Renders a link to a GitHub commit or pull request
   eleventyConfig.addShortcode("gh", (id: string) => {
