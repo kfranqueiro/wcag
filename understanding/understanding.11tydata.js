@@ -624,12 +624,14 @@ export default function (data) {
 
       "keyboard-no-exception": {
         // 2.1.3
-        sufficient: [`
+        sufficient: [
+          `
           No additional techniques exist for this success criterion.
           Follow <a href="keyboard#techniques">techniques for Success Criterion 2.1.1</a>.
           If that is not possible because there is a requirement for path-dependent input,
           then it is not possible to meet this Level AAA success criterion.
-        `]
+        `,
+        ],
       },
 
       "character-key-shortcuts": {
@@ -721,7 +723,8 @@ export default function (data) {
             using: ["G1", "G123", "G124"],
           },
           {
-            title: "Grouping blocks of repeated material in a way that can be skipped,",
+            // TODO: represent trailing comma through means other than title (usingPrefix?)
+            title: "Grouping blocks of repeated material in a way that can be skipped",
             using: ["ARIA11", "H69", "PDF9", "H64", "SCR28"],
           },
         ],
@@ -1304,7 +1307,7 @@ export default function (data) {
           "H88",
           {
             title: "Ensuring that web pages can be parsed",
-            using: ["H74", "H75"],
+            using: [{ and: ["H74", "H93", "H94"] }, "H75"],
           },
         ],
         failure: ["F70", "F77"],

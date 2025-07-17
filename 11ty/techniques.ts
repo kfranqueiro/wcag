@@ -2,6 +2,7 @@ import type { Cheerio } from "cheerio";
 import { glob } from "glob";
 import matter from "gray-matter";
 import capitalize from "lodash-es/capitalize";
+import lowerFirst from "lodash-es/lowerFirst";
 import uniqBy from "lodash-es/uniqBy";
 import z from "zod";
 
@@ -203,17 +204,38 @@ export async function getTechniqueAssociations(guidelines: FlatGuidelinesMap) {
 
     function resolveParentDescription() {
       if (!parent || !parent.using) return "";
-      const { using, usingQuantity, usingConjunction, usingText } = parent;
-      return ""; // TODO
-      // TODO: if (usingQuantity !== "one" && !usingText.includes("using one ")) append "when combined with other techniques"
+      const { usingQuantity, usingText } = parent;
+      const singleQuantityKeywords = ["one", "any"];
+      const isSingular =
+        (!usingQuantity && !usingText) ||
+        singleQuantityKeywords.some(
+          (word) => usingQuantity === word || usingText?.includes(`using ${word} `)
+        );
+
+      if (isSingular) {
+        if ("title" in parent && parent.title)
+          return `when used for ${lowerFirst(parent.title.trim())}`;
+        else if ("and" in parent) {
+          const description = parent.and.reduce((description, technique) => {
+            const { title } = expandTechniqueToObject(technique);
+            if (title)
+              return `${description ? `${description} and ` : ""}${lowerFirst(title.trim())}`;
+            return description;
+          }, "");
+          return `when used for ${description}`;
+        }
+      }
+      return "when combined with other techniques";
     }
 
+    const usageParentIds = resolveParentIds();
     const commonAssociationData = {
       criterion,
       type: capitalize(type) as Capitalize<TechniqueAssociationType>,
       hasUsageChildren: false,
-      usageParentIds: resolveParentIds(),
-      usageParentDescription: resolveParentDescription(),
+      usageParentIds,
+      // TODO: test diff between mutually-exclusive or not
+      usageParentDescription: usageParentIds.length ? "" : resolveParentDescription(),
     } satisfies Partial<TechniqueAssociation>;
 
     for (const techniqueOrString of techniques) {
@@ -224,7 +246,7 @@ export async function getTechniqueAssociations(guidelines: FlatGuidelinesMap) {
           if (!expandedEntry.id || !isSuccessCriterion(criterion)) continue;
           addAssociation(expandedEntry.id, {
             ...commonAssociationData,
-            hasUsageChildren: false,
+            hasUsageChildren: "using" in technique,
             with: technique.and.reduce((ids, entry) => {
               if (entry === andEntry) return ids;
               const expandedEntry = expandTechniqueToObject(entry);
