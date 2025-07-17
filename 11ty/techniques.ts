@@ -152,6 +152,10 @@ const understandingAssociatedTechniquesSchema = z.strictObject({
   advisory: associatedTechniqueArraySchema.optional(),
   failure: associatedTechniqueArraySchema.optional(),
 });
+export type UnderstandingAssociatedTechniquesMap = Record<
+  string,
+  z.infer<typeof understandingAssociatedTechniquesSchema>
+>;
 
 /**
  * Given a shorthand string of either a technique ID or title,

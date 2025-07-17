@@ -3,6 +3,7 @@ export default function (data) {
     headerLabel: "Understanding Docs",
     headerUrl: data.understandingUrl,
     isUnderstanding: true,
+    /** @type {import("../11ty/techniques").UnderstandingAssociatedTechniquesMap} */
     associatedTechniques: {
       "non-text-content": {
         // 1.1.1
