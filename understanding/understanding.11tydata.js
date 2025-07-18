@@ -337,7 +337,7 @@ export default function (data) {
             title:
               "Marking sequences in the content as meaningful using one of the following techniques <strong>AND</strong> <> for those sequences",
             using: ["H34", "H56", "C6", "C8"],
-            usingText: "",
+            skipUsingText: true,
           },
           "C27",
           "PDF3",
@@ -432,12 +432,12 @@ export default function (data) {
               {
                 title: "Techniques for relative measurements",
                 using: ["C12", "C13", "C14"],
-                usingText: "",
+                skipUsingText: true,
               },
               {
                 title: "Techniques for text container resizing",
                 using: ["SCR34", "G146"],
-                usingText: "",
+                skipUsingText: true,
               },
             ],
             usingQuantity: "one or more",
@@ -723,7 +723,6 @@ export default function (data) {
             using: ["G1", "G123", "G124"],
           },
           {
-            // TODO: represent trailing comma through means other than title (usingPrefix?)
             title: "Grouping blocks of repeated material in a way that can be skipped",
             using: ["ARIA11", "H69", "PDF9", "H64", "SCR28"],
           },
@@ -961,17 +960,15 @@ export default function (data) {
               {
                 id: "G101",
                 using: [
-                  { id: "G55", using: ["H40"], usingText: "" },
-                  { id: "G112", using: ["H54"], usingText: "" },
+                  { id: "G55", using: ["H40"], skipUsingText: true },
+                  { id: "G112", using: ["H54"], skipUsingText: true },
                 ],
-                usingText:
-                  "for the first occurrence of the word or phrase in a web page using one of the following techniques:",
+                usingPrefix: "for the first occurrence of the word or phrase in a web page",
               },
               {
                 id: "G101",
-                using: [{ id: "G55", using: ["H40"], usingText: "" }, "G62", "G70"],
-                usingText:
-                  "for each occurrence of the word or phrase in a web page using one of the following techniques:",
+                using: [{ id: "G55", using: ["H40"], skipUsingText: true }, "G62", "G70"],
+                usingPrefix: "for each occurrence of the word or phrase in a web page",
               },
             ],
           },
@@ -982,11 +979,10 @@ export default function (data) {
               {
                 id: "G101",
                 using: [
-                  { id: "G55", using: ["H40"], usingText: "" },
-                  { id: "G112", using: ["H54"], usingText: "" },
+                  { id: "G55", using: ["H40"], skipUsingText: true },
+                  { id: "G112", using: ["H54"], skipUsingText: true },
                 ],
-                usingText:
-                  "for each occurrence of the word or phrase in a web page using one of the following techniques:",
+                usingPrefix: "for each occurrence of the word or phrase in a web page",
               },
             ],
           },
@@ -1002,14 +998,12 @@ export default function (data) {
               {
                 id: "G102",
                 using: ["G97", "G55", "PDF8"],
-                usingText:
-                  "for the first occurrence of the abbreviation in a web page using one of the following techniques:",
+                usingPrefix: "for the first occurrence of the abbreviation in a web page",
               },
               {
                 id: "G102",
                 using: ["G55", "G62", "G70", "PDF8"],
-                usingText:
-                  "for all occurrences of the abbreviation in a web page using one of the following techniques:",
+                usingPrefix: "for all occurrences of the abbreviation in a web page",
               },
             ],
           },
@@ -1020,8 +1014,7 @@ export default function (data) {
               {
                 id: "G102",
                 using: ["G55", "PDF8"],
-                usingText:
-                  "for all occurrences of abbreviations in a web page using one of the following techniques:",
+                usingPrefix: "for all occurrences of abbreviations in a web page",
               },
             ],
           },

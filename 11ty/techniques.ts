@@ -93,9 +93,10 @@ const associatedTechniqueSimpleEntrySchema = z.strictObject({
 
 // This schema does not represent a full object; it is combined with multiple other schemas below
 const associatedTechniqueUsingOptionsSchema = z.strictObject({
+  skipUsingText: z.boolean().optional(),
   usingConjunction: z.string().optional(),
+  usingPrefix: z.string().optional(),
   usingQuantity: z.string().optional(),
-  usingText: z.string().optional(),
 });
 
 // Note: `using` is defined as a getter in each schema where it is used,
@@ -204,13 +205,10 @@ export async function getTechniqueAssociations(guidelines: FlatGuidelinesMap) {
 
     function resolveParentDescription() {
       if (!parent || !parent.using) return "";
-      const { usingQuantity, usingText } = parent;
+      const { usingQuantity } = parent;
       const singleQuantityKeywords = ["one", "any"];
       const isSingular =
-        (!usingQuantity && !usingText) ||
-        singleQuantityKeywords.some(
-          (word) => usingQuantity === word || usingText?.includes(`using ${word} `)
-        );
+        !usingQuantity || singleQuantityKeywords.some((word) => usingQuantity === word);
 
       if (isSingular) {
         if ("title" in parent && parent.title)
@@ -234,7 +232,6 @@ export async function getTechniqueAssociations(guidelines: FlatGuidelinesMap) {
       type: capitalize(type) as Capitalize<TechniqueAssociationType>,
       hasUsageChildren: false,
       usageParentIds,
-      // TODO: test diff between mutually-exclusive or not
       usageParentDescription: usageParentIds.length ? "" : resolveParentDescription(),
     } satisfies Partial<TechniqueAssociation>;
 

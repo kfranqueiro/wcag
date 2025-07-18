@@ -12,21 +12,20 @@ Expected inputs:
       {%- for andEntry in technique.and %}
         {% unless forloop.first %}{{ andConjunction }}{% endunless %}
         {% include "understanding/techniques-entry.html", technique: andEntry %}
-      {% endfor -%}
+      {%- endfor -%}
     {%- else -%}
-      {% include "understanding/techniques-entry.html", technique: technique %}
+      {%- include "understanding/techniques-entry.html", technique: technique -%}
     {%- endif -%}
     {%- if technique.using %}
-      {%- assign usingConjunction = technique.usingConjunction | default-strict: "using" -%}
-      {%- assign usingQuantity = technique.usingQuantity | default-strict: "one" -%}
-      {%- if technique.usingText %}
-        {{ technique.usingText }}
-      {%- elsif technique.usingText == "" -%}
-        {%- # intentionally empty -%}
-      {%- else %}
+      {%- unless technique.skipUsingText -%}
+        {%- assign usingConjunction = technique.usingConjunction | default-strict: "using" -%}
+        {%- assign usingQuantity = technique.usingQuantity | default-strict: "one" -%}
+        {%- if technique.usingPrefix %}
+          {{ technique.usingPrefix }}
+        {%- endif %}
         {{ usingConjunction }}
         {% if groups -%}
-          {% # When groups are involved, flatten using to a single phrase joined by "AND" %}
+          {% # When groups are involved, flatten `using` to a single phrase joined by "AND" %}
           {%- for usingId in technique.using -%}
             {%- unless forloop.first %} <strong>AND</strong> {% endunless -%}
             {%- for group in groups -%}
@@ -40,9 +39,9 @@ Expected inputs:
         {% else -%}
           {{ usingQuantity }} {% if usingQuantity != "" %}of {% endif %}the following techniques
         {%- endif -%}
-        {% unless groups %}:</p>{% endunless %}
-      {%- endif -%}
-      {%- unless groups -%}
+      {%- endunless -%}
+      {% unless groups %}:
+        </p>
         {% include "understanding/techniques-list.html", techniques: technique.using %}
       {%- endunless -%}
     {% endif -%}
