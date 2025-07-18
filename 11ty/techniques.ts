@@ -1,10 +1,10 @@
-import type { Cheerio } from "cheerio";
 import { glob } from "glob";
 import matter from "gray-matter";
 import capitalize from "lodash-es/capitalize";
 import lowerFirst from "lodash-es/lowerFirst";
 import uniqBy from "lodash-es/uniqBy";
 import z from "zod";
+import { fromError } from "zod-validation-error";
 
 import { readFile } from "fs/promises";
 import { basename } from "path";
@@ -109,7 +109,7 @@ const associatedTechniqueEntrySchema = associatedTechniqueSimpleEntrySchema
   .extend(associatedTechniqueUsingOptionsSchema.shape)
   .extend({
     get using() {
-      return associatedTechniqueArraySchema.optional();
+      return associatedTechniqueArraySchema;
     },
   });
 
@@ -268,9 +268,17 @@ export async function getTechniqueAssociations(guidelines: FlatGuidelinesMap) {
   for (const id of Object.keys(associatedTechniques)) {
     const criterion = guidelines[id];
     if (!criterion || !isSuccessCriterion(criterion)) continue; // Skip SCs not present in the version being processed
-    const association = understandingAssociatedTechniquesSchema.parse(
+
+    const parseResult = understandingAssociatedTechniquesSchema.safeParse(
       associatedTechniques[id as keyof typeof associatedTechniques]
     );
+    if (parseResult.error) {
+      console.error(
+        `Parsing associated techniques for ${id}: ${fromError(parseResult.error)}`
+      );
+      throw new Error("Stopping due to associatedTechniques validation failure");
+    }
+    const association = parseResult.data;
 
     for (const type of techniqueAssociationTypes) {
       const topLevelEntries = association[type];
