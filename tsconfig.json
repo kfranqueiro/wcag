@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "allowJs": true,
+    "checkJs": true,
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
     "module": "ES2022",
@@ -10,5 +11,5 @@
     "target": "ES2022",
     "verbatimModuleSyntax": true
   },
-  "include": ["11ty/**/*.ts"]
+  "include": ["11ty/**/*.ts", "understanding/*.11tydata.js"]
 }

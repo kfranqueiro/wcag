@@ -1,3 +1,6 @@
+/**
+ * @param {any} data Data inherited from higher up 11ty's data cascade
+ */
 export default function (data) {
   return {
     headerLabel: "Understanding Docs",
