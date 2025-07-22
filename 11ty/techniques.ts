@@ -90,6 +90,9 @@ const associatedTechniqueSimpleEntrySchema = z.strictObject({
   id: z.string().optional(),
   title: z.string().optional(),
 });
+export type UnderstandingAssociatedTechniqueSimpleEntry = z.infer<
+  typeof associatedTechniqueSimpleEntrySchema
+>;
 
 // This schema does not represent a full object; it is combined with multiple other schemas below
 const associatedTechniqueUsingOptionsSchema = z.strictObject({
@@ -117,39 +120,56 @@ const associatedTechniqueConjunctionSchema = associatedTechniqueUsingOptionsSche
   get using() {
     return associatedTechniqueArraySchema.optional();
   },
-  and: z.array(z.union([z.string(), associatedTechniqueSimpleEntrySchema])),
+  and: z.array(z.union([z.string(), associatedTechniqueSimpleEntrySchema])).min(2),
   andConjunction: z.string().optional(),
 });
+export type UnderstandingAssociatedTechniqueParent =
+  | z.infer<typeof associatedTechniqueEntrySchema>
+  | z.infer<typeof associatedTechniqueConjunctionSchema>;
 
-const associatedTechniqueArraySchema = z.array(
-  z.union([
-    z.string(),
-    // *SimpleEntrySchema is a subset of *EntrySchema, but list both for more useful typings
-    associatedTechniqueSimpleEntrySchema,
-    associatedTechniqueEntrySchema,
-    associatedTechniqueConjunctionSchema,
-  ])
-);
-type AssociatedTechniqueArray = z.infer<typeof associatedTechniqueArraySchema>;
+const associatedTechniqueArraySchema = z
+  .array(
+    z.union([
+      z.string(),
+      // *SimpleEntrySchema is a subset of *EntrySchema, but list both for more useful typings
+      associatedTechniqueSimpleEntrySchema,
+      associatedTechniqueEntrySchema,
+      associatedTechniqueConjunctionSchema,
+    ])
+  )
+  .min(1);
+export type UnderstandingAssociatedTechniqueArray = z.infer<typeof associatedTechniqueArraySchema>;
+/** An associated technique that has already been run through expandTechniqueToObject */
+export type ResolvedUnderstandingAssociatedTechnique = Exclude<
+  UnderstandingAssociatedTechniqueArray[number],
+  string
+>;
 
 /** Allows optionally defining sections and subgroups within top-level associations */
-const associatedTechniqueSectionSchema = associatedTechniqueSimpleEntrySchema.extend({
+const associatedTechniqueSectionSchema = z.strictObject({
+  title: z.string(),
   groups: z
     .array(
-      associatedTechniqueSimpleEntrySchema.extend({
+      z.strictObject({
+        id: z.string(),
+        title: z.string(),
         techniques: associatedTechniqueArraySchema,
       })
     )
+    .min(1)
     .optional(),
   techniques: associatedTechniqueArraySchema,
   note: z.string().optional(),
 });
+export type UnderstandingAssociatedTechniqueSection = z.infer<
+  typeof associatedTechniqueSectionSchema
+>;
 
 const understandingAssociatedTechniquesSchema = z.strictObject({
   sufficientIntro: z.string().optional(),
   sufficientNote: z.string().optional(),
   sufficient: z
-    .union([z.array(associatedTechniqueSectionSchema), associatedTechniqueArraySchema])
+    .union([z.array(associatedTechniqueSectionSchema).min(1), associatedTechniqueArraySchema])
     .optional(),
   advisory: associatedTechniqueArraySchema.optional(),
   failure: associatedTechniqueArraySchema.optional(),
@@ -163,12 +183,10 @@ export type UnderstandingAssociatedTechniquesMap = Record<
  * Given a shorthand string of either a technique ID or title,
  * expands to an object with either the id or title property defined.
  */
-export function expandTechniqueToObject<O extends AssociatedTechniqueArray[number]>(
-  idOrTitle: string | O
-) {
+export function expandTechniqueToObject<O>(idOrTitle: string | O) {
   if (typeof idOrTitle !== "string") return idOrTitle; // Already expanded
-  if (/^[A-Z]+\d+$/.test(idOrTitle)) return { id: idOrTitle };
-  return { title: idOrTitle };
+  if (/^[A-Z]+\d+$/.test(idOrTitle)) return { id: idOrTitle as string };
+  return { title: idOrTitle as string };
 }
 
 /**
@@ -185,12 +203,10 @@ export async function getTechniqueAssociations(guidelines: FlatGuidelinesMap) {
   }
 
   function traverse(
-    techniques: AssociatedTechniqueArray,
+    techniques: UnderstandingAssociatedTechniqueArray,
     criterion: SuccessCriterion,
     type: TechniqueAssociationType,
-    parent?:
-      | z.infer<typeof associatedTechniqueEntrySchema>
-      | z.infer<typeof associatedTechniqueConjunctionSchema>
+    parent?: UnderstandingAssociatedTechniqueParent
   ) {
     function resolveParentIds() {
       if (!parent) return [];
@@ -273,9 +289,7 @@ export async function getTechniqueAssociations(guidelines: FlatGuidelinesMap) {
       associatedTechniques[id as keyof typeof associatedTechniques]
     );
     if (parseResult.error) {
-      console.error(
-        `Parsing associated techniques for ${id}: ${fromError(parseResult.error)}`
-      );
+      console.error(`Parsing associated techniques for ${id}: ${fromError(parseResult.error)}`);
       throw new Error("Stopping due to associatedTechniques validation failure");
     }
     const association = parseResult.data;
