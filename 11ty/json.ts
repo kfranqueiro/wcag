@@ -1,4 +1,5 @@
 import { load, type CheerioAPI } from "cheerio";
+import invert from "lodash-es/invert";
 
 import { writeFile } from "fs/promises";
 import { join } from "path";
@@ -15,6 +16,7 @@ import {
   getTermsMapForVersion,
   assertIsWcagVersion,
   getFlatGuidelines,
+  generateScSlugOverrides,
 } from "./guidelines";
 import {
   expandTechniqueToObject,
@@ -267,11 +269,16 @@ const resolveLinks = (html: string) =>
   });
 
 const associatedTechniques = eleventyUnderstanding({}).associatedTechniques;
-function createTechniquesFromSc(sc: SuccessCriterion, techniquesMap: Record<string, Technique>) {
+function createTechniquesFromSc(sc: SuccessCriterion, techniquesMap: Record<string, Technique>, version: WcagVersion) {
   if (sc.level === "") return {}; // Do not emit techniques for obsolete SC (e.g. 4.1.1)
 
-  const associations = associatedTechniques[sc.id];
-  if (!associations) throw new Error(`No associatedTechniques found for ${sc.id}`);
+  // Since SCs are already remapped for previous versions before calling this function,
+  // we need to be able to map back to the present to resolve keys in understanding.11tydata.ts
+  const scSlugMappings = invert(generateScSlugOverrides(version));
+
+  const scId = scSlugMappings[sc.id] || sc.id;
+  const associations = associatedTechniques[scId];
+  if (!associations) throw new Error(`No associatedTechniques found for ${scId}`);
   const techniques: SerializedTechniques = {};
 
   function resolveAssociatedTechniqueTitle(technique: ResolvedUnderstandingAssociatedTechnique) {
@@ -313,7 +320,7 @@ function createTechniquesFromSc(sc: SuccessCriterion, techniquesMap: Record<stri
       if (!title)
         throw new Error(
           "Couldn't resolve title for associated technique under " +
-            `${sc.id}: ${JSON.stringify(technique)}`
+            `${scId}: ${JSON.stringify(technique)}`
         );
 
       return {
@@ -421,7 +428,7 @@ export async function generateWcagJson(version: WcagVersion) {
                 ...spreadCommonProps(sc),
                 level: sc.level,
                 details: createDetailsFromSc(sc),
-                techniques: createTechniquesFromSc(sc, techniquesMap),
+                techniques: createTechniquesFromSc(sc, techniquesMap, version),
               }))
             ),
           }))

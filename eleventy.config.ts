@@ -11,13 +11,13 @@ import { resolveDecimalVersion } from "11ty/common";
 import {
   actRules,
   assertIsWcagVersion,
+  generateScSlugOverrides,
   getErrataForVersion,
   getFlatGuidelines,
   getPrinciples,
   getPrinciplesForVersion,
   getTermsMap,
   getTermsMapForVersion,
-  scSlugOverrides,
   type FlatGuidelinesMap,
   type WcagItem,
 } from "11ty/guidelines";
@@ -37,6 +37,8 @@ import type { EleventyContext, EleventyData, EleventyEvent } from "11ty/types";
 /** Version of WCAG to build */
 const version = process.env.WCAG_VERSION || "22";
 assertIsWcagVersion(version);
+
+const scSlugOverrides = generateScSlugOverrides(version);
 
 /**
  * Returns boolean indicating whether a technique is obsolete for the given version.
@@ -164,13 +166,7 @@ if (process.env.WCAG_MODE === "editors") {
 }
 
 /** Applies any overridden SC IDs to incoming Understanding fileSlugs */
-function resolveUnderstandingFileSlug(fileSlug: string) {
-  if (fileSlug in scSlugOverrides) {
-    assertIsWcagVersion(version);
-    return scSlugOverrides[fileSlug](version);
-  }
-  return fileSlug;
-}
+const resolveUnderstandingFileSlug = (fileSlug: string) => scSlugOverrides[fileSlug] || fileSlug;
 
 export default async function (eleventyConfig: any) {
   for (const [name, value] of Object.entries(globalData)) eleventyConfig.addGlobalData(name, value);
