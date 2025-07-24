@@ -206,7 +206,8 @@ export async function getTechniqueAssociations(guidelines: FlatGuidelinesMap) {
     techniques: UnderstandingAssociatedTechniqueArray,
     criterion: SuccessCriterion,
     type: TechniqueAssociationType,
-    parent?: UnderstandingAssociatedTechniqueParent
+    parent?: UnderstandingAssociatedTechniqueParent,
+    groups?: UnderstandingAssociatedTechniqueSection["groups"]
   ) {
     function resolveParentIds() {
       if (!parent) return [];
@@ -276,6 +277,16 @@ export async function getTechniqueAssociations(guidelines: FlatGuidelinesMap) {
         });
       }
       if ("using" in technique && technique.using) {
+        if (groups) {
+          for (const value of technique.using) {
+            if (typeof value !== "string")
+              throw new Error(
+                "non-string `using` value found for section with groups:\n" + JSON.stringify(value)
+              );
+            if (!groups.some(({ id }) => id === value))
+              throw new Error(`Could not match using value ${value} to a group in the section`);
+          }
+        }
         traverse(technique.using, criterion, type, technique);
       }
     }

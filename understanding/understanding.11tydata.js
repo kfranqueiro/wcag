@@ -71,7 +71,7 @@ export default function (data) {
           },
           {
             title:
-              "Situation D: If non-text content is time-based media (including live video-only and live audio-only); a test or exercise that would be invalid if presented in text; or primarily intended to create a specific sensory experience",
+              "Situation D: If non-text content is time-based media (including live video-only and live audio-only); a test or exercise that would be invalid if presented in text; or primarily intended to create a specific sensory experience:",
             techniques: [
               {
                 title: "Providing a descriptive label",

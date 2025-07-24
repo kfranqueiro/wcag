@@ -23,7 +23,7 @@ Data for associated techniques is defined in understanding/understanding.11tydat
       {% endif -%}
       {% include "understanding/techniques-subsection.html", type: "sufficient" %}
       {%- if assocEntry.sufficientNote -%}
-        {% include "note.html", note: assocEntry.sufficientNote %}
+        {% include "note.html", note: assocEntry.sufficientNote | strip %}
       {%- endif -%}
     </section>
   {% endif -%}
