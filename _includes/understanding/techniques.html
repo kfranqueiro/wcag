@@ -14,7 +14,8 @@ Data for associated techniques is defined in understanding/understanding.11tydat
     particularly the "Other Techniques" section.
   </p>
 
-  {%- assign assocEntry = associatedTechniques[guideline.id] -%}
+  {% # Reference associatedTechniques via filename (not remapped for older versions) %}
+  {%- assign assocEntry = associatedTechniques[page.fileSlug] -%}
   {%- if assocEntry.sufficient %}
     <section id="sufficient">
       <h3>Sufficient Techniques</h3>

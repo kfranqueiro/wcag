@@ -81,7 +81,7 @@ const techniques = await getTechniquesByTechnology(flatGuidelines);
 const flatTechniques = getFlatTechniques(techniques);
 
 /** Maps technique IDs to SCs found in target version */
-const techniqueAssociations = await getTechniqueAssociations(flatGuidelines);
+const techniqueAssociations = await getTechniqueAssociations(flatGuidelines, version);
 for (const [id, associations] of Object.entries(techniqueAssociations)) {
   // Prune associations from non-obsolete techniques to obsolete SCs
   techniqueAssociations[id] = associations.filter(
@@ -89,7 +89,7 @@ for (const [id, associations] of Object.entries(techniqueAssociations)) {
   );
 }
 /** Maps technique IDs to SCs only found in later versions */
-const futureTechniqueAssociations = await getTechniqueAssociations(futureGuidelines);
+const futureTechniqueAssociations = await getTechniqueAssociations(futureGuidelines, version);
 /** Subset of futureTechniqueAssociations not overlapping with techniqueAssociations */
 const futureExclusiveTechniqueAssociations: typeof techniqueAssociations = {};
 

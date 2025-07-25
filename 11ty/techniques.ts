@@ -13,6 +13,7 @@ import eleventyUnderstanding from "../understanding/understanding.11tydata";
 import { load } from "./cheerio";
 import {
   assertIsWcagVersion,
+  generateScSlugOverrides,
   isSuccessCriterion,
   type FlatGuidelinesMap,
   type SuccessCriterion,
@@ -193,9 +194,10 @@ export function expandTechniqueToObject<O>(idOrTitle: string | O) {
  * Returns object mapping technique IDs to SCs that reference it,
  * essentially inverting understanding.11tydata.js.
  */
-export async function getTechniqueAssociations(guidelines: FlatGuidelinesMap) {
+export async function getTechniqueAssociations(guidelines: FlatGuidelinesMap, version: WcagVersion) {
   const associations: Record<string, TechniqueAssociation[]> = {};
   const associatedTechniques = eleventyUnderstanding({}).associatedTechniques;
+  const scOverrides = generateScSlugOverrides(version);
 
   function addAssociation(id: string, association: TechniqueAssociation) {
     if (!(id in associations)) associations[id] = [association];
@@ -293,7 +295,7 @@ export async function getTechniqueAssociations(guidelines: FlatGuidelinesMap) {
   }
 
   for (const id of Object.keys(associatedTechniques)) {
-    const criterion = guidelines[id];
+    const criterion = guidelines[scOverrides[id] || id];
     if (!criterion || !isSuccessCriterion(criterion)) continue; // Skip SCs not present in the version being processed
 
     const parseResult = understandingAssociatedTechniquesSchema.safeParse(

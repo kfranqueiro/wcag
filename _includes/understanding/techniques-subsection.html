@@ -5,7 +5,8 @@ Expected input:
 Also references global guideline and associatedTechniques data.
 {%- endcomment -%}
 
-{%- assign assocEntry = associatedTechniques[guideline.id] -%}
+{% # Reference associatedTechniques via filename (not remapped for older versions) %}
+{%- assign assocEntry = associatedTechniques[page.fileSlug] -%}
 {%- if assocEntry[type][0].techniques -%}
   {% # Top-level array contains sections/situations, not techniques %}
   {%- for section in assocEntry[type] -%}
