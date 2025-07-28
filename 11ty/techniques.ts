@@ -3,13 +3,17 @@ import matter from "gray-matter";
 import capitalize from "lodash-es/capitalize";
 import lowerFirst from "lodash-es/lowerFirst";
 import uniqBy from "lodash-es/uniqBy";
-import z from "zod";
-import { fromError } from "zod-validation-error";
 
 import { readFile } from "fs/promises";
 import { basename } from "path";
 
-import eleventyUnderstanding from "../understanding/understanding.11tydata";
+import type {
+  UnderstandingAssociatedTechniqueArray,
+  UnderstandingAssociatedTechniqueParent,
+  UnderstandingAssociatedTechniqueSection,
+} from "understanding/understanding";
+import eleventyUnderstanding from "understanding/understanding.11tydata";
+
 import { load } from "./cheerio";
 import {
   assertIsWcagVersion,
@@ -85,101 +89,6 @@ export const understandingToTechniqueLinkSelector = [
   .map((value) => `a${value}`)
   .join(", ") as "a";
 
-// Zod schemas to provide validation and typings for associatedTechniques in understanding.11tydata.js
-
-const associatedTechniqueSimpleEntrySchema = z.strictObject({
-  id: z.string().optional(),
-  title: z.string().optional(),
-});
-export type UnderstandingAssociatedTechniqueSimpleEntry = z.infer<
-  typeof associatedTechniqueSimpleEntrySchema
->;
-
-// This schema does not represent a full object; it is combined with multiple other schemas below
-const associatedTechniqueUsingOptionsSchema = z.strictObject({
-  skipUsingText: z.boolean().optional(),
-  usingConjunction: z.string().optional(),
-  usingPrefix: z.string().optional(),
-  usingQuantity: z.string().optional(),
-});
-
-// Note: `using` is defined as a getter in each schema where it is used,
-// in order for recursion to work without the need for explicit typings.
-// The getter must be defined directly in extend, and won't work with spread operators present.
-// See https://zod.dev/v4?id=recursive-objects RE getters in zod v4,
-// and https://github.com/colinhacks/zod/issues/4691#issuecomment-2978123999 RE spread.
-
-const associatedTechniqueEntrySchema = associatedTechniqueSimpleEntrySchema
-  .extend(associatedTechniqueUsingOptionsSchema.shape)
-  .extend({
-    get using() {
-      return associatedTechniqueArraySchema;
-    },
-  });
-
-const associatedTechniqueConjunctionSchema = associatedTechniqueUsingOptionsSchema.extend({
-  get using() {
-    return associatedTechniqueArraySchema.optional();
-  },
-  and: z.array(z.union([z.string(), associatedTechniqueSimpleEntrySchema])).min(2),
-  andConjunction: z.string().optional(),
-});
-export type UnderstandingAssociatedTechniqueParent =
-  | z.infer<typeof associatedTechniqueEntrySchema>
-  | z.infer<typeof associatedTechniqueConjunctionSchema>;
-
-const associatedTechniqueArraySchema = z
-  .array(
-    z.union([
-      z.string(),
-      // *SimpleEntrySchema is a subset of *EntrySchema, but list both for more useful typings
-      associatedTechniqueSimpleEntrySchema,
-      associatedTechniqueEntrySchema,
-      associatedTechniqueConjunctionSchema,
-    ])
-  )
-  .min(1);
-export type UnderstandingAssociatedTechniqueArray = z.infer<typeof associatedTechniqueArraySchema>;
-/** An associated technique that has already been run through expandTechniqueToObject */
-export type ResolvedUnderstandingAssociatedTechnique = Exclude<
-  UnderstandingAssociatedTechniqueArray[number],
-  string
->;
-
-/** Allows optionally defining sections and subgroups within top-level associations */
-const associatedTechniqueSectionSchema = z.strictObject({
-  title: z.string(),
-  groups: z
-    .array(
-      z.strictObject({
-        id: z.string(),
-        title: z.string(),
-        techniques: associatedTechniqueArraySchema,
-      })
-    )
-    .min(1)
-    .optional(),
-  techniques: associatedTechniqueArraySchema,
-  note: z.string().optional(),
-});
-export type UnderstandingAssociatedTechniqueSection = z.infer<
-  typeof associatedTechniqueSectionSchema
->;
-
-const understandingAssociatedTechniquesSchema = z.strictObject({
-  sufficientIntro: z.string().optional(),
-  sufficientNote: z.string().optional(),
-  sufficient: z
-    .union([z.array(associatedTechniqueSectionSchema).min(1), associatedTechniqueArraySchema])
-    .optional(),
-  advisory: associatedTechniqueArraySchema.optional(),
-  failure: associatedTechniqueArraySchema.optional(),
-});
-export type UnderstandingAssociatedTechniquesMap = Record<
-  string,
-  z.infer<typeof understandingAssociatedTechniquesSchema>
->;
-
 /**
  * Given a shorthand string of either a technique ID or title,
  * expands to an object with either the id or title property defined.
@@ -190,11 +99,40 @@ export function expandTechniqueToObject<O>(idOrTitle: string | O) {
   return { title: idOrTitle as string };
 }
 
+/** Convenience function used to report validation errors */
+function throwCriterionError(criterion: SuccessCriterion, description: string): never {
+  throw new Error(`Associated techniques for ${criterion.id} contains ${description}`);
+}
+
+/** Checks for mistakes in sections that define groups */
+function validateGroupReferences(
+  criterion: SuccessCriterion,
+  techniques: UnderstandingAssociatedTechniqueArray,
+  groups: Exclude<UnderstandingAssociatedTechniqueSection["groups"], undefined>
+) {
+  for (const techniqueOrString of techniques) {
+    const technique = expandTechniqueToObject(techniqueOrString);
+    if (!("using" in technique)) return;
+    for (const value of technique.using) {
+      if (typeof value !== "string")
+        throwCriterionError(criterion, "non-string `using` value under a section with groups");
+      if (!groups.some(({ id }) => id === value))
+        throwCriterionError(
+          criterion,
+          `\`using\` value ${value}, which doesn't match any group in the section`
+        );
+    }
+  }
+}
+
 /**
  * Returns object mapping technique IDs to SCs that reference it,
  * essentially inverting understanding.11tydata.js.
  */
-export async function getTechniqueAssociations(guidelines: FlatGuidelinesMap, version: WcagVersion) {
+export async function getTechniqueAssociations(
+  guidelines: FlatGuidelinesMap,
+  version: WcagVersion
+) {
   const associations: Record<string, TechniqueAssociation[]> = {};
   const associatedTechniques = eleventyUnderstanding({}).associatedTechniques;
   const scOverrides = generateScSlugOverrides(version);
@@ -204,19 +142,21 @@ export async function getTechniqueAssociations(guidelines: FlatGuidelinesMap, ve
     else associations[id].push(association);
   }
 
+  /** Traverses one level of techniques; called recursively for `using`. */
   function traverse(
     techniques: UnderstandingAssociatedTechniqueArray,
     criterion: SuccessCriterion,
     type: TechniqueAssociationType,
-    parent?: UnderstandingAssociatedTechniqueParent,
-    groups?: UnderstandingAssociatedTechniqueSection["groups"]
+    parent?: UnderstandingAssociatedTechniqueParent
   ) {
+    if (techniques.length < 1) throwCriterionError(criterion, `an empty array of techniques`);
+
     function resolveParentIds() {
       if (!parent) return [];
       if ("and" in parent)
-        return parent.and.reduce((ids, technique) => {
-          const expandedTechnique = expandTechniqueToObject(technique);
-          if (expandedTechnique.id) ids.push(expandedTechnique.id);
+        return parent.and.reduce((ids, techniqueOrString) => {
+          const technique = expandTechniqueToObject(techniqueOrString);
+          if (technique.id) ids.push(technique.id);
           return ids;
         }, [] as string[]);
       return parent.id ? [parent.id] : [];
@@ -256,9 +196,22 @@ export async function getTechniqueAssociations(guidelines: FlatGuidelinesMap, ve
 
     for (const techniqueOrString of techniques) {
       const technique = expandTechniqueToObject(techniqueOrString);
+      if ("groups" in technique)
+        throwCriterionError(
+          criterion,
+          `\`groups\` in unexpected context (only valid in top-level sections)`
+        );
+
       if ("and" in technique) {
+        if (technique.and.length < 2)
+          throwCriterionError(criterion, `\`and\` with less than 2 entries`);
         for (const andEntry of technique.and) {
           const expandedEntry = expandTechniqueToObject(andEntry);
+          if ("and" in expandedEntry || "using" in expandedEntry)
+            throwCriterionError(
+              criterion,
+              `invalid nested structure under \`and\` (cannot contain \`and\` or \`using\`)`
+            );
           if (!expandedEntry.id || !isSuccessCriterion(criterion)) continue;
           addAssociation(expandedEntry.id, {
             ...commonAssociationData,
@@ -278,46 +231,45 @@ export async function getTechniqueAssociations(guidelines: FlatGuidelinesMap, ve
           with: [],
         });
       }
-      if ("using" in technique && technique.using) {
-        if (groups) {
-          for (const value of technique.using) {
-            if (typeof value !== "string")
-              throw new Error(
-                "non-string `using` value found for section with groups:\n" + JSON.stringify(value)
-              );
-            if (!groups.some(({ id }) => id === value))
-              throw new Error(`Could not match using value ${value} to a group in the section`);
-          }
-        }
-        traverse(technique.using, criterion, type, technique);
-      }
+
+      if ("using" in technique) traverse(technique.using, criterion, type, technique);
+      else if (Object.keys(technique).some((key) => key.startsWith("using")))
+        throwCriterionError(criterion, `a using-related key but no \`using\` array`);
     }
   }
 
   for (const id of Object.keys(associatedTechniques)) {
     const criterion = guidelines[scOverrides[id] || id];
     if (!criterion || !isSuccessCriterion(criterion)) continue; // Skip SCs not present in the version being processed
+    const association = associatedTechniques[id];
 
-    const parseResult = understandingAssociatedTechniquesSchema.safeParse(
-      associatedTechniques[id as keyof typeof associatedTechniques]
-    );
-    if (parseResult.error) {
-      console.error(`Parsing associated techniques for ${id}: ${fromError(parseResult.error)}`);
-      throw new Error("Stopping due to associatedTechniques validation failure");
+    if (
+      !("sufficient" in association) &&
+      Object.keys(association).some((key) => key.startsWith("sufficient"))
+    ) {
+      throwCriterionError(criterion, `sufficient-related key but no \`sufficient\` array`);
     }
-    const association = parseResult.data;
 
     for (const type of techniqueAssociationTypes) {
+      if (!(type in association)) continue;
       const topLevelEntries = association[type];
-      if (!topLevelEntries?.length) continue;
-      if (typeof topLevelEntries[0] !== "string" && "techniques" in topLevelEntries[0])
-        for (const section of topLevelEntries as z.infer<
-          typeof associatedTechniqueSectionSchema
-        >[]) {
+      if (!topLevelEntries?.length)
+        throwCriterionError(criterion, `empty \`${type}\` array; either add items, or omit it`);
+
+      const sectionCount = topLevelEntries.filter(
+        (entry) => typeof entry !== "string" && "techniques" in entry
+      ).length;
+      if (sectionCount !== 0 && sectionCount !== topLevelEntries.length)
+        throwCriterionError(criterion, `a mix of top-level sections and techniques`);
+
+      if (sectionCount)
+        for (const section of topLevelEntries as UnderstandingAssociatedTechniqueSection[]) {
+          if (section.groups)
+            validateGroupReferences(criterion, section.techniques, section.groups);
           traverse(section.techniques, criterion, type);
           for (const group of section.groups || []) traverse(group.techniques, criterion, type);
         }
-      else traverse(topLevelEntries, criterion, type);
+      else traverse(topLevelEntries as UnderstandingAssociatedTechniqueArray, criterion, type);
     }
   }
 

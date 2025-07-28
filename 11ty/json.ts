@@ -4,7 +4,14 @@ import invert from "lodash-es/invert";
 import { writeFile } from "fs/promises";
 import { join } from "path";
 
-import eleventyUnderstanding from "../understanding/understanding.11tydata";
+import type {
+  ResolvedUnderstandingAssociatedTechnique,
+  UnderstandingAssociatedTechniqueArray,
+  UnderstandingAssociatedTechniqueEntry,
+  UnderstandingAssociatedTechniqueParent,
+  UnderstandingAssociatedTechniqueSection,
+} from "understanding/understanding";
+import eleventyUnderstanding from "understanding/understanding.11tydata";
 
 import { type CheerioAnyNode } from "./cheerio";
 import { resolveDecimalVersion } from "./common";
@@ -23,13 +30,8 @@ import {
   getFlatTechniques,
   getTechniquesByTechnology,
   techniqueAssociationTypes,
-  type UnderstandingAssociatedTechniqueArray,
   type Technique,
   type TechniqueAssociationType,
-  type UnderstandingAssociatedTechniqueSection,
-  type UnderstandingAssociatedTechniqueParent,
-  type UnderstandingAssociatedTechniqueSimpleEntry,
-  type ResolvedUnderstandingAssociatedTechnique,
 } from "./techniques";
 
 const removeNewlines = (str: string) => str.trim().replace(/\n\s+/g, " ");
@@ -269,7 +271,11 @@ const resolveLinks = (html: string) =>
   });
 
 const associatedTechniques = eleventyUnderstanding({}).associatedTechniques;
-function createTechniquesFromSc(sc: SuccessCriterion, techniquesMap: Record<string, Technique>, version: WcagVersion) {
+function createTechniquesFromSc(
+  sc: SuccessCriterion,
+  techniquesMap: Record<string, Technique>,
+  version: WcagVersion
+) {
   if (sc.level === "") return {}; // Do not emit techniques for obsolete SC (e.g. 4.1.1)
 
   // Since SCs are already remapped for previous versions before calling this function,
@@ -293,16 +299,16 @@ function createTechniquesFromSc(sc: SuccessCriterion, techniquesMap: Record<stri
   }
 
   function mapAssociatedTechniques(
-    techniques: Array<string | UnderstandingAssociatedTechniqueSimpleEntry>
+    techniques: Array<string | UnderstandingAssociatedTechniqueEntry>
   ): SerializedTechniqueAssociation[];
   function mapAssociatedTechniques(
-    techniques: Array<string | ResolvedUnderstandingAssociatedTechnique>,
+    techniques: UnderstandingAssociatedTechniqueArray,
     hasGroups?: boolean
   ): SerializedTechniqueAssociationArray;
   function mapAssociatedTechniques(
     techniques:
-      | Array<string | UnderstandingAssociatedTechniqueSimpleEntry>
-      | Array<string | ResolvedUnderstandingAssociatedTechnique>,
+      | Array<string | UnderstandingAssociatedTechniqueEntry>
+      | UnderstandingAssociatedTechniqueArray,
     hasGroups?: boolean
   ) {
     return techniques.map((t) => {
@@ -362,7 +368,7 @@ function createTechniquesFromSc(sc: SuccessCriterion, techniquesMap: Record<stri
       );
     }
 
-    if (type === "sufficient" && associations.sufficientNote) {
+    if (type === "sufficient" && "sufficientNote" in associations && associations.sufficientNote) {
       // Copy sufficient note, with any definitions unlinked
       techniques.sufficientNote = cleanLinks(removeNewlines(associations.sufficientNote));
     }

@@ -11,5 +11,5 @@
     "target": "ES2022",
     "verbatimModuleSyntax": true
   },
-  "include": ["11ty/**/*.ts", "understanding/*.11tydata.js"]
+  "include": ["11ty/**/*.ts", "understanding/*.11tydata.js", "understanding/*.d.ts"]
 }
