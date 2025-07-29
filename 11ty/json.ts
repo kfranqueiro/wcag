@@ -213,6 +213,8 @@ function createDetailsFromSc(sc: SuccessCriterion) {
 interface SerializedTechniqueAssociation {
   id?: string;
   title: string;
+  prefix?: string;
+  suffix?: string;
   using?: SerializedTechniqueAssociationArray;
 }
 
@@ -288,14 +290,18 @@ function createTechniquesFromSc(
   const techniques: SerializedTechniques = {};
 
   function resolveAssociatedTechniqueTitle(technique: ResolvedUnderstandingAssociatedTechnique) {
+    if ("id" in technique && technique.id)
+      return { title: removeNewlines(techniquesMap[technique.id].title) };
+
     const hasUsingText = "using" in technique && !technique.skipUsingText;
-    if ("id" in technique && technique.id) return removeNewlines(techniquesMap[technique.id].title);
     if ("title" in technique && technique.title) {
-      return `${resolveLinks(removeNewlines(technique.title))}${
-        hasUsingText ? ` ${stringifyUsingProps(technique)}` : ""
-      }`;
+      return {
+        title: resolveLinks(removeNewlines(technique.title)),
+        ...(hasUsingText && { suffix: stringifyUsingProps(technique) }),
+      };
     }
-    if (hasUsingText) return stringifyUsingProps(technique);
+    if (hasUsingText) return { title: stringifyUsingProps(technique) };
+    return null;
   }
 
   function mapAssociatedTechniques(
@@ -321,9 +327,9 @@ function createTechniquesFromSc(
         };
       }
 
-      const id = "id" in technique ? technique.id : null;
-      const title = resolveAssociatedTechniqueTitle(technique);
-      if (!title)
+      const id = technique.id;
+      const titleProps = resolveAssociatedTechniqueTitle(technique);
+      if (!titleProps)
         throw new Error(
           "Couldn't resolve title for associated technique under " +
             `${scId}: ${JSON.stringify(technique)}`
@@ -331,7 +337,9 @@ function createTechniquesFromSc(
 
       return {
         ...(id && { id }),
-        title,
+        ...titleProps,
+        ...("prefix" in technique && technique.prefix && { prefix: technique.prefix }),
+        ...("suffix" in technique && technique.suffix && { suffix: technique.suffix }),
         ...("using" in technique && {
           // In the context of sections with groups, `using` will always be an array of group IDs
           using: hasGroups

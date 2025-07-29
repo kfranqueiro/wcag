@@ -333,12 +333,12 @@ export default function (data) {
         sufficient: [
           {
             id: "G57",
-            title: "<> for all the content in the web page",
+            suffix: "for all the content in the web page",
           },
           {
             id: "G57",
-            title:
-              "Marking sequences in the content as meaningful using one of the following techniques <strong>AND</strong> <> for those sequences",
+            prefix: "Marking sequences in the content as meaningful using one of the following techniques <strong>AND</strong>",
+            suffix: "for those sequences",
             using: ["H34", "H56", "C6", "C8"],
             skipUsingText: true,
           },
@@ -1049,8 +1049,8 @@ export default function (data) {
           "G121",
           {
             id: "G62",
-            title:
-              "<> that includes pronunciation information for words that have a unique pronunciation in the content and have meaning that depends on pronunciation",
+            suffix:
+              "that includes pronunciation information for words that have a unique pronunciation in the content and have meaning that depends on pronunciation",
           },
           "G163",
           "H62",
@@ -1413,11 +1413,11 @@ export default function (data) {
           'Using <code>role="timer"</code> (future link)',
           {
             id: "ARIA18",
-            title: "Where appropriate, moving focus to new content with <>",
+            prefix: "Where appropriate, moving focus to new content with",
           },
           {
             id: "SCR14",
-            title: "Supporting personalization with <>",
+            prefix: "Supporting personalization with",
           },
         ],
         failure: [

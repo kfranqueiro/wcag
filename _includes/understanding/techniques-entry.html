@@ -7,11 +7,9 @@ Expected input:
 {% assign techniqueObj = technique | expand-technique %}
 {%- if techniqueObj.id -%}
   {%- capture techniqueLink %}{{ techniqueObj.id | linkTechniques }}{% endcapture -%}
-  {%- if techniqueObj.title -%}
-    {{ techniqueObj.title | replace: "<>", techniqueLink }}
-  {%- else -%}
-    {{ techniqueLink }}
-  {%- endif -%}
+  {%- if techniqueObj.prefix %}{{ techniqueObj.prefix }} {% endif -%}
+  {{ techniqueLink }}
+  {%- if techniqueObj.suffix %} {{ techniqueObj.suffix }}{% endif -%}
 {%- elsif techniqueObj.title -%}
   {{ techniqueObj.title }}
 {%- endif -%}

@@ -1,6 +1,10 @@
 export interface UnderstandingAssociatedTechniqueEntry {
   id?: string;
   title?: string;
+  /** Combines with `id` to specify text before the linked technique title */
+  prefix?: string;
+  /** Combines with `id` to specify text after the linked technique title */
+  suffix?: string;
 }
 
 interface UnderstandingAssociatedTechniqueUsingMixin {
