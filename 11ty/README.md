@@ -47,15 +47,11 @@ recommended for brevity when no `using` or `and` relationship is present.
 The following list outlines properties available on each technique object:
 
 - `id` - Technique ID
-  - When `id` is specified, `title` defaults to a link containing the referenced technique's title
-- `title` - Technique description (HTML flow content allowed)
-  - Can be used to define free-form entries that don't reference a specific technique
-  - Can also be used to override/complement default title determined from `id`;
-    the technique link that would normally be produced by `id` can be included via an empty pair of angle brackets (`<>`)
+- `title` - Technique description (HTML flow content allowed), to define free-form entries that don't reference a specific technique
 - `using` - Optional array of further techniques to be populated into a child list
   - Child techniques may also include `using`
 - `usingConjunction` - When using is specified, this overrides the word that appears before usingQuantity
-  - Default: `"using"`, HTML flow content allowed
+  - Default: `"using"`; HTML flow content allowed
 - `usingQuantity` - When using is specified, this overrides the word that appears after `usingConjunction` and before "of the following techniques"
   - Default: `"one"`
   - May be empty string (`""`), in which case the subsequent "of" is dropped
@@ -63,7 +59,10 @@ The following list outlines properties available on each technique object:
 - `skipUsingText` - Omits the entire "... using ... of the following techniques" phrase
   - This is mainly an escape hatch for rare instances where a child list is used but no "using" phrase appears at all (e.g. in 1.4.4: Resize Text)
 
-Typically, either `id` or `title` is required; both can also be used together as noted above.
+Typically, either `id` or `title` is required.
+If `id` is specified, then `prefix` and/or `suffix` may also be specified (with HTML flow content allowed in each),
+with the resulting output being "{prefix} {linked technique title} {suffix}".
+
 In extremely rare cases, `using` may be specified alone without either `id` or `title`,
 e.g. for top-level "Using two or more of the following" in 2.4.5: Multiple Ways.
 
