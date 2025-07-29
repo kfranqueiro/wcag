@@ -290,16 +290,19 @@ function createTechniquesFromSc(
   const techniques: SerializedTechniques = {};
 
   function resolveAssociatedTechniqueTitle(technique: ResolvedUnderstandingAssociatedTechnique) {
-    if ("id" in technique && technique.id)
-      return { title: removeNewlines(techniquesMap[technique.id].title) };
-
     const hasUsingText = "using" in technique && !technique.skipUsingText;
-    if ("title" in technique && technique.title) {
+    if ("id" in technique && technique.id)
+      return {
+        title: removeNewlines(techniquesMap[technique.id].title),
+        ...(hasUsingText && { suffix: stringifyUsingProps(technique) }),
+      };
+
+    if ("title" in technique && technique.title)
       return {
         title: resolveLinks(removeNewlines(technique.title)),
         ...(hasUsingText && { suffix: stringifyUsingProps(technique) }),
       };
-    }
+
     if (hasUsingText) return { title: stringifyUsingProps(technique) };
     return null;
   }
