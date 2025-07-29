@@ -48,17 +48,33 @@ export type ResolvedUnderstandingAssociatedTechnique = Exclude<
   string
 >;
 
-/** A top-level section (most commonly used to define multiple situations) */
-export interface UnderstandingAssociatedTechniqueSection {
+interface UnderstandingAssociatedTechniqueSectionBase {
   title: string;
-  groups?: Array<{
-    id: string;
-    title: string;
-    techniques: UnderstandingAssociatedTechniqueArray;
-  }>;
-  techniques: UnderstandingAssociatedTechniqueArray;
   note?: string;
 }
+interface UnderstandingAssociatedTechniqueSectionWithoutGroups
+  extends UnderstandingAssociatedTechniqueSectionBase {
+  techniques: UnderstandingAssociatedTechniqueArray;
+  groups?: never; // Needed to form discriminated union between with/without
+}
+export interface UnderstandingAssociatedTechniqueGroup {
+  id: string;
+  title: string;
+  techniques: UnderstandingAssociatedTechniqueArray;
+}
+interface UnderstandingAssociatedTechniqueSectionWithGroups
+  extends UnderstandingAssociatedTechniqueSectionBase {
+  groups: UnderstandingAssociatedTechniqueGroup[];
+  // Restrict techniques to types without `using` when paired with `groups`
+  techniques: Array<
+    string | UnderstandingAssociatedTechniqueEntry | UnderstandingAssociatedTechniqueConjunction
+  >;
+}
+
+/** A top-level section (most commonly used to define multiple situations) */
+export type UnderstandingAssociatedTechniqueSection =
+  | UnderstandingAssociatedTechniqueSectionWithoutGroups
+  | UnderstandingAssociatedTechniqueSectionWithGroups;
 
 /** Object defining various types of techniques for a success criterion */
 interface UnderstandingAssociatedTechniques {
@@ -69,4 +85,7 @@ interface UnderstandingAssociatedTechniques {
   sufficientNote?: string;
 }
 
-export type UnderstandingAssociatedTechniquesMap = Record<string, UnderstandingAssociatedTechniques>;
+export type UnderstandingAssociatedTechniquesMap = Record<
+  string,
+  UnderstandingAssociatedTechniques
+>;

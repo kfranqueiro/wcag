@@ -9,6 +9,7 @@ import { basename } from "path";
 
 import type {
   UnderstandingAssociatedTechniqueArray,
+  UnderstandingAssociatedTechniqueGroup,
   UnderstandingAssociatedTechniqueParent,
   UnderstandingAssociatedTechniqueSection,
 } from "understanding/understanding";
@@ -104,27 +105,6 @@ function throwCriterionError(criterion: SuccessCriterion, description: string): 
   throw new Error(`Associated techniques for ${criterion.id} contains ${description}`);
 }
 
-/** Checks for mistakes in sections that define groups */
-function validateGroupReferences(
-  criterion: SuccessCriterion,
-  techniques: UnderstandingAssociatedTechniqueArray,
-  groups: Exclude<UnderstandingAssociatedTechniqueSection["groups"], undefined>
-) {
-  for (const techniqueOrString of techniques) {
-    const technique = expandTechniqueToObject(techniqueOrString);
-    if (!("using" in technique)) return;
-    for (const value of technique.using) {
-      if (typeof value !== "string")
-        throwCriterionError(criterion, "non-string `using` value under a section with groups");
-      if (!groups.some(({ id }) => id === value))
-        throwCriterionError(
-          criterion,
-          `\`using\` value ${value}, which doesn't match any group in the section`
-        );
-    }
-  }
-}
-
 /**
  * Returns object mapping technique IDs to SCs that reference it,
  * essentially inverting understanding.11tydata.js.
@@ -142,14 +122,18 @@ export async function getTechniqueAssociations(
     else associations[id].push(association);
   }
 
+  interface TraverseContext {
+    groups?: UnderstandingAssociatedTechniqueGroup[];
+    parent?: UnderstandingAssociatedTechniqueParent;
+  }
   /** Traverses one level of techniques; called recursively for `using`. */
   function traverse(
     techniques: UnderstandingAssociatedTechniqueArray,
     criterion: SuccessCriterion,
     type: TechniqueAssociationType,
-    parent?: UnderstandingAssociatedTechniqueParent
+    { groups, parent }: TraverseContext = {}
   ) {
-    if (techniques.length < 1) throwCriterionError(criterion, `an empty array of techniques`);
+    if (techniques.length < 1) throwCriterionError(criterion, "an empty array of techniques");
 
     function resolveParentIds() {
       if (!parent) return [];
@@ -163,6 +147,8 @@ export async function getTechniqueAssociations(
     }
 
     function resolveParentDescription() {
+      if (groups) return "using a more specific technique"; // Groups imply "using"
+
       if (!parent || !parent.using) return "";
       const { usingQuantity } = parent;
       const singleQuantityKeywords = ["one", "any"];
@@ -199,18 +185,18 @@ export async function getTechniqueAssociations(
       if ("groups" in technique)
         throwCriterionError(
           criterion,
-          `\`groups\` in unexpected context (only valid in top-level sections)`
+          "`groups` in unexpected context (only valid in top-level sections)"
         );
 
       if ("and" in technique) {
         if (technique.and.length < 2)
-          throwCriterionError(criterion, `\`and\` with less than 2 entries`);
+          throwCriterionError(criterion, "`and` with less than 2 entries");
         for (const andEntry of technique.and) {
           const expandedEntry = expandTechniqueToObject(andEntry);
           if ("and" in expandedEntry || "using" in expandedEntry)
             throwCriterionError(
               criterion,
-              `invalid nested structure under \`and\` (cannot contain \`and\` or \`using\`)`
+              "invalid nested structure under `and` (cannot contain `and` or `using`)"
             );
           if (!expandedEntry.id || !isSuccessCriterion(criterion)) continue;
           addAssociation(expandedEntry.id, {
@@ -232,9 +218,9 @@ export async function getTechniqueAssociations(
         });
       }
 
-      if ("using" in technique) traverse(technique.using, criterion, type, technique);
+      if ("using" in technique) traverse(technique.using, criterion, type, { parent: technique });
       else if (Object.keys(technique).some((key) => key.startsWith("using")))
-        throwCriterionError(criterion, `a using-related key but no \`using\` array`);
+        throwCriterionError(criterion, "a using-related key but no `using` array");
     }
   }
 
@@ -247,7 +233,7 @@ export async function getTechniqueAssociations(
       !("sufficient" in association) &&
       Object.keys(association).some((key) => key.startsWith("sufficient"))
     ) {
-      throwCriterionError(criterion, `sufficient-related key but no \`sufficient\` array`);
+      throwCriterionError(criterion, "sufficient-related key but no `sufficient` array");
     }
 
     for (const type of techniqueAssociationTypes) {
@@ -260,14 +246,21 @@ export async function getTechniqueAssociations(
         (entry) => typeof entry !== "string" && "techniques" in entry
       ).length;
       if (sectionCount !== 0 && sectionCount !== topLevelEntries.length)
-        throwCriterionError(criterion, `a mix of top-level sections and techniques`);
+        throwCriterionError(criterion, "a mix of top-level sections and techniques");
 
       if (sectionCount)
         for (const section of topLevelEntries as UnderstandingAssociatedTechniqueSection[]) {
-          if (section.groups)
-            validateGroupReferences(criterion, section.techniques, section.groups);
-          traverse(section.techniques, criterion, type);
-          for (const group of section.groups || []) traverse(group.techniques, criterion, type);
+          if ("groups" in section && section.groups) {
+            if (section.techniques.some((t) => typeof t !== "string" && "using" in t))
+              throwCriterionError(
+                criterion,
+                "`using` in the context of a section with groups; the latter already implies the former"
+              );
+            traverse(section.techniques, criterion, type, { groups: section.groups });
+            for (const group of section.groups) traverse(group.techniques, criterion, type);
+          } else {
+            traverse(section.techniques, criterion, type);
+          }
         }
       else traverse(topLevelEntries as UnderstandingAssociatedTechniqueArray, criterion, type);
     }

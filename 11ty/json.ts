@@ -289,21 +289,27 @@ function createTechniquesFromSc(
   if (!associations) throw new Error(`No associatedTechniques found for ${scId}`);
   const techniques: SerializedTechniques = {};
 
-  function resolveAssociatedTechniqueTitle(technique: ResolvedUnderstandingAssociatedTechnique) {
-    const hasUsingText = "using" in technique && !technique.skipUsingText;
+  function resolveAssociatedTechniqueTitle(
+    technique: ResolvedUnderstandingAssociatedTechnique,
+    hasGroups?: boolean
+  ) {
+    const usingContent =
+      (hasGroups && "using one technique from each group outlined below") ||
+      ("using" in technique && !technique.skipUsingText && stringifyUsingProps(technique));
+
     if ("id" in technique && technique.id)
       return {
         title: removeNewlines(techniquesMap[technique.id].title),
-        ...(hasUsingText && { suffix: stringifyUsingProps(technique) }),
+        ...(usingContent && { suffix: usingContent }),
       };
 
     if ("title" in technique && technique.title)
       return {
         title: resolveLinks(removeNewlines(technique.title)),
-        ...(hasUsingText && { suffix: stringifyUsingProps(technique) }),
+        ...(usingContent && { suffix: usingContent }),
       };
 
-    if (hasUsingText) return { title: stringifyUsingProps(technique) };
+    if (usingContent) return { title: usingContent };
     return null;
   }
 
@@ -331,7 +337,7 @@ function createTechniquesFromSc(
       }
 
       const id = technique.id;
-      const titleProps = resolveAssociatedTechniqueTitle(technique);
+      const titleProps = resolveAssociatedTechniqueTitle(technique, hasGroups);
       if (!titleProps)
         throw new Error(
           "Couldn't resolve title for associated technique under " +
@@ -362,8 +368,8 @@ function createTechniquesFromSc(
       for (const section of associationsOfType as UnderstandingAssociatedTechniqueSection[]) {
         techniques[type]!.push({
           title: section.title,
-          techniques: mapAssociatedTechniques(section.techniques, !!section.groups),
-          ...(section.groups && {
+          techniques: mapAssociatedTechniques(section.techniques, "groups" in section),
+          ...("groups" in section && section.groups && {
             groups: section.groups.map((group) => ({
               id: group.id,
               title: group.title,

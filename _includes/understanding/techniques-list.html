@@ -6,7 +6,7 @@ Expected inputs:
 <ul>
 {%- for technique in techniques %}
   <li>
-    {% if technique.using %}{% unless groups %}<p>{% endunless %}{% endif %}
+    {% if technique.using %}<p>{% endif %}
     {%- if technique.and -%}
       {%- assign andConjunction = technique.andConjunction | default: "<strong>AND</strong>" -%}
       {%- for andEntry in technique.and %}
@@ -16,7 +16,13 @@ Expected inputs:
     {%- else -%}
       {%- include "understanding/techniques-entry.html", technique: technique -%}
     {%- endif -%}
-    {%- if technique.using %}
+    {% if groups -%}
+      {% # When groups are involved, generate a single "using" phrase joined by "AND" %}
+      {%- for group in groups -%}
+        {%- if forloop.first %} using {% else %} <strong>AND</strong> {% endif -%}
+        one of the following <strong><a href="#{{ group.id }}">{{ group.title }}</a></strong>
+      {%- endfor -%}
+    {%- elsif technique.using %}
       {%- unless technique.skipUsingText -%}
         {%- assign usingConjunction = technique.usingConjunction | default-strict: "using" -%}
         {%- assign usingQuantity = technique.usingQuantity | default-strict: "one" -%}
@@ -24,27 +30,11 @@ Expected inputs:
           {{ technique.usingPrefix }}
         {%- endif %}
         {{ usingConjunction }}
-        {% if groups -%}
-          {% # When groups are involved, flatten `using` to a single phrase joined by "AND" %}
-          {%- for usingId in technique.using -%}
-            {%- unless forloop.first %} <strong>AND</strong> {% endunless -%}
-            {%- for group in groups -%}
-              {%- if group.id == usingId -%}
-                {{ usingQuantity }} {% if usingQuantity != "" %}of {% endif %}the following
-                <strong><a href="#{{ group.id }}">{{ group.title }}</a></strong>
-                {%- break -%}
-              {%- endif -%}
-            {%- endfor -%}
-          {%- endfor -%}
-        {% else -%}
-          {{ usingQuantity }} {% if usingQuantity != "" %}of {% endif %}the following techniques
-        {%- endif -%}
-      {%- endunless -%}
-      {% unless groups %}:
-        </p>
-        {% include "understanding/techniques-list.html", techniques: technique.using %}
-      {%- endunless -%}
-    {% endif -%}
+        {{ usingQuantity }} {% if usingQuantity != "" %}of {% endif %}the following techniques
+      {%- endunless -%}:
+      </p>
+      {% include "understanding/techniques-list.html", techniques: technique.using %}
+    {%- endif -%}
   </li>
 {% endfor -%}
 </ul>

@@ -14,12 +14,7 @@ export default function (data) {
           {
             title:
               "Situation A: If a short description can serve the same purpose and present the same information as the non-text content:",
-            techniques: [
-              {
-                id: "G94",
-                using: ["text-equiv-all-situation-a-shorttext"],
-              },
-            ],
+            techniques: ["G94"],
             groups: [
               {
                 id: "text-equiv-all-situation-a-shorttext",
@@ -31,15 +26,7 @@ export default function (data) {
           {
             title:
               "Situation B: If a short description can <strong>not</strong> serve the same purpose and present the same information as the non-text content (e.g., a chart or diagram):",
-            techniques: [
-              {
-                id: "G95",
-                using: [
-                  "text-equiv-all-situation-b-shorttext",
-                  "text-equiv-all-situation-b-longtext",
-                ],
-              },
-            ],
+            techniques: ["G95"],
             groups: [
               {
                 id: "text-equiv-all-situation-b-shorttext",
@@ -55,12 +42,7 @@ export default function (data) {
           },
           {
             title: "Situation C: If non-text content is a control or accepts user input:",
-            techniques: [
-              {
-                id: "G82",
-                using: ["text-equiv-all-situation-c-controls"],
-              },
-            ],
+            techniques: ["G82"],
             groups: [
               {
                 id: "text-equiv-all-situation-c-controls",
@@ -72,20 +54,7 @@ export default function (data) {
           {
             title:
               "Situation D: If non-text content is time-based media (including live video-only and live audio-only); a test or exercise that would be invalid if presented in text; or primarily intended to create a specific sensory experience:",
-            techniques: [
-              {
-                title: "Providing a descriptive label",
-                using: ["text-equiv-all-situation-d-shorttext"],
-              },
-              {
-                id: "G68",
-                using: ["text-equiv-all-situation-d-shorttext"],
-              },
-              {
-                id: "G100",
-                using: ["text-equiv-all-situation-d-shorttext"],
-              },
-            ],
+            techniques: ["Providing a descriptive label", "G68", "G100"],
             groups: [
               {
                 id: "text-equiv-all-situation-d-shorttext",
@@ -102,11 +71,7 @@ export default function (data) {
             title:
               "Situation F: If the non-text content should be ignored by assistive technology:",
             techniques: [
-              {
-                title:
-                  "Implementing or marking the non-text content so that it will be ignored by assistive technology",
-                using: ["text-equiv-all-situation-f-notrequired"],
-              },
+              "Implementing or marking the non-text content so that it will be ignored by assistive technology",
             ],
             groups: [
               {
@@ -337,7 +302,8 @@ export default function (data) {
           },
           {
             id: "G57",
-            prefix: "Marking sequences in the content as meaningful using one of the following techniques <strong>AND</strong>",
+            prefix:
+              "Marking sequences in the content as meaningful using one of the following techniques <strong>AND</strong>",
             suffix: "for those sequences",
             using: ["H34", "H56", "C6", "C8"],
             skipUsingText: true,
