@@ -50,9 +50,9 @@ The following list outlines properties available on each technique object:
 - `title` - Technique description (HTML flow content allowed), to define free-form entries that don't reference a specific technique
 - `using` - Optional array of further techniques to be populated into a child list
   - Child techniques may also include `using`
-- `usingConjunction` - When using is specified, this overrides the word that appears before usingQuantity
+- `usingConjunction` - When `using` is specified, this overrides the word that appears before usingQuantity
   - Default: `"using"`; HTML flow content allowed
-- `usingQuantity` - When using is specified, this overrides the word that appears after `usingConjunction` and before "of the following techniques"
+- `usingQuantity` - When `using` is specified, this overrides the word that appears after `usingConjunction` and before "of the following techniques"
   - Default: `"one"`
   - May be empty string (`""`), in which case the subsequent "of" is dropped
 - `usingPrefix` - Adds text to appear before `usingConjunction`
@@ -61,7 +61,7 @@ The following list outlines properties available on each technique object:
 
 Typically, either `id` or `title` is required.
 If `id` is specified, then `prefix` and/or `suffix` may also be specified (with HTML flow content allowed in each),
-with the resulting output being "{prefix} {linked technique title} {suffix}".
+resulting in "{prefix} {linked technique title} {suffix}".
 
 In extremely rare cases, `using` may be specified alone without either `id` or `title`,
 e.g. for top-level "Using two or more of the following" in 2.4.5: Multiple Ways.
@@ -96,9 +96,8 @@ Subsection entries contain the following:
 
 Most of the situations in 1.1.1: Non-text Content include groupings which start with a boldface paragraph (not a heading),
 and are referenced one or more times within preceding "using" clauses.
-Groups can be defined at the top level of each situation/section entry as mentioned above;
-they are then expected to be referenced within `using` for individual technique entries.
-In this specific case, `using` is an array of strings corresponding to group IDs.
+Groups can be defined at the top level of each situation/section entry as mentioned above.
+Defining `groups` automatically implies a "using" relationship, without explicitly defining `using` for each technique.
 
 ## Environment Variables
 
