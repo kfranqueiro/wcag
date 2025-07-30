@@ -114,6 +114,8 @@ function resolveRelevantTermsMap() {
   if (!process.env.WCAG_VERSION) return getTermsMap();
   if (process.env.WCAG_FORCE_LOCAL_GUIDELINES)
     return getTermsMap(process.env.WCAG_FORCE_LOCAL_GUIDELINES);
+  assertIsWcagVersion(version);
+
   return getTermsMapForVersion(version);
 }
 const termsMap = await resolveRelevantTermsMap();
