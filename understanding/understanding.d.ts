@@ -8,7 +8,7 @@ export interface UnderstandingAssociatedTechniqueEntry {
 }
 
 interface UnderstandingAssociatedTechniqueUsingMixin {
-  skipUsingText?: boolean;
+  skipUsingPhrase?: boolean;
   using: UnderstandingAssociatedTechniqueArray;
   usingConjunction?: string;
   usingPrefix?: string;

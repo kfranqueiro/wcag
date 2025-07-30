@@ -306,7 +306,7 @@ export default function (data) {
               "Marking sequences in the content as meaningful using one of the following techniques <strong>AND</strong>",
             suffix: "for those sequences",
             using: ["H34", "H56", "C6", "C8"],
-            skipUsingText: true,
+            skipUsingPhrase: true,
           },
           "C27",
           "PDF3",
@@ -401,12 +401,12 @@ export default function (data) {
               {
                 title: "Techniques for relative measurements",
                 using: ["C12", "C13", "C14"],
-                skipUsingText: true,
+                skipUsingPhrase: true,
               },
               {
                 title: "Techniques for text container resizing",
                 using: ["SCR34", "G146"],
-                skipUsingText: true,
+                skipUsingPhrase: true,
               },
             ],
             usingPrefix: "by",
@@ -931,14 +931,14 @@ export default function (data) {
               {
                 id: "G101",
                 using: [
-                  { id: "G55", using: ["H40"], skipUsingText: true },
-                  { id: "G112", using: ["H54"], skipUsingText: true },
+                  { id: "G55", using: ["H40"], skipUsingPhrase: true },
+                  { id: "G112", using: ["H54"], skipUsingPhrase: true },
                 ],
                 usingPrefix: "for the first occurrence of the word or phrase in a web page",
               },
               {
                 id: "G101",
-                using: [{ id: "G55", using: ["H40"], skipUsingText: true }, "G62", "G70"],
+                using: [{ id: "G55", using: ["H40"], skipUsingPhrase: true }, "G62", "G70"],
                 usingPrefix: "for each occurrence of the word or phrase in a web page",
               },
             ],
@@ -950,8 +950,8 @@ export default function (data) {
               {
                 id: "G101",
                 using: [
-                  { id: "G55", using: ["H40"], skipUsingText: true },
-                  { id: "G112", using: ["H54"], skipUsingText: true },
+                  { id: "G55", using: ["H40"], skipUsingPhrase: true },
+                  { id: "G112", using: ["H54"], skipUsingPhrase: true },
                 ],
                 usingPrefix: "for each occurrence of the word or phrase in a web page",
               },

@@ -23,7 +23,7 @@ Expected inputs:
         one of the following <strong><a href="#{{ group.id }}">{{ group.title }}</a></strong>
       {%- endfor -%}
     {%- elsif technique.using %}
-      {%- unless technique.skipUsingText -%}
+      {%- unless technique.skipUsingPhrase -%}
         {%- assign usingConjunction = technique.usingConjunction | default-strict: "using" -%}
         {%- assign usingQuantity = technique.usingQuantity | default-strict: "one" -%}
         {%- if technique.usingPrefix %}

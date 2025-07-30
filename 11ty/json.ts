@@ -295,7 +295,7 @@ function createTechniquesFromSc(
   ) {
     const usingContent =
       (hasGroups && "using one technique from each group outlined below") ||
-      ("using" in technique && !technique.skipUsingText && stringifyUsingProps(technique));
+      ("using" in technique && !technique.skipUsingPhrase && stringifyUsingProps(technique));
 
     if ("id" in technique && technique.id)
       return {
@@ -369,13 +369,14 @@ function createTechniquesFromSc(
         techniques[type]!.push({
           title: section.title,
           techniques: mapAssociatedTechniques(section.techniques, "groups" in section),
-          ...("groups" in section && section.groups && {
-            groups: section.groups.map((group) => ({
-              id: group.id,
-              title: group.title,
-              techniques: mapAssociatedTechniques(group.techniques),
-            })),
-          }),
+          ...("groups" in section &&
+            section.groups && {
+              groups: section.groups.map((group) => ({
+                id: group.id,
+                title: group.title,
+                techniques: mapAssociatedTechniques(group.techniques),
+              })),
+            }),
           ...(section.note && { note: cleanLinks(section.note) }),
         } satisfies SerializedTechniqueSection);
       }

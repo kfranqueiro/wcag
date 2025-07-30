@@ -56,7 +56,7 @@ The following list outlines properties available on each technique object:
   - Default: `"one"`
   - May be empty string (`""`), in which case the subsequent "of" is dropped
 - `usingPrefix` - Adds text to appear before `usingConjunction`
-- `skipUsingText` - Omits the entire "... using ... of the following techniques" phrase
+- `skipUsingPhrase` - Omits the entire "... using ... of the following techniques" phrase
   - This is mainly an escape hatch for rare instances where a child list is used but no "using" phrase appears at all (e.g. in 1.4.4: Resize Text)
 
 Typically, either `id` or `title` is required.
