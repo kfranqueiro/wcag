@@ -5,11 +5,11 @@ Expected input:
 {%- endcomment -%}
 
 {% assign techniqueObj = technique | expand-technique %}
+{%- if techniqueObj.prefix %}{{ techniqueObj.prefix }} {% endif -%}
 {%- if techniqueObj.id -%}
   {%- capture techniqueLink %}{{ techniqueObj.id | linkTechniques }}{% endcapture -%}
-  {%- if techniqueObj.prefix %}{{ techniqueObj.prefix }} {% endif -%}
   {{ techniqueLink }}
-  {%- if techniqueObj.suffix %} {{ techniqueObj.suffix }}{% endif -%}
 {%- elsif techniqueObj.title -%}
   {{ techniqueObj.title }}
 {%- endif -%}
+{%- if techniqueObj.suffix %} {{ techniqueObj.suffix }}{% endif -%}
