@@ -267,7 +267,7 @@ const resolveLinks = (html: string) =>
   html.replace(/href="([^"]*)"/g, (match, href: string) => {
     if (/^https?:/.test(href)) return match;
     const domain = `https://www.w3.org`;
-    const baseUrl = `${domain}/WCAG${process.env.WCAG_VERSION || "22"}/Understanding/`;
+    const baseUrl = `${domain}/WAI/WCAG${process.env.WCAG_VERSION || "22"}/Understanding/`;
     if (href.startsWith("/")) return `href="${domain}${href}"`;
     return `href="${baseUrl}${href}"`;
   });
