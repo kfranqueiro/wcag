@@ -285,6 +285,8 @@ export class CustomLiquid extends Liquid {
           // Expand top-level heading and add box for guideline/SC pages
           if ($("section#intent").length) $("h1").replaceWith(generateIncludes("understanding/h1"));
           $("section#intent").before(generateIncludes("understanding/about"));
+          $("section#brief dt").first().remove();
+          $("section#brief dd").first().remove();
 
           // Disallow handwritten success-criteria section (should be auto-generated)
           if ($("section#success-criteria").length) {
