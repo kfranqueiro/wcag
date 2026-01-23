@@ -11,4 +11,4 @@ jobs:
       - uses: actions/checkout@v4
       - uses: streetsidesoftware/cspell-action@v7
         with:
-          check_dot_files: false
+          incremental_files_only: false
